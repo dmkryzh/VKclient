@@ -15,7 +15,7 @@ class LoginPresenter: LoginPresenterProtocol {
     
     weak var view: LoginVC?
     
-    weak var coordinator: LoginCoordinator?
+    var coordinator: LoginCoordinator?
     
     func acceptButton() {
         coordinator?.start()

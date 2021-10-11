@@ -15,7 +15,7 @@ class RegistrationPresenter: RegPresenterProtocol {
     
     weak var view: RegistrationVC?
     
-    weak var coordinator: RegistrationCoordinator?
+    var coordinator: RegistrationCoordinator?
     
     @objc func nextButtonPressed() {
         coordinator?.start()

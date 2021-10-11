@@ -16,7 +16,7 @@ class StartPresenter: StartPresenterProtocol {
     
     weak var view: StartScreenVC?
     
-    weak var coordinator: StartCoordinator?
+    var coordinator: StartCoordinator?
     
     @objc func registerButtonPressed() {
         coordinator?.register()
