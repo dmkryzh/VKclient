@@ -7,6 +7,25 @@
 
 import Foundation
 
-class ConfirmationPresenter {
+@objc protocol ConfPresenterProtocol {
+    func registerButtonPressed()
+}
+
+class ConfirmationPresenter: ConfPresenterProtocol {
     
+    func registerButtonPressed() {
+        
+    }
+    
+    let passedNumber = "+7300500"
+    
+    weak var view: ConfirmationVC?
+    
+    var coordinator: ConfirmationCoordinator?
+ 
+    
+    init(_ view: ConfirmationVC, _ coordinator: ConfirmationCoordinator) {
+        self.view = view
+        self.coordinator = coordinator
+    }
 }

@@ -40,7 +40,7 @@ class RegistrationVC: UIViewController {
     
     let consentLabel: UILabel = {
         let view = UILabel()
-        view.text = "Нажимая кнопку “Далее” Вы принимаете пользовательское Соглашение и политику конфедициальности"
+        view.text = "Нажимая кнопку “Далее” вы принимаете пользовательское Соглашение и политику конфиденциальности"
         view.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         view.textColor = .gray
         view.textAlignment = .center
@@ -58,12 +58,13 @@ class RegistrationVC: UIViewController {
         return view
     }()
     
-    let nextButton: UIButton = {
+    lazy var nextButton: UIButton = {
         let view = UIButton(type: .system)
         view.setTitle("Далее", for: .normal)
         view.setTitleColor(.white, for: .normal)
         view.backgroundColor = UIColor(named: "bloodyRedColor")
         view.layer.cornerRadius = 10
+        view.addTarget(presenter, action: #selector(presenter?.nextButtonPressed), for: .touchUpInside)
         return view
     }()
     

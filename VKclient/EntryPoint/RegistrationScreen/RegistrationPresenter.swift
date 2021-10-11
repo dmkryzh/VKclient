@@ -18,7 +18,7 @@ class RegistrationPresenter: RegPresenterProtocol {
     var coordinator: RegistrationCoordinator?
     
     @objc func nextButtonPressed() {
-        coordinator?.start()
+        coordinator?.startConfirmation()
     }
     
     init(_ view: RegistrationVC, _ coordinator: RegistrationCoordinator) {

@@ -15,8 +15,7 @@ class ConfirmationCoordinator: Coordinator {
     var rootVC: UIViewController
     
     func start() {
-        let confVC = ConfirmationVC()
-        navController.pushViewController(confVC, animated: true)
+        navController.pushViewController(rootVC, animated: true)
     }
     
     init(_ navController: UINavigationController, _ rootVC: UIViewController) {
