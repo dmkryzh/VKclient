@@ -10,8 +10,8 @@ import UIKit
 import SnapKit
 
 class StartScreenVC: UIViewController {
-
-    weak var coordinator: Coordinator?
+    
+    var presenter: StartPresenterProtocol?
     
     lazy var registerButton: UIButton = {
         let view = UIButton(type: .system)
@@ -20,6 +20,7 @@ class StartScreenVC: UIViewController {
         view.titleLabel?.font = .systemFont(ofSize: 16, weight: .heavy)
         view.layer.cornerRadius = 20
         view.tintColor = .white
+        view.addTarget(presenter, action: #selector(presenter?.registerButtonPressed), for: .touchUpInside)
         return view
     }()
     
@@ -27,6 +28,7 @@ class StartScreenVC: UIViewController {
         let view = UIButton(type: .system)
         view.backgroundColor = .clear
         view.setTitle("Уже есть аккаунт", for: .normal)
+        view.addTarget(presenter, action: #selector(presenter?.accountIsExistButtonPressed), for: .touchUpInside)
         return view
     }()
     
@@ -79,5 +81,4 @@ class StartScreenVC: UIViewController {
         view.addSubviews(logoView, registerButton, accExistsButton, bottomPicture)
         setupConstraints()
     }
-
 }

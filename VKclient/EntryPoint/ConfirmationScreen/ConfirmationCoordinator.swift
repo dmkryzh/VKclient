@@ -1,0 +1,26 @@
+//
+//  ConfirmationCoordinator.swift
+//  VKclient
+//
+//  Created by Dmitrii KRY on 11.10.2021.
+//
+
+import Foundation
+import UIKit
+
+class ConfirmationCoordinator: Coordinator {
+    
+    var navController: UINavigationController
+    
+    var rootVC: UIViewController
+    
+    func start() {
+        let confVC = ConfirmationVC()
+        navController.pushViewController(confVC, animated: true)
+    }
+    
+    init(_ navController: UINavigationController, _ rootVC: UIViewController) {
+        self.navController = navController
+        self.rootVC = rootVC
+    }
+}

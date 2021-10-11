@@ -10,7 +10,7 @@ import UIKit
 
 class LoginVC: UIViewController {
     
-    weak var coordinator: Coordinator?
+    var presenter: LoginPresenter?
     
     let welcomeBackLabel: UILabel = {
         let view = UILabel()

@@ -10,7 +10,7 @@ import SnapKit
 
 class RegistrationVC: UIViewController {
     
-    weak var coordinator: Coordinator?
+    var presenter: RegPresenterProtocol?
     
     let registerLabel: UILabel = {
         let view = UILabel()

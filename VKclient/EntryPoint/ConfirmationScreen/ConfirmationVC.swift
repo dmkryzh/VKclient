@@ -10,7 +10,7 @@ import UIKit
 
 class ConfirmationVC: UIViewController {
     
-    weak var coordinator: Coordinator?
+    var presenter: ConfirmationPresenter?
 
     let confirmationLabel: UILabel = {
         let view = UILabel()
