@@ -11,18 +11,22 @@ import Foundation
     func nextButtonPressed()
 }
 
+protocol RegistrationDelegate {
+    func numberIsPassed()
+}
+
 class RegistrationPresenter: RegPresenterProtocol {
     
     weak var view: RegistrationVC?
     
-    var coordinator: RegistrationCoordinator?
+    var delegate: RegistrationDelegate?
     
     @objc func nextButtonPressed() {
-        coordinator?.startConfirmation()
+        delegate?.numberIsPassed()
     }
     
-    init(_ view: RegistrationVC, _ coordinator: RegistrationCoordinator) {
+    init(_ view: RegistrationVC, _ coordinator: RegistrationDelegate) {
         self.view = view
-        self.coordinator = coordinator
+        self.delegate = coordinator
     }
 }

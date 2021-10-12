@@ -11,18 +11,23 @@ import Foundation
     func acceptButton()
 }
 
+protocol LoginDelegate {
+    func loginIsSucceed()
+}
+
 class LoginPresenter: LoginPresenterProtocol {
     
     weak var view: LoginVC?
     
-    var coordinator: LoginCoordinator?
+    var delegate: LoginDelegate?
     
     func acceptButton() {
-        coordinator?.start()
+        delegate?.loginIsSucceed()
     }
     
     init(_ view: LoginVC, _ coordinator: LoginCoordinator) {
         self.view = view
-        self.coordinator = coordinator
+        self.delegate = coordinator
     }
 }
+

@@ -13,21 +13,24 @@ class RegistrationCoordinator: Coordinator {
     var navController: UINavigationController
     
     var rootVC: UIViewController
-    
+
     func start() {
         navController.pushViewController(rootVC, animated: true)
     }
+
+    init(_ navController: UINavigationController, _ rootVC: UIViewController) {
+        self.navController = navController
+        self.rootVC = rootVC
+    }
+}
+
+extension RegistrationCoordinator: RegistrationDelegate {
     
-    func startConfirmation() {
+    func numberIsPassed() {
         let confirmationVC = ConfirmationVC()
         let coordinator = ConfirmationCoordinator(navController, confirmationVC)
         let confirmationPresenter = ConfirmationPresenter(confirmationVC, coordinator)
         confirmationVC.presenter = confirmationPresenter
         coordinator.start()
-    }
-    
-    init(_ navController: UINavigationController, _ rootVC: UIViewController) {
-        self.navController = navController
-        self.rootVC = rootVC
     }
 }

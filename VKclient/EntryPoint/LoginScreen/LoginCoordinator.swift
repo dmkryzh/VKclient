@@ -24,3 +24,8 @@ class LoginCoordinator: Coordinator {
     }
     
 }
+
+extension LoginCoordinator: LoginDelegate {
+    func loginIsSucceed() {
+    }   
+}

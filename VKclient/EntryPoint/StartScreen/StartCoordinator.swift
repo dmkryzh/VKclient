@@ -17,12 +17,25 @@ class StartCoordinator: Coordinator {
     var window: UIWindow?
     
     func start() {
-        navController.navigationBar.isHidden = true
+        navController.navigationBar.isTranslucent = true
+        navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navController.navigationBar.shadowImage = UIImage()
+        navController.navigationBar.tintColor = .black
+        navController.navigationBar.backgroundColor = .clear
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
     }
     
-    func register() {
+    init(_ rootVC: UIViewController, _ window: UIWindow) {
+        self.rootVC = rootVC
+        self.navController = UINavigationController(rootViewController: rootVC)
+        self.window = window
+    }
+}
+
+extension StartCoordinator: StartDelegate {
+    
+    func registrationFlowChosen() {
         let registartionVC = RegistrationVC()
         let coordinator = RegistrationCoordinator(navController, registartionVC)
         let registrationPresenter = RegistrationPresenter(registartionVC, coordinator)
@@ -30,19 +43,12 @@ class StartCoordinator: Coordinator {
         coordinator.start()
     }
     
-    func accIsExist() {
+    func loginFlowChosen() {
         let loginVC = LoginVC()
         let coordinator = LoginCoordinator(navController, loginVC)
         let loginPresenter = LoginPresenter(loginVC, coordinator)
         loginVC.presenter = loginPresenter
         coordinator.start()
     }
-    
-     init(_ rootVC: UIViewController, _ window: UIWindow) {
-        self.rootVC = rootVC
-        self.navController = UINavigationController(rootViewController: rootVC)
-        self.window = window
-    }
-    
     
 }

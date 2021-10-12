@@ -12,23 +12,28 @@ import Foundation
     func accountIsExistButtonPressed()
 }
 
+protocol StartDelegate {
+    func registrationFlowChosen()
+    func loginFlowChosen()
+}
+
 class StartPresenter: StartPresenterProtocol {
     
     weak var view: StartScreenVC?
     
-    var coordinator: StartCoordinator?
+    var delegate: StartDelegate?
     
     @objc func registerButtonPressed() {
-        coordinator?.register()
+        delegate?.registrationFlowChosen()
     }
     
     @objc func accountIsExistButtonPressed() {
-        coordinator?.accIsExist()
+        delegate?.loginFlowChosen()
     }
     
-    init(_ view: StartScreenVC, _ coordinator: StartCoordinator) {
+    init(_ view: StartScreenVC, _ coordinator: StartDelegate) {
         self.view = view
-        self.coordinator = coordinator
+        self.delegate = coordinator
     }
     
 }

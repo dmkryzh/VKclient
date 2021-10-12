@@ -40,12 +40,6 @@ class StartScreenVC: UIViewController {
         return view
     }()
     
-    let bottomPicture: UIImageView = {
-        let image = UIImage(named: "rusFlag")
-        let view = UIImageView(image: image)
-        return view
-    }()
-    
     lazy var setupConstraints = { [self] in
         logoView.snp.makeConstraints { make in
             make.height.equalTo(470)
@@ -67,18 +61,11 @@ class StartScreenVC: UIViewController {
             make.top.equalTo(registerButton.snp.bottom).offset(40)
             make.centerX.equalToSuperview()
         }
-        
-        bottomPicture.snp.makeConstraints { make in
-            make.height.equalTo(60)
-            make.width.equalTo(80)
-            make.top.equalTo(accExistsButton.snp.bottom).offset(60)
-            make.centerX.equalToSuperview()
-        }
     }
     
     override func viewDidLoad() {
         view.backgroundColor = .white
-        view.addSubviews(logoView, registerButton, accExistsButton, bottomPicture)
+        view.addSubviews(logoView, registerButton, accExistsButton)
         setupConstraints()
     }
 }
