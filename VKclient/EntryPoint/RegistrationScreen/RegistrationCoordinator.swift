@@ -26,6 +26,10 @@ class RegistrationCoordinator: Coordinator {
 
 extension RegistrationCoordinator: RegistrationDelegate {
     
+    func vcIsClosed() {
+        navController.popViewController(animated: true)
+    }
+    
     func numberIsPassed() {
         let confirmationVC = ConfirmationVC()
         let coordinator = ConfirmationCoordinator(navController, confirmationVC)

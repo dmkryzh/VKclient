@@ -17,18 +17,30 @@ class StartCoordinator: Coordinator {
     var window: UIWindow?
     
     func start() {
-        navController.navigationBar.isTranslucent = true
-        navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navController.navigationBar.shadowImage = UIImage()
-        navController.navigationBar.tintColor = .black
-        navController.navigationBar.backgroundColor = .clear
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
+    }
+    
+    func configureNavBar() {
+
+        let barButtonItemAppearance = UIBarButtonItemAppearance()
+        barButtonItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.setBackIndicatorImage(UIImage(named: "backButton"), transitionMaskImage: UIImage(named: "backButton"))
+        navigationBarAppearance.backgroundColor = .white
+        navigationBarAppearance.configureWithTransparentBackground()
+        
+        navController.navigationBar.standardAppearance = navigationBarAppearance
+        navController.navigationBar.standardAppearance.buttonAppearance = barButtonItemAppearance
+        navController.navigationBar.tintColor = .black
+
     }
     
     init(_ rootVC: UIViewController, _ window: UIWindow) {
         self.rootVC = rootVC
         self.navController = UINavigationController(rootViewController: rootVC)
+        self.configureNavBar()
         self.window = window
     }
 }

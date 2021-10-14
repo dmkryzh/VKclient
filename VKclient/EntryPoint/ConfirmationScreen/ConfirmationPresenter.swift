@@ -11,6 +11,10 @@ import Foundation
     func registerButtonPressed()
 }
 
+protocol ConfDelegate {
+    func userIsRegistered()
+}
+
 class ConfirmationPresenter: ConfPresenterProtocol {
     
     func registerButtonPressed() {
@@ -23,7 +27,6 @@ class ConfirmationPresenter: ConfPresenterProtocol {
     
     var coordinator: ConfirmationCoordinator?
  
-    
     init(_ view: ConfirmationVC, _ coordinator: ConfirmationCoordinator) {
         self.view = view
         self.coordinator = coordinator

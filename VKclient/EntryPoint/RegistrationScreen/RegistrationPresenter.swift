@@ -24,7 +24,7 @@ class RegistrationPresenter: RegPresenterProtocol {
     @objc func nextButtonPressed() {
         delegate?.numberIsPassed()
     }
-    
+
     init(_ view: RegistrationVC, _ coordinator: RegistrationDelegate) {
         self.view = view
         self.delegate = coordinator

@@ -15,19 +15,22 @@ protocol LoginDelegate {
     func loginIsSucceed()
 }
 
-class LoginPresenter: LoginPresenterProtocol {
+class LoginPresenter {
     
     weak var view: LoginVC?
     
     var delegate: LoginDelegate?
-    
-    func acceptButton() {
-        delegate?.loginIsSucceed()
-    }
-    
+
     init(_ view: LoginVC, _ coordinator: LoginCoordinator) {
         self.view = view
         self.delegate = coordinator
+    }
+}
+
+extension LoginPresenter: LoginPresenterProtocol {
+    
+    @objc func acceptButton() {
+        delegate?.loginIsSucceed()
     }
 }
 

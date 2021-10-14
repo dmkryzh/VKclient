@@ -7,11 +7,12 @@
 
 import Foundation
 import SnapKit
+import UIKit
 
 class RegistrationVC: UIViewController {
     
     var presenter: RegPresenterProtocol?
-    
+
     let registerLabel: UILabel = {
         let view = UILabel()
         view.text = "Зарегистрироваться"

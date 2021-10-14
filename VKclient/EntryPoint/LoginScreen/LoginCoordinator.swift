@@ -17,7 +17,7 @@ class LoginCoordinator: Coordinator {
     func start() {
         navController.pushViewController(rootVC, animated: true)
     }
-    
+
     init(_ navController: UINavigationController, _ rootVC: UIViewController) {
         self.navController = navController
         self.rootVC = rootVC
