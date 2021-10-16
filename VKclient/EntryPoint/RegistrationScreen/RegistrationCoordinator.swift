@@ -7,17 +7,18 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class RegistrationCoordinator: Coordinator {
     
     var navController: UINavigationController
     
     var rootVC: UIViewController
-
+    
     func start() {
         navController.pushViewController(rootVC, animated: true)
     }
-
+    
     init(_ navController: UINavigationController, _ rootVC: UIViewController) {
         self.navController = navController
         self.rootVC = rootVC
@@ -25,10 +26,6 @@ class RegistrationCoordinator: Coordinator {
 }
 
 extension RegistrationCoordinator: RegistrationDelegate {
-    
-    func vcIsClosed() {
-        navController.popViewController(animated: true)
-    }
     
     func numberIsPassed() {
         let confirmationVC = ConfirmationVC()

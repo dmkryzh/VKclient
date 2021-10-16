@@ -16,7 +16,7 @@ class StartScreenVC: UIViewController {
     lazy var registerButton: UIButton = {
         let view = UIButton(type: .system)
         view.backgroundColor = UIColor(named: "bloodyRedColor")
-        view.setTitle("Зарегистрироваться", for: .normal)
+        view.setTitle("Войти", for: .normal)
         view.titleLabel?.font = .systemFont(ofSize: 16, weight: .heavy)
         view.layer.cornerRadius = 20
         view.tintColor = .white
@@ -24,13 +24,13 @@ class StartScreenVC: UIViewController {
         return view
     }()
     
-    lazy var accExistsButton: UIButton = {
-        let view = UIButton(type: .system)
-        view.backgroundColor = .clear
-        view.setTitle("Уже есть аккаунт", for: .normal)
-        view.addTarget(presenter, action: #selector(presenter?.accountIsExistButtonPressed), for: .touchUpInside)
-        return view
-    }()
+//    lazy var accExistsButton: UIButton = {
+//        let view = UIButton(type: .system)
+//        view.backgroundColor = .clear
+//        view.setTitle("Уже есть аккаунт", for: .normal)
+//        view.addTarget(presenter, action: #selector(presenter?.accountIsExistButtonPressed), for: .touchUpInside)
+//        return view
+//    }()
     
     let logoView: UIImageView = {
         let image = UIImage(named: "startLogo")
@@ -55,17 +55,17 @@ class StartScreenVC: UIViewController {
             make.centerX.equalToSuperview()
         }
         
-        accExistsButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-            make.top.equalTo(registerButton.snp.bottom).offset(40)
-            make.centerX.equalToSuperview()
-        }
+//        accExistsButton.snp.makeConstraints { make in
+//            make.height.equalTo(50)
+//            make.width.equalTo(300)
+//            make.top.equalTo(registerButton.snp.bottom).offset(40)
+//            make.centerX.equalToSuperview()
+//        }
     }
     
     override func viewDidLoad() {
         view.backgroundColor = .white
-        view.addSubviews(logoView, registerButton, accExistsButton)
+        view.addSubviews(logoView, registerButton)
         setupConstraints()
     }
 }

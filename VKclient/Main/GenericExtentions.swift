@@ -44,3 +44,11 @@ extension UIColor {
     }
 }
 
+extension String {
+    var fetchToken: String {
+        let splitStrInHalf = self.components(separatedBy: "%253D")
+        let separateStryngBy = splitStrInHalf[1].split(separator: "%").dropLast()
+        return separateStryngBy.first?.description ?? ""
+    }
+}
+

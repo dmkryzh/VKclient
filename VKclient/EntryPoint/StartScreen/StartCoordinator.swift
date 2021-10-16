@@ -38,6 +38,7 @@ class StartCoordinator: Coordinator {
     }
     
     init(_ rootVC: UIViewController, _ window: UIWindow) {
+        
         self.rootVC = rootVC
         self.navController = UINavigationController(rootViewController: rootVC)
         self.configureNavBar()
@@ -47,11 +48,21 @@ class StartCoordinator: Coordinator {
 
 extension StartCoordinator: StartDelegate {
     
+//    func registrationFlowChosen() {
+//        let registartionVC = RegistrationVC()
+//        let coordinator = RegistrationCoordinator(navController, registartionVC)
+//        let registrationPresenter = RegistrationPresenter(registartionVC, coordinator)
+//        registartionVC.presenter = registrationPresenter
+//        coordinator.start()
+//    }
+    
     func registrationFlowChosen() {
-        let registartionVC = RegistrationVC()
-        let coordinator = RegistrationCoordinator(navController, registartionVC)
-        let registrationPresenter = RegistrationPresenter(registartionVC, coordinator)
-        registartionVC.presenter = registrationPresenter
+        let loginVk = LoginVkVC()
+        let coordinator = LoginVkCoordinator(navController, loginVk)
+        let model = LoginVkModel()
+        let vkPresenter = LoginVkPresenter(model)
+        loginVk.delegate = vkPresenter
+        vkPresenter.delegate = coordinator
         coordinator.start()
     }
     
