@@ -8,7 +8,7 @@
 import Foundation
 
 protocol LoginVkPresenterProtocol {
-    func loggedIn(_ link: String, _ completion: ((String) -> String)? )
+    func loggedIn(_ link: String, _ completion: ((String) -> String)?)
 }
 
 protocol LoginVkDelegate {
@@ -21,18 +21,20 @@ class LoginVkPresenter: LoginVkPresenterProtocol {
     
     var delegate: LoginVkDelegate?
     
-    var model: LoginVkModelProtocol
+    var model: LoginVkModelProtocol?
     
     func loggedIn(_ link: String, _ completion: ((String) -> String)?) {
         let test = "access_token"
         if (link.range(of: test) != nil) {
             guard let completion = completion else { return }
-            model.token = completion(link)
+            model?.token = completion(link)
         }
         delegate?.startFeedFlow()
     }
     
-    init(_ model: LoginVkModelProtocol) {
+    init(_ model: LoginVkModelProtocol, _ view: LoginVkVC, _ coordinator: LoginVkDelegate) {
         self.model = model
+        self.view = view
+        delegate = coordinator
     }
 }

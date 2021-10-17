@@ -15,7 +15,7 @@ class LoginVkCoordinator: Coordinator {
     var rootVC: UIViewController
     
     func start() {
-        navController.present(rootVC, animated: true, completion: nil)
+        navController.present(rootVC, animated: true)
     }
     
     init(_ nav: UINavigationController, _ vc: UIViewController) {
@@ -26,7 +26,7 @@ class LoginVkCoordinator: Coordinator {
 
 extension LoginVkCoordinator: LoginVkDelegate {
     func startFeedFlow() {
-        navController.dismiss(animated: true, completion: nil)
+//        navController.dismiss(animated: true, completion: nil)
     }
     
     

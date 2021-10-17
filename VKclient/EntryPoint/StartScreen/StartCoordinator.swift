@@ -60,9 +60,8 @@ extension StartCoordinator: StartDelegate {
         let loginVk = LoginVkVC()
         let coordinator = LoginVkCoordinator(navController, loginVk)
         let model = LoginVkModel()
-        let vkPresenter = LoginVkPresenter(model)
+        let vkPresenter = LoginVkPresenter(model, loginVk, coordinator)
         loginVk.delegate = vkPresenter
-        vkPresenter.delegate = coordinator
         coordinator.start()
     }
     
@@ -73,5 +72,4 @@ extension StartCoordinator: StartDelegate {
         loginVC.presenter = loginPresenter
         coordinator.start()
     }
-    
 }

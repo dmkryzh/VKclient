@@ -11,9 +11,7 @@ import UIKit
 import WebKit
 
 class LoginVkVC: UIViewController {
-    
-    var redirectionCount = 0
-    
+
     var delegate: LoginVkPresenterProtocol?
     
     let webView = WKWebView()
@@ -27,6 +25,7 @@ class LoginVkVC: UIViewController {
     }
     
     override func viewDidLoad() {
+        view.backgroundColor = .white
         logOut()
         webView.load(webUrl)
         webView.navigationDelegate = self
