@@ -19,21 +19,31 @@ class VKProfileCoordinator: Coordinator {
     }
     
     func customiseNavBar() {
-        let appearance = UINavigationBarAppearance()
-        navController.navigationBar.standardAppearance = appearance
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithTransparentBackground()
+        navController.navigationBar.standardAppearance = navigationBarAppearance
+        navController.navigationBar.tintColor = .black
+        rootVC.navigationItem.hidesBackButton = true
+        rootVC.navigationItem.setRightBarButton(rightButton, animated: true)
+        rootVC.navigationItem.setLeftBarButton(UIBarButtonItem(), animated: false)
+        rootVC.navigationItem.leftBarButtonItem?.customView = leftBarBtt
     }
     
     let rightButton: UIBarButtonItem = {
         let image = UIImage(systemName: "text.justify")
-        let view = UIBarButtonItem(image: nil, style: .plain, target: nil, action: nil)
+        let view = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
+        return view
+    }()
+
+    let leftBarBtt: UILabel = {
+        let view = UILabel()
+        view.text = "default_user"
         return view
     }()
     
     init(_ parentNC: UINavigationController, rootVC: VKProfileVC) {
         self.rootVC = rootVC
         navController = parentNC
-        rootVC.navigationItem.hidesBackButton = true
-        rootVC.navigationItem.rightBarButtonItem = rightButton
         customiseNavBar()
     }
     
