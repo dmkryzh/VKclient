@@ -8,6 +8,20 @@
 import Foundation
 import Alamofire
 
+protocol VKAPIProtocol {
+    func getToken()
+    func getMyAccInfo()
+    func getUserAccInfo()
+    func getUsers()
+    func getProfilePhoto()
+    func getAllPhotos()
+    func getAlbums()
+}
+
 final class APIClient {
-    
+    func getToken() {}
+    func getMyAccInfo() {}
+    func getUserAccInfo() {}
+    func getUsers() {}
+    func getProfilePhoto() {}
 }

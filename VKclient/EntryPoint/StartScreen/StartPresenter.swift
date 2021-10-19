@@ -15,6 +15,7 @@ import Foundation
 protocol StartDelegate {
     func registrationFlowChosen()
     func loginFlowChosen()
+    func testPurposes()
 }
 
 class StartPresenter: StartPresenterProtocol {
@@ -24,7 +25,8 @@ class StartPresenter: StartPresenterProtocol {
     var delegate: StartDelegate?
     
     @objc func registerButtonPressed() {
-        delegate?.registrationFlowChosen()
+//        delegate?.registrationFlowChosen()
+        delegate?.testPurposes()
     }
     
     @objc func accountIsExistButtonPressed() {

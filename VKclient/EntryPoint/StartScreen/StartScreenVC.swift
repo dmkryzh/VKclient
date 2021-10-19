@@ -33,16 +33,17 @@ class StartScreenVC: UIViewController {
 //    }()
     
     let logoView: UIImageView = {
-        let image = UIImage(named: "startLogo")
+        let image = UIImage(named: "startLogoDark")
         let view = UIImageView(image: image)
-        view.layer.cornerRadius = 200
+        view.layer.cornerRadius = 150
         view.layer.masksToBounds = true
         return view
     }()
-    
+
     lazy var setupConstraints = { [self] in
+  
         logoView.snp.makeConstraints { make in
-            make.height.equalTo(470)
+            make.height.equalTo(550)
             make.width.equalTo(400)
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.centerX.equalToSuperview()

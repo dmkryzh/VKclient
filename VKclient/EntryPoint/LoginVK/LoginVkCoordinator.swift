@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class LoginVkCoordinator: Coordinator {
-    
+
     var navController: UINavigationController
     
     var rootVC: UIViewController
@@ -26,8 +26,17 @@ class LoginVkCoordinator: Coordinator {
 
 extension LoginVkCoordinator: LoginVkDelegate {
     func startFeedFlow() {
-//        navController.dismiss(animated: true, completion: nil)
     }
     
-    
+    func startProfileFlow() {
+        let completion = { [self] in
+            let profileVK = VKProfileVC()
+            let coordinator = VKProfileCoordinator(navController, rootVC: profileVK)
+            let model = VKProfileModel()
+            let vkPresenter = VKProfilePresenter(model, profileVK, coordinator)
+            profileVK.delegate = vkPresenter
+            coordinator.start()
+        }
+        navController.dismiss(animated: true, completion: completion)
+    }
 }

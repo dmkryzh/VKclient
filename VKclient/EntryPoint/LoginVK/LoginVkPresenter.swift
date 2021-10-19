@@ -13,6 +13,7 @@ protocol LoginVkPresenterProtocol {
 
 protocol LoginVkDelegate {
     func startFeedFlow()
+    func startProfileFlow()
 }
 
 class LoginVkPresenter: LoginVkPresenterProtocol {
@@ -28,8 +29,8 @@ class LoginVkPresenter: LoginVkPresenterProtocol {
         if (link.range(of: test) != nil) {
             guard let completion = completion else { return }
             model?.token = completion(link)
+            delegate?.startProfileFlow()
         }
-        delegate?.startFeedFlow()
     }
     
     init(_ model: LoginVkModelProtocol, _ view: LoginVkVC, _ coordinator: LoginVkDelegate) {

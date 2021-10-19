@@ -72,4 +72,13 @@ extension StartCoordinator: StartDelegate {
         loginVC.presenter = loginPresenter
         coordinator.start()
     }
+    
+    func testPurposes() {
+        let profileVK = VKProfileVC()
+        let coordinator = VKProfileCoordinator(navController, rootVC: profileVK)
+        let model = VKProfileModel()
+        let vkPresenter = VKProfilePresenter(model, profileVK, coordinator)
+        profileVK.delegate = vkPresenter
+        coordinator.start()
+    }
 }
