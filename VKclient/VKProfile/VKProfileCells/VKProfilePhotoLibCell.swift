@@ -13,10 +13,10 @@ class VKProfilePhotoLibCell: UICollectionViewCell {
     
     let photoImage: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage()
         view.layer.cornerRadius = 5
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
+        view.tintColor = .black
         return view
     }()
     

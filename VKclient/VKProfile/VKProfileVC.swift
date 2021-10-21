@@ -254,10 +254,11 @@ final class VKProfileVC: UIViewController {
         }
         
         photosCollectionView.snp.makeConstraints { make in
-            make.height.equalTo(120)
+            make.height.equalTo(68)
             make.width.equalTo(450)
-            make.top.equalTo(photoLibLabel.snp.bottom)
-            make.leading.equalTo(safe)
+            make.top.equalTo(photoLibLabel.snp.bottom).offset(15)
+            make.leading.equalTo(safe).offset(16)
+            make.trailing.equalTo(safe)
         }
     }
     
@@ -277,31 +278,35 @@ final class VKProfileVC: UIViewController {
 }
 
 extension VKProfileVC: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 72, height: 68)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 4
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
     }
+    
 }
 
 extension VKProfileVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return VKPhotoLibModel.photosForTesting.count
+        return VKPhotoLibModel.photosForTesting.count + 1
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let photo = UIImage(named: VKPhotoLibModel.photosForTesting[indexPath.item])
+    
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePhotoLib", for: indexPath) as? VKProfilePhotoLibCell else { return UICollectionViewCell(frame: .zero)  }
-        
+     
+        if indexPath.item == VKPhotoLibModel.photosForTesting.count {
+            let threeDots = UIImage(systemName: "arrow.right")
+            cell.photoImage.image = threeDots
+        } else {
+            let photo = UIImage(named: VKPhotoLibModel.photosForTesting[indexPath.item])
+            
         cell.photoImage.image = photo
+        }
         
         return cell
     }

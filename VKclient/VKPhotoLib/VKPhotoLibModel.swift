@@ -11,5 +11,5 @@ struct VKPhotoLibModel {
     
     static var photosForTesting = ["1ava", "arch", "australian", "beach", "buildings", "cat", "child", "circle", "city", "face", "forest"]
     
-    let threeDots = "ellipsis"
+    static let threeDots = "ellipsis"
 }
