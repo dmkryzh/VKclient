@@ -8,4 +8,7 @@
 import Foundation
 
 class VKProfileModel {
+    
+    var photosCount = 0
+    
 }

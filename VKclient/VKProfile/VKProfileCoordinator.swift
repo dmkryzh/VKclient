@@ -38,6 +38,7 @@ class VKProfileCoordinator: Coordinator {
     let leftBarBtt: UILabel = {
         let view = UILabel()
         view.text = "default_user"
+//        view.frame = CGRect(x: 0, y: 0, width: 30, height: 15)
         return view
     }()
     

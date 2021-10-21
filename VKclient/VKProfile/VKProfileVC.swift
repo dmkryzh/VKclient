@@ -140,14 +140,36 @@ final class VKProfileVC: UIViewController {
         return view
     }()
     
-    let photosCollectionLayout: UICollectionViewLayout = {
-        let view = UICollectionViewLayout()
+    let photosCollectionLayout: UICollectionViewFlowLayout = {
+        let view = UICollectionViewFlowLayout()
+        view.scrollDirection = .horizontal
+        return view
+    }()
+
+    lazy var photosCollectionView: UICollectionView = {
+        let view = UICollectionView(frame: .zero, collectionViewLayout: photosCollectionLayout)
+        view.dataSource = self
+        view.delegate = self
+        view.collectionViewLayout = photosCollectionLayout
+        view.register(VKProfilePhotoLibCell.self, forCellWithReuseIdentifier: "VKProfilePhotoLib")
+        view.backgroundColor = .clear
+        view.showsHorizontalScrollIndicator = false
         return view
     }()
     
-    lazy var photosCollectionView: UICollectionView = {
-        let view = UICollectionView()
-        view.collectionViewLayout = photosCollectionLayout
+    let photoLibLabel: UILabel = {
+        let view = UILabel()
+        view.text = "Фотографии XX"
+        view.textColor = .label
+        return view
+    }()
+    
+    let photoLibArrow: UIButton = {
+        let arrowConfig = UIImage.SymbolConfiguration(textStyle: .title3)
+        let image = UIImage(systemName: "chevron.forward", withConfiguration: arrowConfig)
+        let view = UIButton(type: .system)
+        view.setImage(image, for: .normal)
+        view.tintColor = .label
         return view
     }()
     
@@ -200,28 +222,49 @@ final class VKProfileVC: UIViewController {
             make.height.equalTo(60)
             make.width.equalTo(350)
             make.top.equalTo(editBtt.snp.bottom).offset(15)
-            make.centerX.equalTo(safe.snp.centerX)
+            make.centerX.equalTo(safe)
         }
         
         line.snp.makeConstraints { make in
             make.height.equalTo(1)
             make.width.equalTo(400)
             make.top.equalTo(stackBtts.snp.bottom).offset(15)
-            make.centerX.equalTo(safe.snp.centerX)
+            make.centerX.equalTo(safe)
         }
         
         stackBttsSec.snp.makeConstraints { make in
             make.height.equalTo(60)
             make.width.equalTo(350)
             make.top.equalTo(line.snp.bottom).offset(15)
-            make.centerX.equalTo(safe.snp.centerX)
+            make.centerX.equalTo(safe)
+        }
+        
+        photoLibLabel.snp.makeConstraints { make in
+            make.height.equalTo(20)
+            make.width.equalTo(150)
+            make.top.equalTo(stackBttsSec.snp.bottom).offset(15)
+            make.leading.equalTo(safe).offset(16)
+        }
+        
+        photoLibArrow.snp.makeConstraints { make in
+            make.height.equalTo(25)
+            make.width.equalTo(15)
+            make.trailing.equalTo(safe).inset(16)
+            make.centerY.equalTo(photoLibLabel.snp.centerY)
+        }
+        
+        photosCollectionView.snp.makeConstraints { make in
+            make.height.equalTo(120)
+            make.width.equalTo(450)
+            make.top.equalTo(photoLibLabel.snp.bottom)
+            make.leading.equalTo(safe)
         }
     }
     
     
     override func viewDidLoad() {
         view.backgroundColor = .white
-        view.addSubviews(ava, userName, userNameSubtitle, exclamationMark, detailSubtitle, editBtt, stackBtts, line, stackBttsSec)
+        view.addSubviews(ava, userName, userNameSubtitle, exclamationMark, detailSubtitle, editBtt, stackBtts, line, stackBttsSec, photoLibLabel, photoLibArrow, photosCollectionView)
         setupConstraints()
     }
     
@@ -231,4 +274,36 @@ final class VKProfileVC: UIViewController {
         createStoryBtt.alignImageAndTitleVertically()
     }
     
+}
+
+extension VKProfileVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 72, height: 68)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+    }
+}
+
+extension VKProfileVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return VKPhotoLibModel.photosForTesting.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let photo = UIImage(named: VKPhotoLibModel.photosForTesting[indexPath.item])
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePhotoLib", for: indexPath) as? VKProfilePhotoLibCell else { return UICollectionViewCell(frame: .zero)  }
+        
+        cell.photoImage.image = photo
+        
+        return cell
+    }
+
 }
