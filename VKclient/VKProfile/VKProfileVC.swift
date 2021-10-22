@@ -13,6 +13,16 @@ final class VKProfileVC: UIViewController {
     
     var delegate: VKProfilePresenterProtocol?
     
+    let scrollView: UIScrollView = {
+        let view = UIScrollView()
+        return view
+    }()
+    
+    let containerView: UIView = {
+        let containerView = UIView()
+        return containerView
+    }()
+    
     let ava: UIImageView = {
         let image = UIImage(named: "pepe")
         let view = UIImageView(image: image)
@@ -145,7 +155,7 @@ final class VKProfileVC: UIViewController {
         view.scrollDirection = .horizontal
         return view
     }()
-
+    
     lazy var photosCollectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: photosCollectionLayout)
         view.dataSource = self
@@ -173,20 +183,61 @@ final class VKProfileVC: UIViewController {
         return view
     }()
     
+    let myPostsLabel: UILabel = {
+        let view = UILabel()
+        view.text = "Мои посты"
+        view.textColor = .label
+        return view
+    }()
+    
+    let searchPosts: UIButton = {
+        let arrowConfig = UIImage.SymbolConfiguration(textStyle: .title3)
+        let image = UIImage(systemName: "magnifyingglass", withConfiguration: arrowConfig)
+        let view = UIButton(type: .system)
+        view.setImage(image, for: .normal)
+        view.tintColor = .label
+        return view
+    }()
+    
+    
+    let postsCollectionLayout: UICollectionViewFlowLayout = {
+        let view = UICollectionViewFlowLayout()
+        view.scrollDirection = .vertical
+        return view
+    }()
+    
+    lazy var postsCollectionView: UICollectionView = {
+        let view = UICollectionView(frame: .zero, collectionViewLayout: postsCollectionLayout)
+        view.dataSource = self
+        view.delegate = self
+        view.register(VKProfilePostFeedCell.self, forCellWithReuseIdentifier: "VKProfilePostFeed")
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     lazy var setupConstraints = { [self] in
         
         let safe = view.safeAreaLayoutGuide
         
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(safe)
+        }
+        
+        containerView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView)
+            make.width.equalTo(safe)
+        }
+        
         ava.snp.makeConstraints { make in
             make.height.width.equalTo(80)
-            make.top.equalTo(safe.snp.top).offset(15)
-            make.leading.equalTo(safe.snp.leading).offset(30)
+            make.top.equalTo(containerView.snp.top).offset(15)
+            make.leading.equalTo(containerView.snp.leading).offset(30)
         }
         
         userName.snp.makeConstraints { make in
             make.height.equalTo(20)
             make.width.equalTo(250)
-            make.top.equalTo(safe).offset(20)
+            make.top.equalTo(containerView).offset(20)
             make.leading.equalTo(ava.snp.trailing).offset(10)
         }
         
@@ -222,50 +273,72 @@ final class VKProfileVC: UIViewController {
             make.height.equalTo(60)
             make.width.equalTo(350)
             make.top.equalTo(editBtt.snp.bottom).offset(15)
-            make.centerX.equalTo(safe)
+            make.centerX.equalTo(containerView)
         }
         
         line.snp.makeConstraints { make in
             make.height.equalTo(1)
             make.width.equalTo(400)
             make.top.equalTo(stackBtts.snp.bottom).offset(15)
-            make.centerX.equalTo(safe)
+            make.centerX.equalTo(containerView)
         }
         
         stackBttsSec.snp.makeConstraints { make in
             make.height.equalTo(60)
             make.width.equalTo(350)
             make.top.equalTo(line.snp.bottom).offset(15)
-            make.centerX.equalTo(safe)
+            make.centerX.equalTo(containerView)
         }
         
         photoLibLabel.snp.makeConstraints { make in
             make.height.equalTo(20)
             make.width.equalTo(150)
             make.top.equalTo(stackBttsSec.snp.bottom).offset(15)
-            make.leading.equalTo(safe).offset(16)
+            make.leading.equalTo(containerView).offset(16)
         }
         
         photoLibArrow.snp.makeConstraints { make in
             make.height.equalTo(25)
             make.width.equalTo(15)
-            make.trailing.equalTo(safe).inset(16)
+            make.trailing.equalTo(containerView).inset(16)
             make.centerY.equalTo(photoLibLabel.snp.centerY)
         }
         
         photosCollectionView.snp.makeConstraints { make in
             make.height.equalTo(68)
-            make.width.equalTo(450)
             make.top.equalTo(photoLibLabel.snp.bottom).offset(15)
-            make.leading.equalTo(safe).offset(16)
-            make.trailing.equalTo(safe)
+            make.leading.equalTo(containerView).offset(16)
+            make.trailing.equalTo(containerView)
+        }
+        
+        myPostsLabel.snp.makeConstraints { make in
+            make.height.equalTo(20)
+            make.width.equalTo(150)
+            make.top.equalTo(photosCollectionView.snp.bottom).offset(25)
+            make.leading.equalTo(containerView).offset(16)
+        }
+        
+        searchPosts.snp.makeConstraints { make in
+            make.height.equalTo(25)
+            make.width.equalTo(25)
+            make.trailing.equalTo(containerView).inset(16)
+            make.centerY.equalTo(myPostsLabel.snp.centerY)
+        }
+        
+        postsCollectionView.snp.makeConstraints { make in
+            make.height.equalTo(400)
+            make.top.equalTo(myPostsLabel.snp.bottom).offset(15)
+            make.leading.equalTo(containerView)
+            make.trailing.equalTo(containerView)
+            make.bottom.equalTo(containerView.snp.bottom)
         }
     }
     
     
     override func viewDidLoad() {
         view.backgroundColor = .white
-        view.addSubviews(ava, userName, userNameSubtitle, exclamationMark, detailSubtitle, editBtt, stackBtts, line, stackBttsSec, photoLibLabel, photoLibArrow, photosCollectionView)
+        view.addSubview(scrollView)
+        scrollView.addSubviews(containerView, ava, userName, userNameSubtitle, exclamationMark, detailSubtitle, editBtt, stackBtts, line, stackBttsSec, photoLibLabel, photoLibArrow, photosCollectionView, myPostsLabel, searchPosts, postsCollectionView)
         setupConstraints()
     }
     
@@ -279,36 +352,68 @@ final class VKProfileVC: UIViewController {
 
 extension VKProfileVC: UICollectionViewDelegateFlowLayout {
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 72, height: 68)
+        
+        if collectionView == photosCollectionView {
+            return CGSize(width: 72, height: 68)
+        }
+        else {
+            return CGSize(width: view.bounds.width, height: 380)
+        }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
+        
+        if collectionView == photosCollectionView {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
+        }
+        else {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
     }
     
 }
 
 extension VKProfileVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return VKPhotoLibModel.photosForTesting.count + 1
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePhotoLib", for: indexPath) as? VKProfilePhotoLibCell else { return UICollectionViewCell(frame: .zero)  }
-     
-        if indexPath.item == VKPhotoLibModel.photosForTesting.count {
-            let threeDots = UIImage(systemName: "arrow.right")
-            cell.photoImage.image = threeDots
-        } else {
-            let photo = UIImage(named: VKPhotoLibModel.photosForTesting[indexPath.item])
-            
-        cell.photoImage.image = photo
+        if collectionView == photosCollectionView {
+            return VKPhotoLibModel.photosForTesting.count + 1
         }
-        
-        return cell
+        else {
+            return 1
+        }
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == photosCollectionView {
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePhotoLib", for: indexPath) as? VKProfilePhotoLibCell else { return UICollectionViewCell(frame: .zero)  }
+            
+            if indexPath.item == VKPhotoLibModel.photosForTesting.count {
+                let threeDots = UIImage(systemName: "arrow.right")
+                cell.photoImage.image = threeDots
+            } else {
+                let photo = UIImage(named: VKPhotoLibModel.photosForTesting[indexPath.item])
+                
+                cell.photoImage.image = photo
+            }
+            
+            return cell
+            
+        } else {
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePostFeed", for: indexPath) as? VKProfilePostFeedCell else { return UICollectionViewCell(frame: .zero)  }
+            return cell
+            
+        }
+    }
+    
 }
+
+extension VKProfileVC: UICollectionViewDelegate {
+    
+}
+
