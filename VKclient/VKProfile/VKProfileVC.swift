@@ -23,6 +23,8 @@ final class VKProfileVC: UIViewController {
         return containerView
     }()
     
+    private var height: CGFloat = 0
+    
     let ava: UIImageView = {
         let image = UIImage(named: "pepe")
         let view = UIImageView(image: image)
@@ -326,14 +328,17 @@ final class VKProfileVC: UIViewController {
         }
         
         postsCollectionView.snp.makeConstraints { make in
-            make.height.equalTo(400)
             make.top.equalTo(myPostsLabel.snp.bottom).offset(15)
-            make.leading.equalTo(containerView)
-            make.trailing.equalTo(containerView)
+            make.leading.trailing.equalTo(containerView)
+            make.height.equalTo(300)
             make.bottom.equalTo(containerView.snp.bottom)
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        postsCollectionView.collectionViewLayout.invalidateLayout()
+    }
     
     override func viewDidLoad() {
         view.backgroundColor = .white
@@ -343,11 +348,17 @@ final class VKProfileVC: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         createPostBtt.alignImageAndTitleVertically()
         createPhotoBtt.alignImageAndTitleVertically()
         createStoryBtt.alignImageAndTitleVertically()
+       
+//        height = photosCollectionView.contentSize.height
+//        photosCollectionView.layoutIfNeeded()
+//        photosCollectionView.snp.updateConstraints { make in
+//            make.height.equalTo(height)
+//        }
     }
-    
 }
 
 extension VKProfileVC: UICollectionViewDelegateFlowLayout {
@@ -359,7 +370,7 @@ extension VKProfileVC: UICollectionViewDelegateFlowLayout {
             return CGSize(width: 72, height: 68)
         }
         else {
-            return CGSize(width: view.bounds.width, height: 380)
+            return CGSize(width: collectionView.frame.width, height: 200)
         }
     }
     

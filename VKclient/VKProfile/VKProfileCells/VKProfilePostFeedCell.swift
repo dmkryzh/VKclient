@@ -43,6 +43,11 @@ class VKProfilePostFeedCell: UICollectionViewCell {
         return view
     }()
     
+    let postTextAndImage: ProfilePostSubView = {
+        let view = ProfilePostSubView()
+        return view
+    }()
+    
     
     lazy var setupConstraints = { [self] in
         
@@ -73,11 +78,16 @@ class VKProfilePostFeedCell: UICollectionViewCell {
             make.centerY.equalTo(ava.snp.centerY)
         }
         
+        postTextAndImage.snp.makeConstraints { make in
+            make.trailing.leading.equalTo(contentView)
+            make.top.equalTo(ava.snp.bottom).offset(15)
+        }
+        
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubviews(ava,userName,userNameSubtitle, additionalInfo)
+        addSubviews(ava,userName,userNameSubtitle, additionalInfo, postTextAndImage)
         setupConstraints()
     }
     
