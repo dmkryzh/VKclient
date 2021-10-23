@@ -13,6 +13,14 @@ final class VKProfileVC: UIViewController {
     
     var delegate: VKProfilePresenterProtocol?
     
+    private var height: CGFloat = 0  {
+        didSet {
+            postsCollectionView.snp.updateConstraints { make in
+                make.height.equalTo(height)
+            }
+        }
+    }
+    
     let scrollView: UIScrollView = {
         let view = UIScrollView()
         return view
@@ -22,8 +30,6 @@ final class VKProfileVC: UIViewController {
         let containerView = UIView()
         return containerView
     }()
-    
-    private var height: CGFloat = 0
     
     let ava: UIImageView = {
         let image = UIImage(named: "pepe")
@@ -330,7 +336,7 @@ final class VKProfileVC: UIViewController {
         postsCollectionView.snp.makeConstraints { make in
             make.top.equalTo(myPostsLabel.snp.bottom).offset(15)
             make.leading.trailing.equalTo(containerView)
-            make.height.equalTo(300)
+            make.height.equalTo(0)
             make.bottom.equalTo(containerView.snp.bottom)
         }
     }
@@ -352,12 +358,9 @@ final class VKProfileVC: UIViewController {
         createPostBtt.alignImageAndTitleVertically()
         createPhotoBtt.alignImageAndTitleVertically()
         createStoryBtt.alignImageAndTitleVertically()
-       
-//        height = photosCollectionView.contentSize.height
-//        photosCollectionView.layoutIfNeeded()
-//        photosCollectionView.snp.updateConstraints { make in
-//            make.height.equalTo(height)
-//        }
+        
+        height = postsCollectionView.contentSize.height
+        print(height)
     }
 }
 
@@ -393,7 +396,7 @@ extension VKProfileVC: UICollectionViewDataSource {
             return VKPhotoLibModel.photosForTesting.count + 1
         }
         else {
-            return 1
+            return VKProfileModel.photoPost.count
         }
     }
     
@@ -417,6 +420,9 @@ extension VKProfileVC: UICollectionViewDataSource {
         } else {
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePostFeed", for: indexPath) as? VKProfilePostFeedCell else { return UICollectionViewCell(frame: .zero)  }
+            cell.contentView.isUserInteractionEnabled = false
+            cell.postTextAndImage.postText.text = VKProfileModel.textArray[indexPath.item]
+//            cell.postTextAndImage.postPhoto.image = UIImage(named: VKProfileModel.photoPost[indexPath.item])
             return cell
             
         }

@@ -35,8 +35,7 @@ class VKProfilePostFeedCell: UICollectionViewCell {
     }()
     
     let additionalInfo: UIButton = {
-        let arrowConfig = UIImage.SymbolConfiguration(textStyle: .title3)
-        let image = UIImage(systemName: "text.book.closed", withConfiguration: arrowConfig)
+        let image = UIImage(named: "hDots")
         let view = UIButton(type: .system)
         view.setImage(image, for: .normal)
         view.tintColor = .label
@@ -47,7 +46,6 @@ class VKProfilePostFeedCell: UICollectionViewCell {
         let view = ProfilePostSubView()
         return view
     }()
-    
     
     lazy var setupConstraints = { [self] in
         
@@ -72,15 +70,15 @@ class VKProfilePostFeedCell: UICollectionViewCell {
         }
         
         additionalInfo.snp.makeConstraints { make in
-            make.height.equalTo(15)
-            make.width.equalTo(100)
+            make.height.equalTo(20)
+            make.width.equalTo(20)
             make.trailing.equalTo(contentView).inset(16)
             make.centerY.equalTo(ava.snp.centerY)
         }
         
         postTextAndImage.snp.makeConstraints { make in
-            make.trailing.leading.equalTo(contentView)
             make.top.equalTo(ava.snp.bottom).offset(15)
+            make.trailing.leading.equalTo(contentView)
         }
         
     }

@@ -9,22 +9,18 @@ import Foundation
 import UIKit
 
 class ProfilePostSubView: UIView {
-    
-    let text =
-        """
-        123 123123123 123123123 123123123123123 123123123 123123123 123123123123123 123123123 123123123 123123123123123 123123123 123123123 123123123123123 123123123 123123123 123123123123123 123123123 123123123 123123123123123 123123123 123123123 123123123123123 123123123 123123123 123123123123123 123123123 123123123 123123123123123 123123123 123123123 123123123123123 123123123 123123123 123123123123123 123123123 123123123 123123123123123 123123123 123123123 123123123123123 123123123 123123123 123123123123
-        """
-    
+
     lazy var postText: UILabel = {
         let view = UILabel()
         view.numberOfLines = 4
-        view.text = text
         return view
     }()
     
-    let expandPostBtt: UIButton = {
+    lazy var expandPostBtt: UIButton = {
         let view = UIButton(type: .system)
         view.setTitle("Показать полностью...", for: .normal)
+        view.titleEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0)
+        view.backgroundColor = .lightGray
         return view
     }()
     
@@ -34,9 +30,8 @@ class ProfilePostSubView: UIView {
         return view
     }()
     
-    let postPhoto: UIImageView = {
-        let image = UIImage(named: "1ava")
-        let view = UIImageView(image: image)
+    var postPhoto: UIImageView = {
+        let view = UIImageView()
         view.contentMode = .left
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
@@ -54,27 +49,22 @@ class ProfilePostSubView: UIView {
         
         postText.snp.makeConstraints { make in
             make.top.equalTo(self).offset(10)
-            make.width.equalTo(300)
             make.leading.equalTo(line.snp.trailing).offset(25)
             make.trailing.equalTo(self).inset(16)
         }
         
         expandPostBtt.snp.makeConstraints { make in
             make.top.equalTo(postText.snp.bottom)
-            make.height.equalTo(15)
-            make.width.equalTo(140)
+            make.width.equalTo(180)
             make.leading.equalTo(line.snp.trailing).offset(25)
         }
         
         postPhoto.snp.makeConstraints { make in
             make.top.equalTo(expandPostBtt.snp.bottom).offset(10)
-            make.width.equalTo(300)
             make.leading.equalTo(line.snp.trailing).offset(25)
             make.trailing.equalTo(self).inset(16)
             make.bottom.equalTo(self).inset(10)
         }
-        
-        
     }
     
     override init(frame: CGRect) {

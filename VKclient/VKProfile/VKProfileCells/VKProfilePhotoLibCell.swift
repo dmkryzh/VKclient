@@ -21,11 +21,6 @@ class VKProfilePhotoLibCell: UICollectionViewCell {
     }()
     
     lazy var setupConstrains = { [self] in
-        
-        contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
         photoImage.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
