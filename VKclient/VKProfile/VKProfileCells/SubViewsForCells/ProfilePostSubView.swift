@@ -12,7 +12,7 @@ class ProfilePostSubView: UIView {
 
     lazy var postText: UILabel = {
         let view = UILabel()
-        view.numberOfLines = 4
+        view.numberOfLines = 3
         return view
     }()
     
@@ -20,7 +20,6 @@ class ProfilePostSubView: UIView {
         let view = UIButton(type: .system)
         view.setTitle("Показать полностью...", for: .normal)
         view.titleEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0)
-        view.backgroundColor = .lightGray
         return view
     }()
     
@@ -32,7 +31,7 @@ class ProfilePostSubView: UIView {
     
     var postPhoto: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .left
+        view.contentMode = .topLeft
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         return view
@@ -54,7 +53,8 @@ class ProfilePostSubView: UIView {
         }
         
         expandPostBtt.snp.makeConstraints { make in
-            make.top.equalTo(postText.snp.bottom)
+            make.top.equalTo(postText.snp.bottom).offset(5)
+            make.height.equalTo(20)
             make.width.equalTo(180)
             make.leading.equalTo(line.snp.trailing).offset(25)
         }
@@ -63,7 +63,7 @@ class ProfilePostSubView: UIView {
             make.top.equalTo(expandPostBtt.snp.bottom).offset(10)
             make.leading.equalTo(line.snp.trailing).offset(25)
             make.trailing.equalTo(self).inset(16)
-            make.bottom.equalTo(self).inset(10)
+            make.bottom.equalTo(self).inset(20)
         }
     }
     

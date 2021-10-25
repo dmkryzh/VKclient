@@ -29,9 +29,11 @@ class VKProfileCoordinator: Coordinator {
         rootVC.navigationItem.leftBarButtonItem?.customView = leftBarBtt
     }
     
-    let rightButton: UIBarButtonItem = {
+    lazy var rightButton: UIBarButtonItem = {
         let image = UIImage(systemName: "text.justify")
         let view = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
+        view.action = #selector(menuTapped)
+        view.target = self
         return view
     }()
 
@@ -46,6 +48,12 @@ class VKProfileCoordinator: Coordinator {
         self.rootVC = rootVC
         navController = parentNC
         customiseNavBar()
+    }
+    
+    @objc func menuTapped() {
+        let rootVC = VKProfileOptionsVC()
+        let coordinator = VKProfileOptionsCoordinator(navController, rootVC: rootVC)
+        coordinator.start()
     }
     
 }

@@ -56,14 +56,12 @@ class VKProfilePostFeedCell: UICollectionViewCell {
         }
         
         userName.snp.makeConstraints { make in
-            make.height.equalTo(20)
             make.width.equalTo(250)
             make.top.equalTo(contentView).offset(20)
             make.leading.equalTo(ava.snp.trailing).offset(10)
         }
         
         userNameSubtitle.snp.makeConstraints { make in
-            make.height.equalTo(15)
             make.width.equalTo(100)
             make.top.equalTo(userName.snp.bottom).offset(3)
             make.leading.equalTo(ava.snp.trailing).offset(10)
@@ -79,6 +77,7 @@ class VKProfilePostFeedCell: UICollectionViewCell {
         postTextAndImage.snp.makeConstraints { make in
             make.top.equalTo(ava.snp.bottom).offset(15)
             make.trailing.leading.equalTo(contentView)
+            make.bottom.equalTo(contentView)
         }
         
     }

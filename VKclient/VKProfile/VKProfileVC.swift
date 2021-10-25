@@ -13,6 +13,7 @@ final class VKProfileVC: UIViewController {
     
     var delegate: VKProfilePresenterProtocol?
     
+    ///postCollectionView height logic
     private var height: CGFloat = 0  {
         didSet {
             postsCollectionView.snp.updateConstraints { make in
@@ -21,8 +22,11 @@ final class VKProfileVC: UIViewController {
         }
     }
     
+    lazy var sliderTransitionDelegate = SliderPresentationManager()
+    
     let scrollView: UIScrollView = {
         let view = UIScrollView()
+        view.showsVerticalScrollIndicator = false
         return view
     }()
     
@@ -220,8 +224,11 @@ final class VKProfileVC: UIViewController {
         view.delegate = self
         view.register(VKProfilePostFeedCell.self, forCellWithReuseIdentifier: "VKProfilePostFeed")
         view.backgroundColor = .clear
+        view.showsVerticalScrollIndicator = false
         return view
     }()
+    
+    //MARK: - CONSTRAINTS
     
     lazy var setupConstraints = { [self] in
         
@@ -336,13 +343,17 @@ final class VKProfileVC: UIViewController {
         postsCollectionView.snp.makeConstraints { make in
             make.top.equalTo(myPostsLabel.snp.bottom).offset(15)
             make.leading.trailing.equalTo(containerView)
+            ///to make collection view contenet a part of superview content, need to define initial height to 0
             make.height.equalTo(0)
             make.bottom.equalTo(containerView.snp.bottom)
         }
     }
     
+    //MARK: - LIFECYCLE
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        ///to recalculate viewLayout for binding left and right sides of collectionView to superview edges
         postsCollectionView.collectionViewLayout.invalidateLayout()
     }
     
@@ -355,14 +366,17 @@ final class VKProfileVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         createPostBtt.alignImageAndTitleVertically()
         createPhotoBtt.alignImageAndTitleVertically()
         createStoryBtt.alignImageAndTitleVertically()
         
+        ///save collectionView contentSize to variable, where view height will be recalculated
         height = postsCollectionView.contentSize.height
-        print(height)
     }
 }
+
+//MARK: - EXTENTIONS
 
 extension VKProfileVC: UICollectionViewDelegateFlowLayout {
     
@@ -373,7 +387,7 @@ extension VKProfileVC: UICollectionViewDelegateFlowLayout {
             return CGSize(width: 72, height: 68)
         }
         else {
-            return CGSize(width: collectionView.frame.width, height: 200)
+            return CGSize(width: collectionView.frame.width, height: 300)
         }
     }
     
@@ -422,15 +436,9 @@ extension VKProfileVC: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePostFeed", for: indexPath) as? VKProfilePostFeedCell else { return UICollectionViewCell(frame: .zero)  }
             cell.contentView.isUserInteractionEnabled = false
             cell.postTextAndImage.postText.text = VKProfileModel.textArray[indexPath.item]
-//            cell.postTextAndImage.postPhoto.image = UIImage(named: VKProfileModel.photoPost[indexPath.item])
+            cell.postTextAndImage.postPhoto.image = UIImage(named: VKProfileModel.photoPost[indexPath.item])
             return cell
             
         }
     }
-    
 }
-
-extension VKProfileVC: UICollectionViewDelegate {
-    
-}
-
