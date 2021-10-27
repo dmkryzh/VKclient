@@ -15,9 +15,9 @@ class VKProfileOptionsCoordinator: Coordinator {
     var rootVC: UIViewController
     
     func start() {
-        let transition = SliderPresentationManager()
-        rootVC.transitioningDelegate = transition
-        rootVC.modalPresentationStyle = .custom
+//        let transition = SliderPresentationManager()
+//        rootVC.transitioningDelegate = transition
+//        rootVC.modalPresentationStyle = .custom
         navController.present(rootVC, animated: true)
     }
     

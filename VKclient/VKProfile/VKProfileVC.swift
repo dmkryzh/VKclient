@@ -11,6 +11,8 @@ import SnapKit
 
 final class VKProfileVC: UIViewController {
     
+    var sliderTransitionDelegate = SliderPresentationManager()
+    
     var delegate: VKProfilePresenterProtocol?
     
     ///postCollectionView height logic
@@ -21,8 +23,6 @@ final class VKProfileVC: UIViewController {
             }
         }
     }
-    
-    lazy var sliderTransitionDelegate = SliderPresentationManager()
     
     let scrollView: UIScrollView = {
         let view = UIScrollView()

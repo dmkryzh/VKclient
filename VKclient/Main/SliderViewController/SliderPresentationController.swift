@@ -56,7 +56,8 @@ class SliderPresentationController: UIPresentationController {
         })
     }
     
-    override func dismissalTransitionWillBegin() {
+    override func dismissalTransitionWillBegin() { 
+        super.dismissalTransitionWillBegin()
         guard let coordinator = presentedViewController.transitionCoordinator else {
             dimmingView.alpha = 0.0
             return

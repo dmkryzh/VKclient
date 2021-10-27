@@ -10,6 +10,8 @@ import UIKit
 
 class VKProfileCoordinator: Coordinator {
     
+    var slideInTransitioningDelegate = SliderPresentationManager()
+    
     var navController: UINavigationController
     
     var rootVC: UIViewController
@@ -52,6 +54,9 @@ class VKProfileCoordinator: Coordinator {
     
     @objc func menuTapped() {
         let rootVC = VKProfileOptionsVC()
+        let main = self.rootVC as! VKProfileVC
+        rootVC.transitioningDelegate = main.sliderTransitionDelegate
+        rootVC.modalPresentationStyle = .custom
         let coordinator = VKProfileOptionsCoordinator(navController, rootVC: rootVC)
         coordinator.start()
     }
@@ -61,3 +66,7 @@ class VKProfileCoordinator: Coordinator {
 extension VKProfileCoordinator: VKProfileDelegate {
     
 }
+
+
+
+

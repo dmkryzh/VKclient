@@ -17,6 +17,7 @@ enum PresentationDirection {
 
 class SliderPresentationManager: NSObject {
     var direction: PresentationDirection = .right
+    var disableCompactHeight = false
 }
 
 extension SliderPresentationManager: UIViewControllerTransitioningDelegate {
@@ -33,4 +34,34 @@ extension SliderPresentationManager: UIViewControllerTransitioningDelegate {
         )
         return presentationController
     }
+    
+    func animationController(
+      forPresented presented: UIViewController,
+      presenting: UIViewController,
+      source: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+      return SliderPresentationAnimation(direction: direction, isPresentation: true)
+    }
+
+    func animationController(
+      forDismissed dismissed: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+      return SliderPresentationAnimation(direction: direction, isPresentation: false)
+    }
+
 }
+
+extension SliderPresentationManager: UIAdaptivePresentationControllerDelegate {
+  func adaptivePresentationStyle(
+    for controller: UIPresentationController,
+    traitCollection: UITraitCollection
+  ) -> UIModalPresentationStyle {
+    if traitCollection.verticalSizeClass == .compact && disableCompactHeight {
+      return .overFullScreen
+    } else {
+      return .none
+    }
+  }
+}
+
+
