@@ -9,7 +9,7 @@ import Foundation
 
 struct VKPhotoLibModel {
     
-    static var photosForTesting = ["1ava", "arch", "australian", "beach", "buildings", "cat", "child", "circle", "city", "face", "forest"]
+    let photosForTesting = ["1ava", "arch", "australian", "beach", "buildings", "cat", "child", "circle", "city", "face", "forest"]
     
-    static let threeDots = "ellipsis"
+    let threeDots = "ellipsis"
 }

@@ -26,25 +26,7 @@ class VKProfileCoordinator: Coordinator {
         navController.navigationBar.standardAppearance = navigationBarAppearance
         navController.navigationBar.tintColor = .black
         rootVC.navigationItem.hidesBackButton = true
-        rootVC.navigationItem.setRightBarButton(rightButton, animated: true)
-        rootVC.navigationItem.setLeftBarButton(UIBarButtonItem(), animated: false)
-        rootVC.navigationItem.leftBarButtonItem?.customView = leftBarBtt
     }
-    
-    lazy var rightButton: UIBarButtonItem = {
-        let image = UIImage(systemName: "text.justify")
-        let view = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
-        view.action = #selector(menuTapped)
-        view.target = self
-        return view
-    }()
-
-    let leftBarBtt: UILabel = {
-        let view = UILabel()
-        view.text = "default_user"
-//        view.frame = CGRect(x: 0, y: 0, width: 30, height: 15)
-        return view
-    }()
     
     init(_ parentNC: UINavigationController, rootVC: VKProfileVC) {
         self.rootVC = rootVC
@@ -52,18 +34,19 @@ class VKProfileCoordinator: Coordinator {
         customiseNavBar()
     }
     
-    @objc func menuTapped() {
+}
+
+extension VKProfileCoordinator: VKProfileDelegate {
+    
+    func settingsFlowIsChosen() {
+        guard let mainVC = self.rootVC as? VKProfileVC else { return }
         let rootVC = VKProfileOptionsVC()
-        let main = self.rootVC as! VKProfileVC
-        rootVC.transitioningDelegate = main.sliderTransitionDelegate
+        rootVC.transitioningDelegate = mainVC.sliderTransitionDelegate
         rootVC.modalPresentationStyle = .custom
         let coordinator = VKProfileOptionsCoordinator(navController, rootVC: rootVC)
         coordinator.start()
     }
     
-}
-
-extension VKProfileCoordinator: VKProfileDelegate {
     
 }
 

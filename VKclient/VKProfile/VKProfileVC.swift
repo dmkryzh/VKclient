@@ -11,9 +11,11 @@ import SnapKit
 
 final class VKProfileVC: UIViewController {
     
-    var sliderTransitionDelegate = SliderPresentationManager()
+    let sliderTransitionDelegate = SliderPresentationManager()
     
     var delegate: VKProfilePresenterProtocol?
+    
+    var dataDelegate: VKProfileModelDelegate?
     
     ///postCollectionView height logic
     private var height: CGFloat = 0  {
@@ -23,6 +25,21 @@ final class VKProfileVC: UIViewController {
             }
         }
     }
+    /// -- NavBarButtons start--
+    lazy var rightButton: UIBarButtonItem = {
+        let image = UIImage(systemName: "text.justify")
+        let view = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
+        view.action = #selector(delegate?.menuPressed)
+        view.target = delegate
+        return view
+    }()
+
+    let leftBarBtt: UILabel = {
+        let view = UILabel()
+        view.text = "default_user"
+        return view
+    }()
+    /// -- NavBarButtons end--
     
     let scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -359,6 +376,11 @@ final class VKProfileVC: UIViewController {
     
     override func viewDidLoad() {
         view.backgroundColor = .white
+        /// - NavBarButtons start --
+        navigationItem.setRightBarButton(rightButton, animated: true)
+        navigationItem.setLeftBarButton(UIBarButtonItem(), animated: false)
+        navigationItem.leftBarButtonItem?.customView = leftBarBtt
+        /// - NavBarButtons end --
         view.addSubview(scrollView)
         scrollView.addSubviews(containerView, ava, userName, userNameSubtitle, exclamationMark, detailSubtitle, editBtt, stackBtts, line, stackBttsSec, photoLibLabel, photoLibArrow, photosCollectionView, myPostsLabel, searchPosts, postsCollectionView)
         setupConstraints()
@@ -406,26 +428,32 @@ extension VKProfileVC: UICollectionViewDelegateFlowLayout {
 extension VKProfileVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        guard let dataDelegate = self.dataDelegate else { return 0 }
+        
         if collectionView == photosCollectionView {
-            return VKPhotoLibModel.photosForTesting.count + 1
+//            return VKPhotoLibModel.photosForTesting.count + 1
+            /// +1 is added to handle arrow image which allows to navigate to PhotoLibrary VC
+            return dataDelegate.returnCellsCount(.photoLib) + 1
         }
         else {
-            return VKProfileModel.photoPost.count
+//            return VKProfileModel.photoPost.count
+            return dataDelegate.returnCellsCount(.profileText)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        guard let dataDelegate = self.dataDelegate else { return UICollectionViewCell(frame: .zero) }
+        
         if collectionView == photosCollectionView {
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePhotoLib", for: indexPath) as? VKProfilePhotoLibCell else { return UICollectionViewCell(frame: .zero)  }
             
-            if indexPath.item == VKPhotoLibModel.photosForTesting.count {
+            if indexPath.item == dataDelegate.returnCellsCount(.photoLib) {
                 let threeDots = UIImage(systemName: "arrow.right")
                 cell.photoImage.image = threeDots
             } else {
-                let photo = UIImage(named: VKPhotoLibModel.photosForTesting[indexPath.item])
-                
+                let photo = UIImage(named: dataDelegate.returnDataForCell(indexPath.item, .photoLib))
                 cell.photoImage.image = photo
             }
             
@@ -435,8 +463,8 @@ extension VKProfileVC: UICollectionViewDataSource {
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePostFeed", for: indexPath) as? VKProfilePostFeedCell else { return UICollectionViewCell(frame: .zero)  }
             cell.contentView.isUserInteractionEnabled = false
-            cell.postTextAndImage.postText.text = VKProfileModel.textArray[indexPath.item]
-            cell.postTextAndImage.postPhoto.image = UIImage(named: VKProfileModel.photoPost[indexPath.item])
+            cell.postTextAndImage.postText.text = dataDelegate.returnDataForCell(indexPath.item, .profileText)
+            cell.postTextAndImage.postPhoto.image = UIImage(named: dataDelegate.returnDataForCell(indexPath.item, .profilePhoto))
             return cell
             
         }

@@ -48,13 +48,13 @@ class StartCoordinator: Coordinator {
 
 extension StartCoordinator: StartDelegate {
     
-//    func registrationFlowChosen() {
-//        let registartionVC = RegistrationVC()
-//        let coordinator = RegistrationCoordinator(navController, registartionVC)
-//        let registrationPresenter = RegistrationPresenter(registartionVC, coordinator)
-//        registartionVC.presenter = registrationPresenter
-//        coordinator.start()
-//    }
+    func fakeRegistrationFlowChosen() {
+        let registartionVC = RegistrationVC()
+        let coordinator = RegistrationCoordinator(navController, registartionVC)
+        let registrationPresenter = RegistrationPresenter(registartionVC, coordinator)
+        registartionVC.presenter = registrationPresenter
+        coordinator.start()
+    }
     
     func registrationFlowChosen() {
         let loginVk = LoginVkVC()
@@ -76,8 +76,10 @@ extension StartCoordinator: StartDelegate {
     func testPurposes() {
         let profileVK = VKProfileVC()
         let coordinator = VKProfileCoordinator(navController, rootVC: profileVK)
-        let model = VKProfileModel()
-        let vkPresenter = VKProfilePresenter(model, profileVK, coordinator)
+        let modelPost = VKProfileModel()
+        let modelPhoto = VKPhotoLibModel()
+        let vkPresenter = VKProfilePresenter(modelPost, modelPhotoLib: modelPhoto, profileVK, coordinator)
+        profileVK.dataDelegate = vkPresenter
         profileVK.delegate = vkPresenter
         coordinator.start()
     }

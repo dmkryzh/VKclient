@@ -32,9 +32,11 @@ extension LoginVkCoordinator: LoginVkDelegate {
         let completion = { [self] in
             let profileVK = VKProfileVC()
             let coordinator = VKProfileCoordinator(navController, rootVC: profileVK)
-            let model = VKProfileModel()
-            let vkPresenter = VKProfilePresenter(model, profileVK, coordinator)
+            let modelPost = VKProfileModel()
+            let modelPhoto = VKPhotoLibModel()
+            let vkPresenter = VKProfilePresenter(modelPost, modelPhotoLib: modelPhoto, profileVK, coordinator)
             profileVK.delegate = vkPresenter
+            profileVK.dataDelegate = vkPresenter
             coordinator.start()
         }
         navController.dismiss(animated: true, completion: completion)

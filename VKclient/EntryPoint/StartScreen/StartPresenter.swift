@@ -25,8 +25,8 @@ class StartPresenter: StartPresenterProtocol {
     var delegate: StartDelegate?
     
     @objc func registerButtonPressed() {
-//        delegate?.registrationFlowChosen()
-        delegate?.testPurposes()
+        delegate?.registrationFlowChosen()
+//        delegate?.testPurposes()
     }
     
     @objc func accountIsExistButtonPressed() {
