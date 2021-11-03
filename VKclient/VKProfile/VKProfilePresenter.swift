@@ -15,10 +15,12 @@ enum DataType {
 
 @objc protocol VKProfilePresenterProtocol {
     func menuPressed()
+    func postSettingsPressed()
 }
 
 protocol VKProfileDelegate {
     func settingsFlowIsChosen()
+    func postSettingsIsChosen()
 }
 
 protocol VKProfileModelDelegate {
@@ -45,7 +47,11 @@ class VKProfilePresenter {
 }
 
 extension VKProfilePresenter: VKProfilePresenterProtocol {
+    @objc func postSettingsPressed() {
+        delegate?.postSettingsIsChosen()
+    }
     
+
     @objc func menuPressed() {
         delegate?.settingsFlowIsChosen()
     }

@@ -20,6 +20,7 @@ class VKProfileCoordinator: Coordinator {
         navController.pushViewController(rootVC, animated: true)
     }
     
+    
     func customiseNavBar() {
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithTransparentBackground()
@@ -38,6 +39,10 @@ class VKProfileCoordinator: Coordinator {
 
 extension VKProfileCoordinator: VKProfileDelegate {
     
+    func postSettingsIsChosen() {
+       
+    }
+
     func settingsFlowIsChosen() {
         guard let mainVC = self.rootVC as? VKProfileVC else { return }
         let rootVC = VKProfileOptionsVC()

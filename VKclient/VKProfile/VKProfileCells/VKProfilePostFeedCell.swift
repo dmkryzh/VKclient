@@ -11,6 +11,8 @@ import SnapKit
 
 class VKProfilePostFeedCell: UICollectionViewCell {
     
+    var coordinator: VKProfilePresenterProtocol?
+    
     let ava: UIImageView = {
         let image = UIImage(named: "pepe")
         let view = UIImageView(image: image)
@@ -41,7 +43,7 @@ class VKProfilePostFeedCell: UICollectionViewCell {
         view.tintColor = .label
         return view
     }()
-    
+  
     let postTextAndImage: ProfilePostSubView = {
         let view = ProfilePostSubView()
         return view

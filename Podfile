@@ -9,5 +9,6 @@ target 'VKclient' do
  pod 'SnapKit', '~> 5.0.0'
  pod 'RealmSwift'
  pod 'Alamofire', '~> 5.4'
+ pod 'Popover'
 
 end

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import Popover
 
 final class VKProfileVC: UIViewController {
     
@@ -33,7 +34,7 @@ final class VKProfileVC: UIViewController {
         view.target = delegate
         return view
     }()
-
+    
     let leftBarBtt: UILabel = {
         let view = UILabel()
         view.text = "default_user"
@@ -396,6 +397,31 @@ final class VKProfileVC: UIViewController {
         ///save collectionView contentSize to variable, where view height will be recalculated
         height = postsCollectionView.contentSize.height
     }
+    
+    var lastTap = CGPoint()
+    
+    let popOver: Popover = {
+        let options: [PopoverOption] = [.type(.left), .cornerRadius(10), .showBlackOverlay(false), .overlayBlur(.prominent) ]
+        let view = Popover(options: options)
+        view.layer.shadowOffset = CGSize(width: 2, height: 2)
+        view.layer.shadowColor = UIColor.lightGray.cgColor
+        view.layer.shadowOpacity = 1.0
+        view.layer.shadowRadius = 2
+        return view
+    }()
+    
+    @objc func test(_ sender: UITapGestureRecognizer) {
+        lastTap = sender.location(in: self.view)
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 350, height: 135), style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.isScrollEnabled = false
+        tableView.backgroundColor = .clear
+        tableView.separatorColor = .clear
+        popOver.show(tableView, point: lastTap)
+        
+        //        delegate?.postSettingsPressed()
+    }
 }
 
 //MARK: - EXTENTIONS
@@ -431,12 +457,12 @@ extension VKProfileVC: UICollectionViewDataSource {
         guard let dataDelegate = self.dataDelegate else { return 0 }
         
         if collectionView == photosCollectionView {
-//            return VKPhotoLibModel.photosForTesting.count + 1
+            //            return VKPhotoLibModel.photosForTesting.count + 1
             /// +1 is added to handle arrow image which allows to navigate to PhotoLibrary VC
             return dataDelegate.returnCellsCount(.photoLib) + 1
         }
         else {
-//            return VKProfileModel.photoPost.count
+            //            return VKProfileModel.photoPost.count
             return dataDelegate.returnCellsCount(.profileText)
         }
     }
@@ -465,8 +491,35 @@ extension VKProfileVC: UICollectionViewDataSource {
             cell.contentView.isUserInteractionEnabled = false
             cell.postTextAndImage.postText.text = dataDelegate.returnDataForCell(indexPath.item, .profileText)
             cell.postTextAndImage.postPhoto.image = UIImage(named: dataDelegate.returnDataForCell(indexPath.item, .profilePhoto))
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(test(_:)))
+            cell.additionalInfo.addGestureRecognizer(gesture)
             return cell
             
         }
+    }
+}
+
+extension VKProfileVC: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.popOver.dismiss()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = .clear
+    }
+    
+}
+
+extension VKProfileVC: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = "test!!!"
+        return cell
     }
 }
