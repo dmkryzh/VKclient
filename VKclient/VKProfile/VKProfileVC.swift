@@ -233,6 +233,7 @@ final class VKProfileVC: UIViewController {
     let postsCollectionLayout: UICollectionViewFlowLayout = {
         let view = UICollectionViewFlowLayout()
         view.scrollDirection = .vertical
+        view.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 30)
         return view
     }()
     
@@ -241,9 +242,32 @@ final class VKProfileVC: UIViewController {
         view.dataSource = self
         view.delegate = self
         view.register(VKProfilePostFeedCell.self, forCellWithReuseIdentifier: "VKProfilePostFeed")
+        view.register(VKProfilePostSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView")
         view.backgroundColor = .clear
         view.showsVerticalScrollIndicator = false
         return view
+    }()
+    
+    //MARK: Popover
+    let popOver: Popover = {
+        let options: [PopoverOption] = [.type(.left), .cornerRadius(10), .showBlackOverlay(false) ]
+        let view = Popover(options: options)
+        view.layer.shadowOffset = .zero
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 1.0
+        view.layer.shadowRadius = 10
+        view.layer.shouldRasterize = true
+        return view
+    }()
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 350, height: 260))
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.isScrollEnabled = false
+        tableView.backgroundColor = .clear
+        tableView.separatorColor = .clear
+        return tableView
     }()
     
     //MARK: - CONSTRAINTS
@@ -365,6 +389,7 @@ final class VKProfileVC: UIViewController {
             make.height.equalTo(0)
             make.bottom.equalTo(containerView.snp.bottom)
         }
+        
     }
     
     //MARK: - LIFECYCLE
@@ -397,36 +422,22 @@ final class VKProfileVC: UIViewController {
         ///save collectionView contentSize to variable, where view height will be recalculated
         height = postsCollectionView.contentSize.height
     }
-    
-    var lastTap = CGPoint()
-    
-    let popOver: Popover = {
-        let options: [PopoverOption] = [.type(.left), .cornerRadius(10), .showBlackOverlay(false), .overlayBlur(.prominent) ]
-        let view = Popover(options: options)
-        view.layer.shadowOffset = CGSize(width: 2, height: 2)
-        view.layer.shadowColor = UIColor.lightGray.cgColor
-        view.layer.shadowOpacity = 1.0
-        view.layer.shadowRadius = 2
-        return view
-    }()
-    
-    @objc func test(_ sender: UITapGestureRecognizer) {
-        lastTap = sender.location(in: self.view)
-        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 350, height: 135), style: .plain)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.isScrollEnabled = false
-        tableView.backgroundColor = .clear
-        tableView.separatorColor = .clear
-        popOver.show(tableView, point: lastTap)
-        
-        //        delegate?.postSettingsPressed()
-    }
 }
 
 //MARK: - EXTENTIONS
 
 extension VKProfileVC: UICollectionViewDelegateFlowLayout {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView", for: indexPath) as? VKProfilePostSectionHeader else { return UICollectionReusableView(frame: .zero)}
+        
+        return headerView
+    }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -462,7 +473,6 @@ extension VKProfileVC: UICollectionViewDataSource {
             return dataDelegate.returnCellsCount(.photoLib) + 1
         }
         else {
-            //            return VKProfileModel.photoPost.count
             return dataDelegate.returnCellsCount(.profileText)
         }
     }
@@ -491,8 +501,7 @@ extension VKProfileVC: UICollectionViewDataSource {
             cell.contentView.isUserInteractionEnabled = false
             cell.postTextAndImage.postText.text = dataDelegate.returnDataForCell(indexPath.item, .profileText)
             cell.postTextAndImage.postPhoto.image = UIImage(named: dataDelegate.returnDataForCell(indexPath.item, .profilePhoto))
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(test(_:)))
-            cell.additionalInfo.addGestureRecognizer(gesture)
+            cell.additionalInfo.addTarget(delegate, action: #selector(delegate?.postSettingsPressed(_:)), for: .touchUpInside)
             return cell
             
         }
@@ -502,24 +511,26 @@ extension VKProfileVC: UICollectionViewDataSource {
 extension VKProfileVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         self.popOver.dismiss()
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear
     }
-    
 }
 
 extension VKProfileVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 3
+        guard let dataDelegate = self.dataDelegate else { return 0 }
+        return dataDelegate.returnCellsCount(.postSettings)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let dataDelegate = self.dataDelegate else { return UITableViewCell(frame: .zero) }
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = "test!!!"
+        cell.textLabel?.text = dataDelegate.returnDataForCell(indexPath.item, .postSettings)
         return cell
     }
 }

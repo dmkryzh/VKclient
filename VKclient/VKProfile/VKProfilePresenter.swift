@@ -11,16 +11,17 @@ enum DataType {
     case profileText
     case profilePhoto
     case photoLib
+    case postSettings
 }
 
 @objc protocol VKProfilePresenterProtocol {
-    func menuPressed()
-    func postSettingsPressed()
+    @objc func menuPressed()
+    @objc func postSettingsPressed(_ sender: Any)
 }
 
 protocol VKProfileDelegate {
     func settingsFlowIsChosen()
-    func postSettingsIsChosen()
+    func postSettingsIsChosen(_ sender: Any)
 }
 
 protocol VKProfileModelDelegate {
@@ -47,11 +48,10 @@ class VKProfilePresenter {
 }
 
 extension VKProfilePresenter: VKProfilePresenterProtocol {
-    @objc func postSettingsPressed() {
-        delegate?.postSettingsIsChosen()
+    @objc func postSettingsPressed(_ sender: Any) {
+        delegate?.postSettingsIsChosen(sender)
     }
     
-
     @objc func menuPressed() {
         delegate?.settingsFlowIsChosen()
     }
@@ -66,6 +66,9 @@ extension VKProfilePresenter: VKProfileModelDelegate {
         case.photoLib:
             guard let model = self.modelPhotoLib else { return 0 }
             return model.photosForTesting.count
+        case.postSettings:
+            guard let model = self.modelPost else { return 0 }
+            return model.postSettingsTitles.count
         default:
             return 0
         }
@@ -82,6 +85,9 @@ extension VKProfilePresenter: VKProfileModelDelegate {
         case .profilePhoto:
             guard let model = self.modelPost else { return "" }
             return model.photoPost[item]
+        case .postSettings:
+            guard let model = self.modelPost else { return "" }
+            return model.postSettingsTitles[item]
         }
     }
     

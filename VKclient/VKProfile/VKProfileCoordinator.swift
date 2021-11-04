@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Popover
 
 class VKProfileCoordinator: Coordinator {
     
@@ -19,7 +20,6 @@ class VKProfileCoordinator: Coordinator {
     func start() {
         navController.pushViewController(rootVC, animated: true)
     }
-    
     
     func customiseNavBar() {
         let navigationBarAppearance = UINavigationBarAppearance()
@@ -34,15 +34,19 @@ class VKProfileCoordinator: Coordinator {
         navController = parentNC
         customiseNavBar()
     }
-    
 }
 
 extension VKProfileCoordinator: VKProfileDelegate {
     
-    func postSettingsIsChosen() {
-       
+    func postSettingsIsChosen(_ sender: Any) {
+        guard let rootVC = rootVC as? VKProfileVC else { return }
+        guard let viewButton = sender as? UIButton else { return }
+        let viewButtonCoverted = rootVC.view.convert(viewButton.bounds, from: viewButton)
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: 350, height: 260))
+        container.addSubview(rootVC.tableView)
+        rootVC.popOver.show(container, point: CGPoint(x: viewButtonCoverted.origin.x, y: viewButtonCoverted.origin.y))
     }
-
+    
     func settingsFlowIsChosen() {
         guard let mainVC = self.rootVC as? VKProfileVC else { return }
         let rootVC = VKProfileOptionsVC()
@@ -51,8 +55,6 @@ extension VKProfileCoordinator: VKProfileDelegate {
         let coordinator = VKProfileOptionsCoordinator(navController, rootVC: rootVC)
         coordinator.start()
     }
-    
-    
 }
 
 

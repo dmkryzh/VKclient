@@ -39,6 +39,7 @@
 		508FA9B027271D1E00039CC7 /* VKProfileOptionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FA9AF27271D1E00039CC7 /* VKProfileOptionsCoordinator.swift */; };
 		508FA9B227271D3200039CC7 /* VKProfileOptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FA9B127271D3200039CC7 /* VKProfileOptionsPresenter.swift */; };
 		508FA9B4272725DE00039CC7 /* SliderPresentationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FA9B3272725DE00039CC7 /* SliderPresentationAnimation.swift */; };
+		508FA9BB2733BFF600039CC7 /* VKProfilePostSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FA9BA2733BFF600039CC7 /* VKProfilePostSectionHeader.swift */; };
 		50EE6E402713072C0073E5A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E3F2713072C0073E5A1 /* AppDelegate.swift */; };
 		50EE6E422713072C0073E5A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E412713072C0073E5A1 /* SceneDelegate.swift */; };
 		50EE6E492713072E0073E5A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50EE6E482713072E0073E5A1 /* Assets.xcassets */; };
@@ -88,6 +89,7 @@
 		508FA9AF27271D1E00039CC7 /* VKProfileOptionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfileOptionsCoordinator.swift; sourceTree = "<group>"; };
 		508FA9B127271D3200039CC7 /* VKProfileOptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfileOptionsPresenter.swift; sourceTree = "<group>"; };
 		508FA9B3272725DE00039CC7 /* SliderPresentationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPresentationAnimation.swift; sourceTree = "<group>"; };
+		508FA9BA2733BFF600039CC7 /* VKProfilePostSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfilePostSectionHeader.swift; sourceTree = "<group>"; };
 		50EE6E3C2713072C0073E5A1 /* VKclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50EE6E3F2713072C0073E5A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50EE6E412713072C0073E5A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 			children = (
 				508FA99F27219FD500039CC7 /* VKProfilePhotoLibCell.swift */,
 				508FA9A12722BD3800039CC7 /* VKProfilePostFeedCell.swift */,
+				508FA9BA2733BFF600039CC7 /* VKProfilePostSectionHeader.swift */,
 				508FA9A52723277D00039CC7 /* SubViewsForCells */,
 			);
 			path = VKProfileCells;
@@ -475,6 +478,7 @@
 				508FA9AE27271C3300039CC7 /* VKProfileOptionsVC.swift in Sources */,
 				508FA9A22722BD3800039CC7 /* VKProfilePostFeedCell.swift in Sources */,
 				50EE6E5C271346EE0073E5A1 /* StartCoordinator.swift in Sources */,
+				508FA9BB2733BFF600039CC7 /* VKProfilePostSectionHeader.swift in Sources */,
 				508FA990271EBD3700039CC7 /* VKProfilePresenter.swift in Sources */,
 				508FA980271AEF3B00039CC7 /* LoginVkCoordinator.swift in Sources */,
 				508FA96227143C6800039CC7 /* ConfirmationPresenter.swift in Sources */,
