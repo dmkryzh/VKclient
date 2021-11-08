@@ -40,6 +40,8 @@
 		508FA9B227271D3200039CC7 /* VKProfileOptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FA9B127271D3200039CC7 /* VKProfileOptionsPresenter.swift */; };
 		508FA9B4272725DE00039CC7 /* SliderPresentationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FA9B3272725DE00039CC7 /* SliderPresentationAnimation.swift */; };
 		508FA9BB2733BFF600039CC7 /* VKProfilePostSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FA9BA2733BFF600039CC7 /* VKProfilePostSectionHeader.swift */; };
+		508FA9BD27391B4000039CC7 /* TabBarMainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FA9BC27391B4000039CC7 /* TabBarMainCoordinator.swift */; };
+		508FA9C1273959D600039CC7 /* TabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FA9C0273959D600039CC7 /* TabBarPresenter.swift */; };
 		50EE6E402713072C0073E5A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E3F2713072C0073E5A1 /* AppDelegate.swift */; };
 		50EE6E422713072C0073E5A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E412713072C0073E5A1 /* SceneDelegate.swift */; };
 		50EE6E492713072E0073E5A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50EE6E482713072E0073E5A1 /* Assets.xcassets */; };
@@ -90,6 +92,8 @@
 		508FA9B127271D3200039CC7 /* VKProfileOptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfileOptionsPresenter.swift; sourceTree = "<group>"; };
 		508FA9B3272725DE00039CC7 /* SliderPresentationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPresentationAnimation.swift; sourceTree = "<group>"; };
 		508FA9BA2733BFF600039CC7 /* VKProfilePostSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfilePostSectionHeader.swift; sourceTree = "<group>"; };
+		508FA9BC27391B4000039CC7 /* TabBarMainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMainCoordinator.swift; sourceTree = "<group>"; };
+		508FA9C0273959D600039CC7 /* TabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresenter.swift; sourceTree = "<group>"; };
 		50EE6E3C2713072C0073E5A1 /* VKclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50EE6E3F2713072C0073E5A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50EE6E412713072C0073E5A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -274,6 +278,8 @@
 			isa = PBXGroup;
 			children = (
 				508FA987271EB73C00039CC7 /* TabBarMain.swift */,
+				508FA9BC27391B4000039CC7 /* TabBarMainCoordinator.swift */,
+				508FA9C0273959D600039CC7 /* TabBarPresenter.swift */,
 			);
 			path = TabBars;
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 				508FA9A027219FD500039CC7 /* VKProfilePhotoLibCell.swift in Sources */,
 				508FA999272198A800039CC7 /* VKPhotoLibPresenter.swift in Sources */,
 				508FA95E27143C4200039CC7 /* LoginPresenter.swift in Sources */,
+				508FA9C1273959D600039CC7 /* TabBarPresenter.swift in Sources */,
 				508FA97A271AEC7500039CC7 /* LoginVkVC.swift in Sources */,
 				508FA96C271957A900039CC7 /* APIClient.swift in Sources */,
 				50EE6E62271355110073E5A1 /* ConfirmationVC.swift in Sources */,
@@ -505,6 +512,7 @@
 				508FA99D2721990D00039CC7 /* VKPhotoLibCoordinator.swift in Sources */,
 				50EE6E422713072C0073E5A1 /* SceneDelegate.swift in Sources */,
 				50EE6E5E271347020073E5A1 /* Coordinator.swift in Sources */,
+				508FA9BD27391B4000039CC7 /* TabBarMainCoordinator.swift in Sources */,
 				508FA98B271EBAE600039CC7 /* VKProfileVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

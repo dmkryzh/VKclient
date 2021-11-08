@@ -401,6 +401,7 @@ final class VKProfileVC: UIViewController {
     }
     
     override func viewDidLoad() {
+        title = "Profile"
         view.backgroundColor = .white
         /// - NavBarButtons start --
         navigationItem.setRightBarButton(rightButton, animated: true)
@@ -429,7 +430,11 @@ final class VKProfileVC: UIViewController {
 extension VKProfileVC: UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
+        if collectionView == postsCollectionView {
+            return 2
+        } else {
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

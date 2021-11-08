@@ -29,9 +29,9 @@ class VKProfileCoordinator: Coordinator {
         rootVC.navigationItem.hidesBackButton = true
     }
     
-    init(_ parentNC: UINavigationController, rootVC: VKProfileVC) {
+    init(_ navi: UINavigationController, rootVC: UIViewController) {
         self.rootVC = rootVC
-        navController = parentNC
+        navController = navi
         customiseNavBar()
     }
 }

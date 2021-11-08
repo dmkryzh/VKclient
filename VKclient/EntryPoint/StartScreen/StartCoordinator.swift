@@ -22,10 +22,10 @@ class StartCoordinator: Coordinator {
     }
     
     func configureNavBar() {
-
+        
         let barButtonItemAppearance = UIBarButtonItemAppearance()
         barButtonItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
-
+        
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.setBackIndicatorImage(UIImage(named: "backButton"), transitionMaskImage: UIImage(named: "backButton"))
         navigationBarAppearance.backgroundColor = .white
@@ -34,7 +34,7 @@ class StartCoordinator: Coordinator {
         navController.navigationBar.standardAppearance = navigationBarAppearance
         navController.navigationBar.standardAppearance.buttonAppearance = barButtonItemAppearance
         navController.navigationBar.tintColor = .black
-
+        
     }
     
     init(_ rootVC: UIViewController, _ window: UIWindow) {
@@ -82,5 +82,14 @@ extension StartCoordinator: StartDelegate {
         profileVK.dataDelegate = vkPresenter
         profileVK.delegate = vkPresenter
         coordinator.start()
+    }
+    
+    func testWithTabBar() {
+        let tabBar = TabBarMain()
+        let tabBarCoordinator = TabBarMainCoordinator(tabBar, navController)
+        let tabBarPresenter = TabBarPresenter(tabBar, tabBarCoordinator)
+        tabBar.tapDelegate = tabBarPresenter
+        tabBarCoordinator.start()
+        navController.isNavigationBarHidden = true
     }
 }

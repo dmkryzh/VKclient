@@ -16,6 +16,7 @@ protocol StartDelegate {
     func registrationFlowChosen()
     func loginFlowChosen()
     func testPurposes()
+    func testWithTabBar()
 }
 
 class StartPresenter: StartPresenterProtocol {
@@ -26,7 +27,8 @@ class StartPresenter: StartPresenterProtocol {
     
     @objc func registerButtonPressed() {
 //        delegate?.registrationFlowChosen()
-        delegate?.testPurposes()
+//        delegate?.testPurposes()
+        delegate?.testWithTabBar()
     }
     
     @objc func accountIsExistButtonPressed() {
