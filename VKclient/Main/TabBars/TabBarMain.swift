@@ -14,16 +14,12 @@ protocol TabBarMainDelegate {
     func profileFlowIsChosen()
 }
 
-@objc protocol TabBarPresenterDelegate {
-    @objc func middleButtonIsTapped()
+protocol TabBarPresenterDelegate {
+    func middleButtonIsTapped()
 }
 
 class TabBarMain: UITabBarController {
-    
-    @objc func test() {
-        tapDelegate?.middleButtonIsTapped()
-    }
-    
+
     var tapDelegate: TabBarPresenterDelegate?
     
     private let middleButtonDiameter: CGFloat = 50
@@ -32,8 +28,7 @@ class TabBarMain: UITabBarController {
         let view = UIButton()
         view.layer.cornerRadius = middleButtonDiameter / 2
         view.backgroundColor = UIColor(named: "bloodyRedColor")
-//        view.addTarget(tapDelegate, action: #selector(tapDelegate?.middleButtonIsTapped), for: .touchUpInside)
-        view.addTarget(self, action: #selector(test), for: .touchUpInside)
+        view.addTarget(self, action: #selector(middleButtHandler), for: .touchUpInside)
         return view
     }()
     
@@ -43,6 +38,11 @@ class TabBarMain: UITabBarController {
         view.tintColor = .white
         return view
     }()
+    
+    @objc func test() {
+        tapDelegate?.middleButtonIsTapped()
+    }
+    
     
     lazy var setupConstraints = { [self] in
         
@@ -145,5 +145,14 @@ class CustomTabBar: UITabBar {
         return pointIsInside
     }
     
+}
+
+//MARK: ACTIONS
+
+extension TabBarMain {
+    
+    @objc func middleButtHandler() {
+        tapDelegate?.middleButtonIsTapped()
+    }
 }
 

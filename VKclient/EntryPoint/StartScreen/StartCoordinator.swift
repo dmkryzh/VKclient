@@ -46,7 +46,7 @@ class StartCoordinator: Coordinator {
     }
 }
 
-extension StartCoordinator: StartDelegate {
+extension StartCoordinator: StartFlowDelegate {
     
     func fakeRegistrationFlowChosen() {
         let registartionVC = RegistrationVC()
@@ -80,7 +80,7 @@ extension StartCoordinator: StartDelegate {
         let modelPhoto = VKPhotoLibModel()
         let vkPresenter = VKProfilePresenter(modelPost, modelPhotoLib: modelPhoto, profileVK, coordinator)
         profileVK.dataDelegate = vkPresenter
-        profileVK.delegate = vkPresenter
+        profileVK.presenter = vkPresenter
         coordinator.start()
     }
     

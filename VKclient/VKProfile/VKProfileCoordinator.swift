@@ -36,7 +36,7 @@ class VKProfileCoordinator: Coordinator {
     }
 }
 
-extension VKProfileCoordinator: VKProfileDelegate {
+extension VKProfileCoordinator: VKProfileFlowDelegate {
     
     func postSettingsIsChosen(_ sender: Any) {
         guard let rootVC = rootVC as? VKProfileVC else { return }

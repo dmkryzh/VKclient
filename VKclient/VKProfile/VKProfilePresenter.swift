@@ -14,32 +14,17 @@ enum DataType {
     case postSettings
 }
 
-@objc protocol VKProfilePresenterProtocol {
-    @objc func menuPressed()
-    @objc func postSettingsPressed(_ sender: Any)
-}
-
-protocol VKProfileDelegate {
-    func settingsFlowIsChosen()
-    func postSettingsIsChosen(_ sender: Any)
-}
-
-protocol VKProfileModelDelegate {
-    func returnCellsCount(_ dataType: DataType) -> Int
-    func returnDataForCell(_ item: Int, _ dataType: DataType) -> String
-}
-
 class VKProfilePresenter {
     
     weak var view: VKProfileVC?
     
-    var delegate: VKProfileDelegate?
+    var delegate: VKProfileFlowDelegate?
     
     var modelPost: VKProfileModel?
     
     var modelPhotoLib: VKPhotoLibModel?
     
-    init(_ modelPost: VKProfileModel, modelPhotoLib: VKPhotoLibModel, _ view: VKProfileVC, _ coordinator: VKProfileDelegate) {
+    init(_ modelPost: VKProfileModel, modelPhotoLib: VKPhotoLibModel, _ view: VKProfileVC, _ coordinator: VKProfileFlowDelegate) {
         self.modelPost = modelPost
         self.modelPhotoLib = modelPhotoLib
         self.view = view
@@ -47,7 +32,7 @@ class VKProfilePresenter {
     }
 }
 
-extension VKProfilePresenter: VKProfilePresenterProtocol {
+extension VKProfilePresenter: VKProfilePresenterDelegate {
     @objc func postSettingsPressed(_ sender: Any) {
         delegate?.postSettingsIsChosen(sender)
     }
@@ -57,7 +42,7 @@ extension VKProfilePresenter: VKProfilePresenterProtocol {
     }
 }
 
-extension VKProfilePresenter: VKProfileModelDelegate {
+extension VKProfilePresenter: VKProfileDataDelegate {
     func returnCellsCount(_ dataType: DataType) -> Int{
         switch dataType {
         case.profileText:

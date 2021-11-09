@@ -10,13 +10,29 @@ import UIKit
 import SnapKit
 import Popover
 
+protocol VKProfilePresenterDelegate {
+    func menuPressed()
+    func postSettingsPressed(_ sender: Any)
+}
+
+protocol VKProfileFlowDelegate {
+    func settingsFlowIsChosen()
+    func postSettingsIsChosen(_ sender: Any)
+}
+
+protocol VKProfileDataDelegate {
+    func returnCellsCount(_ dataType: DataType) -> Int
+    func returnDataForCell(_ item: Int, _ dataType: DataType) -> String
+}
+
+
 final class VKProfileVC: UIViewController {
     
     let sliderTransitionDelegate = SliderPresentationManager()
     
-    var delegate: VKProfilePresenterProtocol?
+    var presenter: VKProfilePresenterDelegate?
     
-    var dataDelegate: VKProfileModelDelegate?
+    var dataDelegate: VKProfileDataDelegate?
     
     ///postCollectionView height logic
     private var height: CGFloat = 0  {
@@ -30,8 +46,8 @@ final class VKProfileVC: UIViewController {
     lazy var rightButton: UIBarButtonItem = {
         let image = UIImage(systemName: "text.justify")
         let view = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
-        view.action = #selector(delegate?.menuPressed)
-        view.target = delegate
+        view.action = #selector(menuBttnHandler)
+        view.target = self
         return view
     }()
     
@@ -506,7 +522,7 @@ extension VKProfileVC: UICollectionViewDataSource {
             cell.contentView.isUserInteractionEnabled = false
             cell.postTextAndImage.postText.text = dataDelegate.returnDataForCell(indexPath.item, .profileText)
             cell.postTextAndImage.postPhoto.image = UIImage(named: dataDelegate.returnDataForCell(indexPath.item, .profilePhoto))
-            cell.additionalInfo.addTarget(delegate, action: #selector(delegate?.postSettingsPressed(_:)), for: .touchUpInside)
+            cell.additionalInfo.addTarget(self, action: #selector(postSettingsHandler(_:)), for: .touchUpInside)
             return cell
             
         }
@@ -537,5 +553,17 @@ extension VKProfileVC: UITableViewDataSource {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = dataDelegate.returnDataForCell(indexPath.item, .postSettings)
         return cell
+    }
+}
+
+//MARK: ACTIONS
+
+extension VKProfileVC {
+    @objc func postSettingsHandler(_ sender: Any) {
+        presenter?.postSettingsPressed(sender)
+    }
+    
+    @objc func menuBttnHandler() {
+        presenter?.menuPressed()
     }
 }

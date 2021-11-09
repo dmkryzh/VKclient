@@ -22,6 +22,4 @@ extension TabBarPresenter: TabBarPresenterDelegate {
     func middleButtonIsTapped() {
         delegate?.profileFlowIsChosen()
     }
-    
-    
 }

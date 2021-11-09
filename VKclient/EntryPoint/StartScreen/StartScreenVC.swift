@@ -9,6 +9,18 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol StartPresenterProtocol {
+    func registerButtonPressed()
+    func accountIsExistButtonPressed()
+}
+
+protocol StartFlowDelegate {
+    func registrationFlowChosen()
+    func loginFlowChosen()
+    func testPurposes()
+    func testWithTabBar()
+}
+
 class StartScreenVC: UIViewController {
     
     var presenter: StartPresenterProtocol?
@@ -20,17 +32,9 @@ class StartScreenVC: UIViewController {
         view.titleLabel?.font = .systemFont(ofSize: 16, weight: .heavy)
         view.layer.cornerRadius = 20
         view.tintColor = .white
-        view.addTarget(presenter, action: #selector(presenter?.registerButtonPressed), for: .touchUpInside)
+        view.addTarget(self, action: #selector(registerBttnHandler), for: .touchUpInside)
         return view
     }()
-    
-//    lazy var accExistsButton: UIButton = {
-//        let view = UIButton(type: .system)
-//        view.backgroundColor = .clear
-//        view.setTitle("Уже есть аккаунт", for: .normal)
-//        view.addTarget(presenter, action: #selector(presenter?.accountIsExistButtonPressed), for: .touchUpInside)
-//        return view
-//    }()
     
     let logoView: UIImageView = {
         let image = UIImage(named: "startLogoDark")
@@ -39,6 +43,14 @@ class StartScreenVC: UIViewController {
         view.layer.masksToBounds = true
         return view
     }()
+    
+    //    lazy var accExistsButton: UIButton = {
+    //        let view = UIButton(type: .system)
+    //        view.backgroundColor = .clear
+    //        view.setTitle("Уже есть аккаунт", for: .normal)
+    //        view.addTarget(presenter, action: #selector(presenter?.accountIsExistButtonPressed), for: .touchUpInside)
+    //        return view
+    //    }()
 
     lazy var setupConstraints = { [self] in
   
@@ -68,5 +80,13 @@ class StartScreenVC: UIViewController {
         view.backgroundColor = .white
         view.addSubviews(logoView, registerButton)
         setupConstraints()
+    }
+}
+
+//MARK: ACTIONS
+
+extension StartScreenVC {
+    @objc func registerBttnHandler() {
+        presenter?.registerButtonPressed()
     }
 }

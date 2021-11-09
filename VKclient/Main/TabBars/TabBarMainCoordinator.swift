@@ -32,7 +32,6 @@ extension TabBarMainCoordinator: TabBarMainDelegate {
         tabBar.selectedIndex = 1
     }
     
-    
     func configureTabBarVCs() {
 
         let firstVC = UIViewController()
@@ -54,13 +53,12 @@ extension TabBarMainCoordinator: TabBarMainDelegate {
         let modelPhoto = VKPhotoLibModel()
         let vkPresenter = VKProfilePresenter(modelPost, modelPhotoLib: modelPhoto, middleVC, middleCoordinator)
         middleVC.dataDelegate = vkPresenter
-        middleVC.delegate = vkPresenter
+        middleVC.presenter = vkPresenter
         middleCoordinator.start()
         
         guard let tabBar = rootVC as? TabBarMain else { return }
         tabBar.viewControllers = [firstNavi, middleNavi, secondNavi]
         tabBar.selectedIndex = 1
-        
     }
 }
 

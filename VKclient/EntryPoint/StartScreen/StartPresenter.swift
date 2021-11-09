@@ -7,37 +7,30 @@
 
 import Foundation
 
-@objc protocol StartPresenterProtocol {
-    func registerButtonPressed()
-    func accountIsExistButtonPressed()
-}
-
-protocol StartDelegate {
-    func registrationFlowChosen()
-    func loginFlowChosen()
-    func testPurposes()
-    func testWithTabBar()
-}
-
-class StartPresenter: StartPresenterProtocol {
+class StartPresenter {
     
     weak var view: StartScreenVC?
     
-    var delegate: StartDelegate?
+    var delegate: StartFlowDelegate
     
-    @objc func registerButtonPressed() {
-//        delegate?.registrationFlowChosen()
-//        delegate?.testPurposes()
-        delegate?.testWithTabBar()
-    }
-    
-    @objc func accountIsExistButtonPressed() {
-        delegate?.loginFlowChosen()
-    }
-    
-    init(_ view: StartScreenVC, _ coordinator: StartDelegate) {
+
+
+    init(_ view: StartScreenVC, _ coordinator: StartFlowDelegate) {
         self.view = view
         self.delegate = coordinator
     }
     
+}
+
+extension StartPresenter: StartPresenterProtocol {
+    
+    func accountIsExistButtonPressed() {
+        delegate.loginFlowChosen()
+    }
+    
+    func registerButtonPressed() {
+//        delegate.registrationFlowChosen()
+//        delegate.testPurposes()
+        delegate.testWithTabBar()
+    }
 }

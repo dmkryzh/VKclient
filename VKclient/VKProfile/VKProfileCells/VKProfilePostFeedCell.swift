@@ -11,7 +11,7 @@ import SnapKit
 
 class VKProfilePostFeedCell: UICollectionViewCell {
     
-    var coordinator: VKProfilePresenterProtocol?
+    var coordinator: VKProfilePresenterDelegate?
     
     let ava: UIImageView = {
         let image = UIImage(named: "pepe")

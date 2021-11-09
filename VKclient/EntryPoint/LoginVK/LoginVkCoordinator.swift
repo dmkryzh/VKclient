@@ -35,7 +35,7 @@ extension LoginVkCoordinator: LoginVkDelegate {
             let modelPost = VKProfileModel()
             let modelPhoto = VKPhotoLibModel()
             let vkPresenter = VKProfilePresenter(modelPost, modelPhotoLib: modelPhoto, profileVK, coordinator)
-            profileVK.delegate = vkPresenter
+            profileVK.presenter = vkPresenter
             profileVK.dataDelegate = vkPresenter
             coordinator.start()
         }
