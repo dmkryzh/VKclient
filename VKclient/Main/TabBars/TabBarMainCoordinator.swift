@@ -33,7 +33,7 @@ extension TabBarMainCoordinator: TabBarMainDelegate {
     }
     
     func configureTabBarVCs() {
-
+       
         let firstVC = UIViewController()
         firstVC.view.backgroundColor = .yellow
         firstVC.tabBarItem.title = "Favorite"

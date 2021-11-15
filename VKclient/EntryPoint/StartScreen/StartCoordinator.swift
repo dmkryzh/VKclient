@@ -60,7 +60,8 @@ extension StartCoordinator: StartFlowDelegate {
         let loginVk = LoginVkVC()
         let coordinator = LoginVkCoordinator(navController, loginVk)
         let model = LoginVkModel()
-        let vkPresenter = LoginVkPresenter(model, loginVk, coordinator)
+        let api = APIClient(model)
+        let vkPresenter = LoginVkPresenter(model, loginVk, coordinator, api)
         loginVk.delegate = vkPresenter
         coordinator.start()
     }

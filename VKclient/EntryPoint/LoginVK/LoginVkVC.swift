@@ -16,7 +16,7 @@ class LoginVkVC: UIViewController {
     
     let webView = WKWebView()
     
-    let webUrl = URLRequest(url: URL(string: "https://oauth.vk.com/authorize?client_id=7975663&redirect_uri=https://oauth.vk.com/blank.html&response_type=token")!)
+    let webUrl = URLRequest(url: URL(string: "https://oauth.vk.com/authorize?client_id=7975663&redirect_uri=https://oauth.vk.com/blank.html&display=mobile&scope=notify,friends,photos,audio,video,status,wall,groups,email&response_type=token")!)
 
     
     lazy var setupConstraints = { [self] in

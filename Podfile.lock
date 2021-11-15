@@ -1,34 +1,32 @@
 PODS:
   - Alamofire (5.4.3)
+  - CoreStore (8.1.0)
   - Popover (1.3.0)
-  - Realm (10.7.6):
-    - Realm/Headers (= 10.7.6)
-  - Realm/Headers (10.7.6)
-  - RealmSwift (10.7.6):
-    - Realm (= 10.7.6)
   - SnapKit (5.0.1)
+  - WeScan (1.7.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.4)
+  - CoreStore (~> 8.0)
   - Popover
-  - RealmSwift
   - SnapKit (~> 5.0.0)
+  - WeScan (>= 0.9)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - CoreStore
     - Popover
-    - Realm
-    - RealmSwift
     - SnapKit
+    - WeScan
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  CoreStore: 497ade3103f1ffd95d09c2658f9008d10c7d3082
   Popover: 10e1d9528f81d9504df984b7b3f491292bc1822d
-  Realm: ed860452717c8db8f4bf832b6807f7f2ce708839
-  RealmSwift: e31c4ddbcc42ac879313d656b86f9ca539f6f4f4
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  WeScan: fed582f6c38014d529afb5aa9ffd1bad38fc72b7
 
-PODFILE CHECKSUM: be0ffc66b05ea18d6e82f099759b141144c7a47e
+PODFILE CHECKSUM: 4eeb95c6a6b754d63be432afbfec8db4e8e082e4
 
 COCOAPODS: 1.10.1

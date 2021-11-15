@@ -18,10 +18,51 @@ protocol VKAPIProtocol {
     func getAlbums()
 }
 
+//final class APIClient {
+//    func getToken() {}
+//    func getMyAccInfo() {}
+//    func getUserAccInfo() {}
+//    func getUsers() {}
+//    func getProfilePhoto() {}
+//}
+
 final class APIClient {
-    func getToken() {}
-    func getMyAccInfo() {}
-    func getUserAccInfo() {}
-    func getUsers() {}
-    func getProfilePhoto() {}
+    
+    private var tokenDelegate: LoginVkModelProtocol
+    
+    private(set) var headersForFeed: HTTPHeaders = []
+    
+    private(set) var parametersForFeed: [String: Any] = [
+        "access_token": "",
+        "v": 5.131,
+        "filters": "post",
+        "count": 10
+    ]
+    
+    func updateToken() -> Bool {
+        guard let token = tokenDelegate.token else { return false }
+        print("----------------------token \(token)")
+        parametersForFeed["access_token"] = token
+        return true
+    }
+    
+    func getRequest(_ parameters: [String: Any], _ headers: HTTPHeaders? = nil, _ link: String) {
+        guard updateToken() else { return }
+        AF.request(link, method: .get, parameters: parameters, headers: headers).responseJSON {
+            response in
+            switch response.result {
+            case .success(let feedObject):
+//                let test: () = DataParser.parseToFeedModel(feedObject)
+                print(feedObject)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    init(_ tokenDelegate: LoginVkModelProtocol) {
+        self.tokenDelegate = tokenDelegate
+    }
 }
+
+

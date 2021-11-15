@@ -42,6 +42,10 @@
 		508FA9BB2733BFF600039CC7 /* VKProfilePostSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FA9BA2733BFF600039CC7 /* VKProfilePostSectionHeader.swift */; };
 		508FA9BD27391B4000039CC7 /* TabBarMainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FA9BC27391B4000039CC7 /* TabBarMainCoordinator.swift */; };
 		508FA9C1273959D600039CC7 /* TabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FA9C0273959D600039CC7 /* TabBarPresenter.swift */; };
+		50909C80274177A7008C08E2 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50909C7F274177A7008C08E2 /* FeedModel.swift */; };
+		50909C8327417D10008C08E2 /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50909C8227417D10008C08E2 /* DataParser.swift */; };
+		50D05E6D27412BB400E2C6DF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D05E6C27412BB400E2C6DF /* Post.swift */; };
+		50D05E6F27412C0F00E2C6DF /* CoreStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D05E6E27412C0F00E2C6DF /* CoreStore.swift */; };
 		50EE6E402713072C0073E5A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E3F2713072C0073E5A1 /* AppDelegate.swift */; };
 		50EE6E422713072C0073E5A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E412713072C0073E5A1 /* SceneDelegate.swift */; };
 		50EE6E492713072E0073E5A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50EE6E482713072E0073E5A1 /* Assets.xcassets */; };
@@ -94,6 +98,10 @@
 		508FA9BA2733BFF600039CC7 /* VKProfilePostSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfilePostSectionHeader.swift; sourceTree = "<group>"; };
 		508FA9BC27391B4000039CC7 /* TabBarMainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMainCoordinator.swift; sourceTree = "<group>"; };
 		508FA9C0273959D600039CC7 /* TabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresenter.swift; sourceTree = "<group>"; };
+		50909C7F274177A7008C08E2 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
+		50909C8227417D10008C08E2 /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
+		50D05E6C27412BB400E2C6DF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		50D05E6E27412C0F00E2C6DF /* CoreStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreStore.swift; sourceTree = "<group>"; };
 		50EE6E3C2713072C0073E5A1 /* VKclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50EE6E3F2713072C0073E5A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50EE6E412713072C0073E5A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				508FA96B271957A900039CC7 /* APIClient.swift */,
+				50909C8227417D10008C08E2 /* DataParser.swift */,
 				508FA981271BFC4C00039CC7 /* JSONModels */,
 			);
 			path = NetworkLayer;
@@ -211,6 +220,7 @@
 		508FA981271BFC4C00039CC7 /* JSONModels */ = {
 			isa = PBXGroup;
 			children = (
+				50909C7F274177A7008C08E2 /* FeedModel.swift */,
 			);
 			path = JSONModels;
 			sourceTree = "<group>";
@@ -304,6 +314,15 @@
 			path = VKProfileOptions;
 			sourceTree = "<group>";
 		};
+		50D05E6B27412B8300E2C6DF /* VKDBObjects */ = {
+			isa = PBXGroup;
+			children = (
+				50D05E6C27412BB400E2C6DF /* Post.swift */,
+				50D05E6E27412C0F00E2C6DF /* CoreStore.swift */,
+			);
+			path = VKDBObjects;
+			sourceTree = "<group>";
+		};
 		50EE6E332713072C0073E5A1 = {
 			isa = PBXGroup;
 			children = (
@@ -325,6 +344,7 @@
 		50EE6E3E2713072C0073E5A1 /* VKclient */ = {
 			isa = PBXGroup;
 			children = (
+				50D05E6B27412B8300E2C6DF /* VKDBObjects */,
 				508FA9952721987100039CC7 /* VKPhotoLib */,
 				508FA98C271EBB3C00039CC7 /* VKLikedPosts */,
 				508FA989271EBAC400039CC7 /* VKProfile */,
@@ -472,6 +492,7 @@
 			files = (
 				508FA9B4272725DE00039CC7 /* SliderPresentationAnimation.swift in Sources */,
 				508FA9A027219FD500039CC7 /* VKProfilePhotoLibCell.swift in Sources */,
+				50909C8327417D10008C08E2 /* DataParser.swift in Sources */,
 				508FA999272198A800039CC7 /* VKPhotoLibPresenter.swift in Sources */,
 				508FA95E27143C4200039CC7 /* LoginPresenter.swift in Sources */,
 				508FA9C1273959D600039CC7 /* TabBarPresenter.swift in Sources */,
@@ -494,7 +515,9 @@
 				508FA95C27143C3500039CC7 /* LoginCoordinator.swift in Sources */,
 				50EE6E60271354980073E5A1 /* LoginVC.swift in Sources */,
 				508FA96427143CE700039CC7 /* RegistrationCoordinator.swift in Sources */,
+				50D05E6D27412BB400E2C6DF /* Post.swift in Sources */,
 				508FA96627143CF600039CC7 /* RegistrationPresenter.swift in Sources */,
+				50909C80274177A7008C08E2 /* FeedModel.swift in Sources */,
 				508FA97C271AEEBA00039CC7 /* LoginVkModel.swift in Sources */,
 				50EE6E402713072C0073E5A1 /* AppDelegate.swift in Sources */,
 				50EE6E5427131F2E0073E5A1 /* StartScreenVC.swift in Sources */,
@@ -504,6 +527,7 @@
 				508FA9AB2726AD7800039CC7 /* SliderPresentationController.swift in Sources */,
 				508FA9B027271D1E00039CC7 /* VKProfileOptionsCoordinator.swift in Sources */,
 				508FA9972721989300039CC7 /* VKPhotoLibVC.swift in Sources */,
+				50D05E6F27412C0F00E2C6DF /* CoreStore.swift in Sources */,
 				508FA99B272198DC00039CC7 /* VKPhotoLibModel.swift in Sources */,
 				508FA97E271AEF1000039CC7 /* LoginVkPresenter.swift in Sources */,
 				508FA96027143C5A00039CC7 /* ConfirmationCoordinator.swift in Sources */,

@@ -29,16 +29,16 @@ extension LoginVkCoordinator: LoginVkDelegate {
     }
     
     func startProfileFlow() {
-        let completion = { [self] in
-            let profileVK = VKProfileVC()
-            let coordinator = VKProfileCoordinator(navController, rootVC: profileVK)
-            let modelPost = VKProfileModel()
-            let modelPhoto = VKPhotoLibModel()
-            let vkPresenter = VKProfilePresenter(modelPost, modelPhotoLib: modelPhoto, profileVK, coordinator)
-            profileVK.presenter = vkPresenter
-            profileVK.dataDelegate = vkPresenter
-            coordinator.start()
-        }
-        navController.dismiss(animated: true, completion: completion)
+//        let completion = { [self] in
+//            let profileVK = VKProfileVC()
+//            let coordinator = VKProfileCoordinator(navController, rootVC: profileVK)
+//            let modelPost = VKProfileModel()
+//            let modelPhoto = VKPhotoLibModel()
+//            let vkPresenter = VKProfilePresenter(modelPost, modelPhotoLib: modelPhoto, profileVK, coordinator)
+//            profileVK.presenter = vkPresenter
+//            profileVK.dataDelegate = vkPresenter
+//            coordinator.start()
+//        }
+//        navController.dismiss(animated: true, completion: completion)
     }
 }

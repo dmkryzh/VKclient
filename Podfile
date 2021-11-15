@@ -7,8 +7,9 @@ target 'VKclient' do
 
   # Pods for VKclient
  pod 'SnapKit', '~> 5.0.0'
- pod 'RealmSwift'
  pod 'Alamofire', '~> 5.4'
  pod 'Popover'
+ pod 'WeScan', '>= 0.9'
+ pod 'CoreStore', '~> 8.0'
 
 end
