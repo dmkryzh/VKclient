@@ -79,7 +79,7 @@ extension StartCoordinator: StartFlowDelegate {
         let coordinator = VKProfileCoordinator(navController, rootVC: profileVK)
         let modelPost = VKProfileModel()
         let modelPhoto = VKPhotoLibModel()
-        let vkPresenter = VKProfilePresenter(modelPost, modelPhotoLib: modelPhoto, profileVK, coordinator)
+        let vkPresenter = VKProfilePresenter(modelPost, modelPhoto, profileVK, coordinator)
         profileVK.dataDelegate = vkPresenter
         profileVK.presenter = vkPresenter
         coordinator.start()

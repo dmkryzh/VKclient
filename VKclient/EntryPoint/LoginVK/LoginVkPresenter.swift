@@ -7,22 +7,25 @@
 
 import Foundation
 
-protocol LoginVkPresenterProtocol {
-    func loggedIn(_ link: String, _ completion: ((String) -> String)?)
+protocol LoginPresenterDataDelegate {
+    var token: String? { get set }
+    var webURL: URL? { get set }
 }
 
-protocol LoginVkDelegate {
-    func startFeedFlow()
+protocol LoginVkPresenterDelegate {
+    func test()
     func startProfileFlow()
 }
 
-class LoginVkPresenter: LoginVkPresenterProtocol {
+class LoginVkPresenter: LoginVkDelegate {
+    
+    lazy var linkForWebView = model.webURL
     
     weak var view: LoginVkVC?
     
-    var delegate: LoginVkDelegate?
+    var delegate: LoginVkPresenterDelegate?
     
-    var model: LoginVkModelProtocol
+    var model: LoginPresenterDataDelegate
     
     var apiDelegate: APIClient
     
@@ -38,7 +41,7 @@ class LoginVkPresenter: LoginVkPresenterProtocol {
         }
     }
     
-    init(_ model: LoginVkModelProtocol, _ view: LoginVkVC, _ coordinator: LoginVkDelegate, _ api: APIClient) {
+    init(_ model: LoginPresenterDataDelegate, _ view: LoginVkVC, _ coordinator: LoginVkPresenterDelegate, _ api: APIClient) {
         self.model = model
         self.view = view
         delegate = coordinator

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class LoginVkCoordinator: Coordinator {
-
+    
     var navController: UINavigationController
     
     var rootVC: UIViewController
@@ -24,21 +24,22 @@ class LoginVkCoordinator: Coordinator {
     }
 }
 
-extension LoginVkCoordinator: LoginVkDelegate {
-    func startFeedFlow() {
+extension LoginVkCoordinator: LoginVkPresenterDelegate {
+    
+    func test() {
+        
     }
     
     func startProfileFlow() {
-//        let completion = { [self] in
-//            let profileVK = VKProfileVC()
-//            let coordinator = VKProfileCoordinator(navController, rootVC: profileVK)
-//            let modelPost = VKProfileModel()
-//            let modelPhoto = VKPhotoLibModel()
-//            let vkPresenter = VKProfilePresenter(modelPost, modelPhotoLib: modelPhoto, profileVK, coordinator)
-//            profileVK.presenter = vkPresenter
-//            profileVK.dataDelegate = vkPresenter
-//            coordinator.start()
-//        }
-//        navController.dismiss(animated: true, completion: completion)
+        let completion = { [self] in
+            let tabBar = TabBarMain()
+            let tabBarCoordinator = TabBarMainCoordinator(tabBar, navController)
+            let tabBarPresenter = TabBarPresenter(tabBar, tabBarCoordinator)
+            tabBar.tapDelegate = tabBarPresenter
+            tabBarCoordinator.start()
+            navController.isNavigationBarHidden = true
+        }
+        
+        navController.dismiss(animated: true, completion: completion)
     }
 }

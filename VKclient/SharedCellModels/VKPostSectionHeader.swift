@@ -1,5 +1,5 @@
 //
-//  VKProfilePostSectionHeader.swift
+//  VKPostSectionHeader.swift
 //  VKclient
 //
 //  Created by Dmitrii KRY on 04.11.2021.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class VKProfilePostSectionHeader: UICollectionReusableView {
+class VKPostSectionHeader: UICollectionReusableView {
     
     let line: UILabel = {
         let view = UILabel()

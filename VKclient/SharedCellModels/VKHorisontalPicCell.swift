@@ -1,5 +1,5 @@
 //
-//  VKProfilePhotoLibCell.swift
+//  VKHorisontalPicCell.swift
 //  VKclient
 //
 //  Created by Dmitrii KRY on 21.10.2021.
@@ -9,11 +9,10 @@ import Foundation
 import UIKit
 import SnapKit
 
-class VKProfilePhotoLibCell: UICollectionViewCell {
+class VKHorisontalPicCell: UICollectionViewCell {
     
     let photoImage: UIImageView = {
         let view = UIImageView()
-        view.layer.cornerRadius = 5
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.tintColor = .black

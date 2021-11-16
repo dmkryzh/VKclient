@@ -28,7 +28,7 @@ protocol VKAPIProtocol {
 
 final class APIClient {
     
-    private var tokenDelegate: LoginVkModelProtocol
+    private var tokenDelegate: LoginPresenterDataDelegate
     
     private(set) var headersForFeed: HTTPHeaders = []
     
@@ -41,26 +41,25 @@ final class APIClient {
     
     func updateToken() -> Bool {
         guard let token = tokenDelegate.token else { return false }
-        print("----------------------token \(token)")
         parametersForFeed["access_token"] = token
         return true
     }
     
     func getRequest(_ parameters: [String: Any], _ headers: HTTPHeaders? = nil, _ link: String) {
         guard updateToken() else { return }
-        AF.request(link, method: .get, parameters: parameters, headers: headers).responseJSON {
+        AF.request(link, method: .get, parameters: parameters, headers: headers).responseData {
             response in
             switch response.result {
             case .success(let feedObject):
-//                let test: () = DataParser.parseToFeedModel(feedObject)
-                print(feedObject)
+                let test: () = DataParser.parseToFeedModel(feedObject)
+                print(test)
             case .failure(let error):
                 print(error)
             }
         }
     }
     
-    init(_ tokenDelegate: LoginVkModelProtocol) {
+    init(_ tokenDelegate: LoginPresenterDataDelegate) {
         self.tokenDelegate = tokenDelegate
     }
 }

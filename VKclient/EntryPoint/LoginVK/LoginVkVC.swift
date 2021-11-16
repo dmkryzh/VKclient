@@ -10,28 +10,30 @@ import SnapKit
 import UIKit
 import WebKit
 
+protocol LoginVkDelegate {
+    func loggedIn(_ link: String, _ completion: ((String) -> String)?)
+    var linkForWebView: URL? { get set }
+}
+
 class LoginVkVC: UIViewController {
 
-    var delegate: LoginVkPresenterProtocol?
+    var delegate: LoginVkDelegate?
     
-    let webView = WKWebView()
+    let webView: WKWebView = {
+        let view = WKWebView(frame: .zero)
+        return view
+    }()
     
-    let webUrl = URLRequest(url: URL(string: "https://oauth.vk.com/authorize?client_id=7975663&redirect_uri=https://oauth.vk.com/blank.html&display=mobile&scope=notify,friends,photos,audio,video,status,wall,groups,email&response_type=token")!)
-
+    lazy var linkForWebView: URLRequest? = {
+        guard let link = delegate?.linkForWebView else { return nil}
+        let request = URLRequest(url: link)
+        return request
+    }()
     
     lazy var setupConstraints = { [self] in
         webView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalTo(view)
         }
-    }
-    
-    override func viewDidLoad() {
-        view.backgroundColor = .white
-        logOut()
-        webView.load(webUrl)
-        webView.navigationDelegate = self
-        view.addSubview(webView)
-        setupConstraints()
     }
     
     func logOut() {
@@ -45,6 +47,16 @@ class LoginVkVC: UIViewController {
                 }
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        view.backgroundColor = .white
+        logOut()
+        guard let link = linkForWebView else { return }
+        webView.load(link)
+        webView.navigationDelegate = self
+        view.addSubview(webView)
+        setupConstraints()
     }
     
 }

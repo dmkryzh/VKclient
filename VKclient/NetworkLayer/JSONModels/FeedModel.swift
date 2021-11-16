@@ -15,9 +15,9 @@ struct FeedModel: Codable {
 // MARK: - Response
 struct Response: Codable {
     let items: [Item]
-    let profiles: [Profile]?
-    let groups: [Group]?
-    let nextFrom: String?
+    let profiles: [Profile]
+    let groups: [Group]
+    let nextFrom: String
 
     enum CodingKeys: String, CodingKey {
         case items, profiles, groups

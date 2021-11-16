@@ -1,5 +1,5 @@
 //
-//  ProfilePostSubView.swift
+//  VKPostSubView.swift
 //  VKclient
 //
 //  Created by Dmitrii KRY on 22.10.2021.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ProfilePostSubView: UIView {
+class VKPostSubView: UIView {
 
     lazy var postText: UILabel = {
         let view = UILabel()

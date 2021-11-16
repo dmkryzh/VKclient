@@ -1,5 +1,5 @@
 //
-//  VKProfilePostFeedCell.swift
+//  VKPostFeedCell.swift
 //  VKclient
 //
 //  Created by Dmitrii KRY on 22.10.2021.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class VKProfilePostFeedCell: UICollectionViewCell {
+class VKPostFeedCell: UICollectionViewCell {
     
     var coordinator: VKProfilePresenterDelegate?
     
@@ -44,8 +44,8 @@ class VKProfilePostFeedCell: UICollectionViewCell {
         return view
     }()
   
-    let postTextAndImage: ProfilePostSubView = {
-        let view = ProfilePostSubView()
+    let postTextAndImage: VKPostSubView = {
+        let view = VKPostSubView()
         return view
     }()
     

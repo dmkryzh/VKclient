@@ -196,18 +196,17 @@ final class VKProfileVC: UIViewController {
         return view
     }()
     
-    let photosCollectionLayout: UICollectionViewFlowLayout = {
+    let storiesCollectionLayout: UICollectionViewFlowLayout = {
         let view = UICollectionViewFlowLayout()
         view.scrollDirection = .horizontal
         return view
     }()
     
     lazy var photosCollectionView: UICollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: photosCollectionLayout)
+        let view = UICollectionView(frame: .zero, collectionViewLayout: storiesCollectionLayout)
         view.dataSource = self
         view.delegate = self
-        view.collectionViewLayout = photosCollectionLayout
-        view.register(VKProfilePhotoLibCell.self, forCellWithReuseIdentifier: "VKProfilePhotoLib")
+        view.register(VKHorisontalPicCell.self, forCellWithReuseIdentifier: "VKProfilePhotoLib")
         view.backgroundColor = .clear
         view.showsHorizontalScrollIndicator = false
         return view
@@ -257,8 +256,8 @@ final class VKProfileVC: UIViewController {
         let view = UICollectionView(frame: .zero, collectionViewLayout: postsCollectionLayout)
         view.dataSource = self
         view.delegate = self
-        view.register(VKProfilePostFeedCell.self, forCellWithReuseIdentifier: "VKProfilePostFeed")
-        view.register(VKProfilePostSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView")
+        view.register(VKPostFeedCell.self, forCellWithReuseIdentifier: "VKProfilePostFeed")
+        view.register(VKPostSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView")
         view.backgroundColor = .clear
         view.showsVerticalScrollIndicator = false
         return view
@@ -417,6 +416,7 @@ final class VKProfileVC: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         title = "Profile"
         view.backgroundColor = .white
         /// - NavBarButtons start --
@@ -438,6 +438,7 @@ final class VKProfileVC: UIViewController {
         
         ///save collectionView contentSize to variable, where view height will be recalculated
         height = postsCollectionView.contentSize.height
+        print(height)
     }
 }
 
@@ -455,7 +456,7 @@ extension VKProfileVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView", for: indexPath) as? VKProfilePostSectionHeader else { return UICollectionReusableView(frame: .zero)}
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView", for: indexPath) as? VKPostSectionHeader else { return UICollectionReusableView(frame: .zero)}
         
         return headerView
     }
@@ -504,7 +505,9 @@ extension VKProfileVC: UICollectionViewDataSource {
         
         if collectionView == photosCollectionView {
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePhotoLib", for: indexPath) as? VKProfilePhotoLibCell else { return UICollectionViewCell(frame: .zero)  }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePhotoLib", for: indexPath) as? VKHorisontalPicCell else { return UICollectionViewCell(frame: .zero)  }
+            
+            cell.photoImage.layer.cornerRadius = 5
             
             if indexPath.item == dataDelegate.returnCellsCount(.photoLib) {
                 let threeDots = UIImage(systemName: "arrow.right")
@@ -518,7 +521,7 @@ extension VKProfileVC: UICollectionViewDataSource {
             
         } else {
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePostFeed", for: indexPath) as? VKProfilePostFeedCell else { return UICollectionViewCell(frame: .zero)  }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePostFeed", for: indexPath) as? VKPostFeedCell else { return UICollectionViewCell(frame: .zero)  }
             cell.contentView.isUserInteractionEnabled = false
             cell.postTextAndImage.postText.text = dataDelegate.returnDataForCell(indexPath.item, .profileText)
             cell.postTextAndImage.postPhoto.image = UIImage(named: dataDelegate.returnDataForCell(indexPath.item, .profilePhoto))

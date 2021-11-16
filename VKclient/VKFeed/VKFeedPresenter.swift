@@ -1,55 +1,46 @@
 //
-//  VKProfilePresenter.swift
+//  VKFeedPresenter.swift
 //  VKclient
 //
-//  Created by Dmitrii KRY on 19.10.2021.
+//  Created by Dmitrii KRY on 16.11.2021.
 //
 
 import Foundation
 
-enum DataType {
-    case profileText
-    case profilePhoto
-    case photoLib
-    case postSettings
-}
-
-class VKProfilePresenter {
+class VKFeedPresenter {
     
-    weak var view: VKProfileVC?
+    weak var view: VKFeedVC?
     
-    var delegate: VKProfileFlowDelegate?
+    var delegate: VKFeedFlowDelegate?
     
     var modelPost: VKProfileModel?
     
-    var modelPhotoLib: VKPhotoLibModel?
+    var modelStories: VKPhotoLibModel?
     
-    init(_ modelPost: VKProfileModel, _ modelPhotoLib: VKPhotoLibModel, _ view: VKProfileVC, _ coordinator: VKProfileFlowDelegate) {
+    init(_ modelPost: VKProfileModel, _ modelPhotoLib: VKPhotoLibModel, _ view: VKFeedVC, _ coordinator: VKFeedFlowDelegate) {
         self.modelPost = modelPost
-        self.modelPhotoLib = modelPhotoLib
+        self.modelStories = modelPhotoLib
         self.view = view
         delegate = coordinator
     }
 }
 
-extension VKProfilePresenter: VKProfilePresenterDelegate {
+extension VKFeedPresenter: VKFeedPresenterDelegate {
     @objc func postSettingsPressed(_ sender: Any) {
-        delegate?.postSettingsIsChosen(sender)
     }
     
     @objc func menuPressed() {
-        delegate?.settingsFlowIsChosen()
     }
 }
 
-extension VKProfilePresenter: VKProfileDataDelegate {
+extension VKFeedPresenter: VKFeedDataDelegate {
     func returnCellsCount(_ dataType: DataType) -> Int{
         switch dataType {
         case.profileText:
             guard let model = self.modelPost else { return 0 }
             return model.photoPost.count
         case.photoLib:
-            guard let model = self.modelPhotoLib else { return 0 }
+            guard let model = self.modelStories else { return 0 }
             return model.photosForTesting.count
         case.postSettings:
             guard let model = self.modelPost else { return 0 }
@@ -65,7 +56,7 @@ extension VKProfilePresenter: VKProfileDataDelegate {
             guard let model = self.modelPost else { return "" }
             return model.textArray[item]
         case .photoLib:
-            guard let model = self.modelPhotoLib else { return "" }
+            guard let model = self.modelStories else { return "" }
             return model.photosForTesting[item]
         case .profilePhoto:
             guard let model = self.modelPost else { return "" }
@@ -77,7 +68,3 @@ extension VKProfilePresenter: VKProfileDataDelegate {
     }
     
 }
-
-
-
-
