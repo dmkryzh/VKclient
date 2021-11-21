@@ -32,5 +32,6 @@ extension StartPresenter: StartPresenterProtocol {
 //        delegate.registrationFlowChosen()
 //        delegate.testPurposes()
         delegate.testWithTabBar()
+//        delegate.testMaterialTab()
     }
 }

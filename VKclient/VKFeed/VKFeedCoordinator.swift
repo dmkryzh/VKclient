@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Popover
+import SnapKit
 
 class VKFeedCoordinator: Coordinator {
     

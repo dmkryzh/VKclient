@@ -19,6 +19,7 @@ protocol StartFlowDelegate {
     func loginFlowChosen()
     func testPurposes()
     func testWithTabBar()
+    func testMaterialTab()
 }
 
 class StartScreenVC: UIViewController {

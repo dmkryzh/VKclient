@@ -11,5 +11,6 @@ target 'VKclient' do
  pod 'Popover'
  pod 'WeScan', '>= 0.9'
  pod 'CoreStore', '~> 8.0'
+ pod 'MaterialComponents/Tabs+TabBarView'
 
 end
