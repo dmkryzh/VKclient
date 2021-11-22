@@ -13,8 +13,6 @@ class StartPresenter {
     
     var delegate: StartFlowDelegate
     
-
-
     init(_ view: StartScreenVC, _ coordinator: StartFlowDelegate) {
         self.view = view
         self.delegate = coordinator

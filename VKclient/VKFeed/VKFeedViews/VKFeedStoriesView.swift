@@ -13,6 +13,8 @@ class VKFeedStoriesView: UICollectionViewCell {
     
     var dataDelegate: VKFeedDataDelegate?
     
+    var selectedItemIndex: Int?
+    
     let storiesCollectionLayout: UICollectionViewFlowLayout = {
         let view = UICollectionViewFlowLayout()
         view.scrollDirection = .horizontal
@@ -73,9 +75,7 @@ class VKFeedStoriesView: UICollectionViewCell {
             sub.layer.borderColor = UIColor(named: "bloodyRedColor")?.cgColor
         }
     }
-    
-    var selectedItemIndex: Int?
-    
+ 
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubviews(storiesCollectionView)

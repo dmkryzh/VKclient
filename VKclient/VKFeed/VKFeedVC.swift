@@ -10,14 +10,12 @@ import UIKit
 import SnapKit
 import Popover
 
-protocol VKFeedPresenterDelegate {
-    func menuPressed()
-    func postSettingsPressed(_ sender: Any)
-}
+
 
 protocol VKFeedFlowDelegate {
     func settingsFlowIsChosen()
     func postSettingsIsChosen(_ sender: Any)
+    func testScanIsChosen()
 }
 
 protocol VKFeedDataDelegate {
@@ -209,6 +207,7 @@ extension VKFeedVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        presenter?.testSomeSettingIsChosen()
         self.popOver.dismiss()
     }
     

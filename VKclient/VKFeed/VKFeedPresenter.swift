@@ -7,6 +7,12 @@
 
 import Foundation
 
+protocol VKFeedPresenterDelegate {
+    func menuPressed()
+    func postSettingsPressed(_ sender: Any)
+    func testSomeSettingIsChosen()
+}
+
 class VKFeedPresenter {
     
     weak var view: VKFeedVC?
@@ -26,10 +32,16 @@ class VKFeedPresenter {
 }
 
 extension VKFeedPresenter: VKFeedPresenterDelegate {
+    func testSomeSettingIsChosen() {
+        delegate?.testScanIsChosen()
+    }
+    
     @objc func postSettingsPressed(_ sender: Any) {
+        delegate?.postSettingsIsChosen(sender)
     }
     
     @objc func menuPressed() {
+        delegate?.settingsFlowIsChosen()
     }
 }
 
