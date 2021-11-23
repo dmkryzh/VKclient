@@ -18,14 +18,6 @@ protocol VKAPIProtocol {
     func getAlbums()
 }
 
-//final class APIClient {
-//    func getToken() {}
-//    func getMyAccInfo() {}
-//    func getUserAccInfo() {}
-//    func getUsers() {}
-//    func getProfilePhoto() {}
-//}
-
 final class APIClient {
     
     private var tokenDelegate: LoginPresenterDataDelegate
