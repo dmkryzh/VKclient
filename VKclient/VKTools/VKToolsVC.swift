@@ -9,12 +9,15 @@ import Foundation
 import UIKit
 import SnapKit
 import WeScan
+import Photos
 
 protocol VKToolsDelegate {
     func scanBttnPressed()
 }
 
 class VKToolsVC: UIViewController {
+    
+    let data = VKToolsModel()
     
     var presenter: VKToolsDelegate?
     
@@ -47,7 +50,6 @@ class VKToolsVC: UIViewController {
     let imagePicker =  UIImagePickerController()
     
     func selectImageFromLibrary() {
-        
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
@@ -75,15 +77,45 @@ class VKToolsVC: UIViewController {
         setupConstraints()
     }
     
+    
+    func saveToCameraRoll(image: UIImage, completion: @escaping (URL?) -> Void) {
+        var placeHolder: PHObjectPlaceholder?
+        PHPhotoLibrary.shared().performChanges({
+            let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
+            placeHolder = creationRequest.placeholderForCreatedAsset
+        }, completionHandler: { success, error in
+            guard success, let placeholder = placeHolder else {
+                completion(nil)
+                return
+            }
+            let assets = PHAsset.fetchAssets(withLocalIdentifiers: [placeholder.localIdentifier], options: nil)
+            guard let asset = assets.firstObject else {
+                completion(nil)
+                return
+            }
+            asset.requestContentEditingInput(with: nil, completionHandler: { (editingInput, _) in
+                completion(editingInput?.fullSizeImageURL)
+            })
+        })
+    }
+    
 }
 
 extension VKToolsVC: ImageScannerControllerDelegate {
     
     func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
-       
-        UIImageWriteToSavedPhotosAlbum(results.originalScan.image, nil, nil, nil)
         
-        
+        saveToCameraRoll(image: results.originalScan.image) { link in
+           
+            guard let link = link else { return }
+            
+            print("URL: \(String(describing: link))")
+           
+            self.data.saveLink(link)
+            self.data.loadLink()
+        }
+        navigationController?.dismiss(animated: true)
+
     }
     
     func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {

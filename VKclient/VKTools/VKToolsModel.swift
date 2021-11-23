@@ -6,33 +6,41 @@
 //
 
 import Foundation
-import CoreStore
+import RealmSwift
 
 class VKToolsModel {
-
-    let dataStore = DataStack()
     
-    func startStorage() {
-        do {
-        try dataStore.addStorageAndWait()
+    private let config = Realm.Configuration(
+        schemaVersion: 1,
+        migrationBlock: { migration, oldSchemaVersion in
+            if (oldSchemaVersion < 1) {
+            }
+        })
+    
+    lazy var realm: Realm = {
+        try? FileManager().removeItem(at: config.fileURL!)
+        return try! Realm(configuration: config)
+    }()
+    
+  
+    
+    func saveLink(_ link: URL) {
+        let saveLink = CapturedScan()
+        let stringFromURL = link.absoluteString
+        saveLink.photoLink = stringFromURL
+        try! realm.write {
+            realm.add(saveLink)
         }
-        catch {
-            
-        }
     }
     
-    func getObjects() {
+    func loadLink() {
+        let test = realm.objects(CapturedScan.self)
+        print(test)
+    }
 
-        let objects = try? dataStore.fetchAll(From<ScannedImage>())
-        print(objects as Any )
-
-    }
-    
-    init?() {
-        startStorage()
-    }
-    
-    
 }
 
+class CapturedScan: Object {
+    @objc dynamic var photoLink = ""
+}
 

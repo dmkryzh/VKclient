@@ -27,9 +27,9 @@ extension StartPresenter: StartPresenterProtocol {
     }
     
     func registerButtonPressed() {
-//        delegate.registrationFlowChosen()
+        delegate.registrationFlowChosen()
 //        delegate.testPurposes()
-        delegate.testWithTabBar()
+//        delegate.testWithTabBar()
 //        delegate.testMaterialTab()
     }
 }

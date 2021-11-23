@@ -78,7 +78,6 @@ class VKProfileOptionsVC: UIViewController {
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 1.0
         view.layer.shadowRadius = 10
-        view.layer.shouldRasterize = true
     }
     
     lazy var setupConstraints = { [self] in

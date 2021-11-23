@@ -51,8 +51,9 @@ final class APIClient {
             response in
             switch response.result {
             case .success(let feedObject):
-                let test: () = DataParser.parseToFeedModel(feedObject)
-                print(test)
+                DataParser.parseToFeedModel(feedObject) { object in
+                    
+                }
             case .failure(let error):
                 print(error)
             }

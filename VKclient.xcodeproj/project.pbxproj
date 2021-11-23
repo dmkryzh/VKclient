@@ -58,7 +58,6 @@
 		50AF96FC2743812200C7DFA4 /* VKFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF96FB2743812200C7DFA4 /* VKFeedModel.swift */; };
 		50AF96FE2743813400C7DFA4 /* VKFeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF96FD2743813400C7DFA4 /* VKFeedCoordinator.swift */; };
 		50D05E6D27412BB400E2C6DF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D05E6C27412BB400E2C6DF /* Post.swift */; };
-		50D05E6F27412C0F00E2C6DF /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D05E6E27412C0F00E2C6DF /* CoreDataStore.swift */; };
 		50EE6E402713072C0073E5A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E3F2713072C0073E5A1 /* AppDelegate.swift */; };
 		50EE6E422713072C0073E5A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E412713072C0073E5A1 /* SceneDelegate.swift */; };
 		50EE6E492713072E0073E5A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50EE6E482713072E0073E5A1 /* Assets.xcassets */; };
@@ -127,7 +126,6 @@
 		50AF96FB2743812200C7DFA4 /* VKFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFeedModel.swift; sourceTree = "<group>"; };
 		50AF96FD2743813400C7DFA4 /* VKFeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFeedCoordinator.swift; sourceTree = "<group>"; };
 		50D05E6C27412BB400E2C6DF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		50D05E6E27412C0F00E2C6DF /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		50EE6E3C2713072C0073E5A1 /* VKclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50EE6E3F2713072C0073E5A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50EE6E412713072C0073E5A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -404,7 +402,6 @@
 			isa = PBXGroup;
 			children = (
 				50D05E6C27412BB400E2C6DF /* Post.swift */,
-				50D05E6E27412C0F00E2C6DF /* CoreDataStore.swift */,
 			);
 			path = VKDBObjects;
 			sourceTree = "<group>";
@@ -624,7 +621,6 @@
 				5053845F274692C100BE7179 /* VKFullPostPresenter.swift in Sources */,
 				508FA9B027271D1E00039CC7 /* VKProfileOptionsCoordinator.swift in Sources */,
 				508FA9972721989300039CC7 /* VKPhotoLibVC.swift in Sources */,
-				50D05E6F27412C0F00E2C6DF /* CoreDataStore.swift in Sources */,
 				50538463274692ED00BE7179 /* VKFullPostModel.swift in Sources */,
 				508FA99B272198DC00039CC7 /* VKPhotoLibModel.swift in Sources */,
 				508FA97E271AEF1000039CC7 /* LoginVkPresenter.swift in Sources */,

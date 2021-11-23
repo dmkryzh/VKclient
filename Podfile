@@ -10,7 +10,7 @@ target 'VKclient' do
  pod 'Alamofire', '~> 5.4'
  pod 'Popover'
  pod 'WeScan', '>= 0.9'
- pod 'CoreStore', '~> 8.0'
  pod 'MaterialComponents/Tabs+TabBarView'
+ pod 'RealmSwift'
 
 end

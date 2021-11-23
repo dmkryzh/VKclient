@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreStore
 
 class DataParser {
     
@@ -14,12 +13,11 @@ class DataParser {
         do {
             let jsonDecoder = JSONDecoder()
             let response = try jsonDecoder.decode(FeedModel.self, from: data)
-            print(response)
             if let completion = completion {
                 completion(response)
             }
         } catch {
-            print(error)
+            print(" ________________ \(error)")
             
         }
     }

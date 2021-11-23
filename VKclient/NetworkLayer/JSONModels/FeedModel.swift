@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - FeedModel
 struct FeedModel: Codable {
     let response: Response
 }
@@ -52,7 +52,7 @@ struct Group: Codable {
 struct Item: Codable {
     let sourceID, date: Int
     let canDoubtCategory, canSetCategory: Bool
-    let postType: PostTypeEnum
+    let postType: String
     let text: String
     let markedAsAds: Int
     let attachments: [Attachment]
@@ -65,7 +65,7 @@ struct Item: Codable {
     let donut: Donut
     let shortTextRate: Double
     let postID: Int
-    let type: PostTypeEnum
+    let type: String
     let topicID, signerID, carouselOffset: Int?
 
     enum CodingKeys: String, CodingKey {
@@ -160,7 +160,7 @@ struct Poll: Codable {
     let question: String
     let votes: Int
     let disableUnvote, anonymous: Bool
-    let answerIDS: [Int]
+    let answerIDS: [String]
     let embedHash: String
     let answers: [Answer]
     let authorID: Int
@@ -292,15 +292,7 @@ struct Likes: Codable {
 
 // MARK: - PostSource
 struct PostSource: Codable {
-    let type: PostSourceType
-}
-
-enum PostSourceType: String, Codable {
-    case vk = "vk"
-}
-
-enum PostTypeEnum: String, Codable {
-    case post = "post"
+    let type: String
 }
 
 // MARK: - Reposts
