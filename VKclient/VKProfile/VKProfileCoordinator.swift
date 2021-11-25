@@ -37,6 +37,14 @@ class VKProfileCoordinator: Coordinator {
 }
 
 extension VKProfileCoordinator: VKProfileFlowDelegate {
+    func postFullViewIsChosen() {
+        let postVK = VKFullPostVC()
+        let coordinator = VKFullPostCoordinator(navController, postVK)
+        let postPresenter = VKFullPostPresenter(postVK, coordinator)
+        postVK.presenter = postPresenter
+        coordinator.start()
+    }
+    
     
     func postSettingsIsChosen(_ sender: Any) {
         guard let rootVC = rootVC as? VKProfileVC else { return }

@@ -13,11 +13,13 @@ import Popover
 protocol VKProfilePresenterDelegate {
     func menuPressed()
     func postSettingsPressed(_ sender: Any)
+    func postIsPressed()
 }
 
 protocol VKProfileFlowDelegate {
     func settingsFlowIsChosen()
     func postSettingsIsChosen(_ sender: Any)
+    func postFullViewIsChosen()
 }
 
 protocol VKProfileDataDelegate {
@@ -445,6 +447,10 @@ final class VKProfileVC: UIViewController {
 //MARK: - EXTENTIONS
 
 extension VKProfileVC: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.postIsPressed()
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if collectionView == postsCollectionView {

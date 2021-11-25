@@ -33,6 +33,10 @@ class VKProfilePresenter {
 }
 
 extension VKProfilePresenter: VKProfilePresenterDelegate {
+    func postIsPressed() {
+        delegate?.postFullViewIsChosen()
+    }
+    
     @objc func postSettingsPressed(_ sender: Any) {
         delegate?.postSettingsIsChosen(sender)
     }
