@@ -123,23 +123,25 @@ extension VKFullPostVC: UICollectionViewDelegateFlowLayout {
         return headerSize
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        return CGSize(width: collectionView.frame.width, height: 60)
-//
-//
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        return CGSize(width: collectionView.frame.width, height: 60)
+
+
+    }
         
 }
 
 extension VKFullPostVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard section > 0 else { return 0 }
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reply", for: indexPath) as? VKFullPostCommentReply else { return UICollectionViewCell(frame: .zero)  }
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reply", for: indexPath) as? VKFullPostCommentReply else { return UICollectionViewCell(frame: .zero) }
         return cell
         
     }
