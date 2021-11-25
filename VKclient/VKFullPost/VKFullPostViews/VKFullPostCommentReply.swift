@@ -78,7 +78,7 @@ class VKFullPostCommentReply: UICollectionViewCell {
         ava.snp.makeConstraints { make in
             make.height.width.equalTo(15)
             make.top.equalTo(self)
-            make.leading.equalTo(self).offset(40)
+            make.leading.equalTo(self).offset(10)
         }
         
         userName.snp.makeConstraints { make in
@@ -101,13 +101,13 @@ class VKFullPostCommentReply: UICollectionViewCell {
         }
         
         likesQuantity.snp.makeConstraints { make in
-            make.width.equalTo(15)
+            make.width.equalTo(18)
             make.centerY.equalTo(ava)
             make.trailing.equalTo(self).inset(10)
         }
         
         like.snp.makeConstraints { make in
-            make.height.width.equalTo(15)
+            make.height.width.equalTo(20)
             make.centerY.equalTo(ava)
             make.trailing.equalTo(self).inset(30)
         }
@@ -128,5 +128,4 @@ class VKFullPostCommentReply: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

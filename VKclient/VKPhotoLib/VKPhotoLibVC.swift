@@ -48,9 +48,6 @@ final class VKPhotoLibVC: UIViewController {
         let view = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
         view.dataSource = self
         view.delegate = self
-        view.register(VKFullPostHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView")
-        view.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "empty")
-        view.register(VKFullPostCommentsCell.self, forCellWithReuseIdentifier: "comments")
         view.backgroundColor = .clear
         view.showsVerticalScrollIndicator = false
         return view
@@ -111,9 +108,8 @@ extension VKPhotoLibVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "comments", for: indexPath) as? VKFullPostCommentsCell else { return UICollectionViewCell(frame: .zero)  }
-        return cell
-        
+      return UICollectionViewCell(frame: .zero)
+
     }
 
 }

@@ -24,12 +24,7 @@ class VKPhotoLibAlbumCell: UICollectionViewCell {
         
         view.backgroundColor = .clear
         view.isScrollEnabled = false
-        
-        view.register(VKFullPostCommentHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView")
-  
-        view.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "empty")
-        
-        view.register(VKFullPostCommentReply.self, forCellWithReuseIdentifier: "reply")
+   
         return view
     }()
     
@@ -73,9 +68,7 @@ extension VKPhotoLibAlbumCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
                 
         let emptyHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "empty", for: indexPath)
-        
-        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView", for: indexPath) as? VKFullPostCommentHeader else { return emptyHeader }
-        return headerView
+   return emptyHeader
         
     }
 

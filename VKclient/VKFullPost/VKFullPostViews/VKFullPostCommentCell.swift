@@ -1,5 +1,5 @@
 //
-//  VKFullPostCommentHeader.swift
+//  VKFullPostCommentCell.swift
 //  VKclient
 //
 //  Created by Dmitrii KRY on 24.11.2021.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class VKFullPostCommentHeader: UICollectionReusableView {
+class VKFullPostCommentCell: UICollectionReusableView {
     
     let ava: UIImageView = {
         let image = UIImage(named: "pepe")
@@ -130,4 +130,3 @@ class VKFullPostCommentHeader: UICollectionReusableView {
     }
     
 }
-
