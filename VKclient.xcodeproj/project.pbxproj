@@ -74,6 +74,9 @@
 		50EE6E60271354980073E5A1 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E5F271354980073E5A1 /* LoginVC.swift */; };
 		50EE6E62271355110073E5A1 /* ConfirmationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E61271355110073E5A1 /* ConfirmationVC.swift */; };
 		50F7EEA2274E703F000C6E49 /* VKFullPostCommentReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7EEA1274E703E000C6E49 /* VKFullPostCommentReply.swift */; };
+		50F7EEA7274F6AF8000C6E49 /* VKPhotoLibAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7EEA6274F6AF8000C6E49 /* VKPhotoLibAlbumCell.swift */; };
+		50F7EEA9274F6B14000C6E49 /* VKPhotoLibPhotosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7EEA8274F6B14000C6E49 /* VKPhotoLibPhotosCell.swift */; };
+		50F7EEAB274F6C07000C6E49 /* VKOnePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7EEAA274F6C07000C6E49 /* VKOnePhotoCell.swift */; };
 		68175C7108F3BC3755D7CF18 /* Pods_VKclient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAEFD22F86E033E2E76F392 /* Pods_VKclient.framework */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +152,9 @@
 		50EE6E5F271354980073E5A1 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		50EE6E61271355110073E5A1 /* ConfirmationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationVC.swift; sourceTree = "<group>"; };
 		50F7EEA1274E703E000C6E49 /* VKFullPostCommentReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFullPostCommentReply.swift; sourceTree = "<group>"; };
+		50F7EEA6274F6AF8000C6E49 /* VKPhotoLibAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPhotoLibAlbumCell.swift; sourceTree = "<group>"; };
+		50F7EEA8274F6B14000C6E49 /* VKPhotoLibPhotosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPhotoLibPhotosCell.swift; sourceTree = "<group>"; };
+		50F7EEAA274F6C07000C6E49 /* VKOnePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKOnePhotoCell.swift; sourceTree = "<group>"; };
 		622830E4EB6EDBC15B80B12F /* Pods-VKclient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKclient.debug.xcconfig"; path = "Target Support Files/Pods-VKclient/Pods-VKclient.debug.xcconfig"; sourceTree = "<group>"; };
 		7EAEFD22F86E033E2E76F392 /* Pods_VKclient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKclient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -318,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				508FA9962721989300039CC7 /* VKPhotoLibVC.swift */,
+				50F7EEA3274F6A6C000C6E49 /* VKPhotoLibCells */,
 				508FA998272198A800039CC7 /* VKPhotoLibPresenter.swift */,
 				508FA99A272198DC00039CC7 /* VKPhotoLibModel.swift */,
 				508FA99C2721990D00039CC7 /* VKPhotoLibCoordinator.swift */,
@@ -483,6 +490,16 @@
 			path = EntryPoint;
 			sourceTree = "<group>";
 		};
+		50F7EEA3274F6A6C000C6E49 /* VKPhotoLibCells */ = {
+			isa = PBXGroup;
+			children = (
+				50F7EEA6274F6AF8000C6E49 /* VKPhotoLibAlbumCell.swift */,
+				50F7EEA8274F6B14000C6E49 /* VKPhotoLibPhotosCell.swift */,
+				50F7EEAA274F6C07000C6E49 /* VKOnePhotoCell.swift */,
+			);
+			path = VKPhotoLibCells;
+			sourceTree = "<group>";
+		};
 		9D1BA09914BB7A9AFCA4333D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,6 +650,7 @@
 				508FA96227143C6800039CC7 /* ConfirmationPresenter.swift in Sources */,
 				50CB2449274E571A0050C5BC /* VKFullPostHeader.swift in Sources */,
 				50CB244B274E5EF60050C5BC /* VKFullPostCommentView.swift in Sources */,
+				50F7EEA7274F6AF8000C6E49 /* VKPhotoLibAlbumCell.swift in Sources */,
 				508FA9B227271D3200039CC7 /* VKProfileOptionsPresenter.swift in Sources */,
 				508FA986271C122100039CC7 /* VKFeedVC.swift in Sources */,
 				508FA95C27143C3500039CC7 /* LoginCoordinator.swift in Sources */,
@@ -647,10 +665,12 @@
 				50EE6E402713072C0073E5A1 /* AppDelegate.swift in Sources */,
 				509135B02744D61B004B4BF9 /* MaterialTabBarVC.swift in Sources */,
 				50EE6E5427131F2E0073E5A1 /* StartScreenVC.swift in Sources */,
+				50F7EEAB274F6C07000C6E49 /* VKOnePhotoCell.swift in Sources */,
 				508FA988271EB73C00039CC7 /* TabBarMain.swift in Sources */,
 				508FA9A92726ABC300039CC7 /* SliderPresentationManager.swift in Sources */,
 				508FA98E271EBB5B00039CC7 /* VKLikedPostsVC.swift in Sources */,
 				508FA9AB2726AD7800039CC7 /* SliderPresentationController.swift in Sources */,
+				50F7EEA9274F6B14000C6E49 /* VKPhotoLibPhotosCell.swift in Sources */,
 				50CB244E274E62770050C5BC /* VKFullPostCommentHeader.swift in Sources */,
 				5053845F274692C100BE7179 /* VKFullPostPresenter.swift in Sources */,
 				50CB2447274E56FA0050C5BC /* VKFullPostCommentsCell.swift in Sources */,

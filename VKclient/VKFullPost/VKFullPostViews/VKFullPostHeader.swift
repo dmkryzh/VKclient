@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 class VKFullPostHeader: UICollectionViewCell {
 
@@ -69,6 +70,13 @@ let bottomLine: UILabel = {
     
     lazy var setupConstraints = { [self] in
         
+        upperLine.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.top.equalTo(self)
+            make.leading.equalTo(self).offset(10)
+            make.trailing.equalTo(self).inset(10)
+        }
+        
         ava.snp.makeConstraints { make in
             make.height.width.equalTo(30)
             make.top.equalTo(upperLine.snp.bottom).offset(15)
@@ -76,14 +84,12 @@ let bottomLine: UILabel = {
         }
         
         userName.snp.makeConstraints { make in
-            make.height.equalTo(15)
             make.width.equalTo(250)
-            make.top.equalTo(self).offset(20)
+            make.top.equalTo(upperLine.snp.bottom).offset(20)
             make.leading.equalTo(ava.snp.trailing).offset(10)
         }
         
         userNameSubtitle.snp.makeConstraints { make in
-            make.height.equalTo(15)
             make.width.equalTo(100)
             make.top.equalTo(userName.snp.bottom).offset(1)
             make.leading.equalTo(ava.snp.trailing).offset(10)
@@ -91,24 +97,23 @@ let bottomLine: UILabel = {
         
         postPicture.snp.makeConstraints { make in
             make.height.equalTo(220)
-            make.top.equalTo(userNameSubtitle.snp.bottom).offset(10)
+            make.top.equalTo(userNameSubtitle.snp.bottom).offset(15)
             make.leading.equalTo(self).offset(10)
             make.trailing.equalTo(self).inset(10)
         }
         
         textView.snp.makeConstraints { make in
-            make.height.equalTo(350)
-            make.top.equalTo(postPicture.snp.bottom).offset(5)
+            make.top.equalTo(postPicture.snp.bottom).offset(15)
             make.leading.equalTo(self).offset(10)
             make.trailing.equalTo(self).inset(10)
         }
         
         bottomLine.snp.makeConstraints { make in
             make.height.equalTo(1)
-            make.top.equalTo(textView.snp.bottom).offset(3)
+            make.top.equalTo(textView.snp.bottom).offset(15)
             make.leading.equalTo(self).offset(10)
             make.trailing.equalTo(self).inset(10)
-//            make.bottom.equalTo(self)
+            make.bottom.equalTo(self)
         }
     }
     

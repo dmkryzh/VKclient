@@ -17,20 +17,13 @@ protocol VKFullPostPresenterDelegate {
 
 
 final class VKFullPostVC: UIViewController {
-    
-//    var height = 0.0
+
 //
-//    var cellHeight: CGFloat = 0 {
-//
-//        didSet {
-//
-//            guard cellHeight != height else { return }
-//            height = cellHeight
-//            print(cellHeight)
-//            collectionLayout.invalidateLayout()
-//            collectionView.reloadData()
-//        }
-//    }
+    var cellHeight: CGSize? {
+        didSet {
+            print(cellHeight)
+        }
+    }
     
     let sliderTransitionDelegate = SliderPresentationManager()
     
@@ -53,10 +46,8 @@ final class VKFullPostVC: UIViewController {
     let collectionLayout: UICollectionViewFlowLayout = {
         let view = UICollectionViewFlowLayout()
         view.scrollDirection = .vertical
-        view.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 650)
         view.minimumInteritemSpacing = 0
         view.minimumLineSpacing = 0
-//        view.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         return view
     }()
     
@@ -112,10 +103,19 @@ extension VKFullPostVC: UICollectionViewDelegateFlowLayout {
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        CGSize(width: collectionView.frame.width, height: 650)
-        
+        let indexPath = IndexPath(row: 0, section: section)
+            let headerView = self.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader, at: indexPath)
+
+            // Use this view to calculate the optimal size based on the collection view's width
+            return headerView.systemLayoutSizeFitting(CGSize(width: collectionView.frame.width, height: UIView.layoutFittingExpandedSize.height),
+                                                      withHorizontalFittingPriority: .required, // Width is fixed
+                                                      verticalFittingPriority: .fittingSizeLevel) // Height can be as large as needed
     }
     
 }
@@ -128,7 +128,7 @@ extension VKFullPostVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "comments", for: indexPath) as? VKFullPostCommentsCell else { return UICollectionViewCell(frame: .zero)  }
-//        cellHeight = cell.contentView.bounds.height
+        cellHeight = cell.contentView.bounds.size
         return cell
         
     }

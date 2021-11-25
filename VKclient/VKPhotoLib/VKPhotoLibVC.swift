@@ -18,7 +18,7 @@ final class VKPhotoLibVC: UIViewController {
     
     let sliderTransitionDelegate = SliderPresentationManager()
     
-    var presenter: VKFullPostPresenterDelegate?
+    var presenter: VKPhotoLibVCDelegate?
     
     /// -- NavBarButtons start--
     lazy var rightButton: UIBarButtonItem = {

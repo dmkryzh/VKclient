@@ -17,7 +17,6 @@ class VKFullPostCommentsCell: UICollectionViewCell {
         let view = UICollectionViewFlowLayout()
         view.minimumInteritemSpacing = 0
         view.minimumLineSpacing = 0
-//        view.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         return view
     }()
     
@@ -27,7 +26,6 @@ class VKFullPostCommentsCell: UICollectionViewCell {
         view.delegate = self
         view.register(VKFullPostCommentView.self, forCellWithReuseIdentifier: "comment")
         view.backgroundColor = .clear
-        view.showsHorizontalScrollIndicator = false
         return view
     }()
     
@@ -52,12 +50,9 @@ class VKFullPostCommentsCell: UICollectionViewCell {
 
 extension VKFullPostCommentsCell: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: self.frame.width, height: 120)
-        
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
-    
 }
 
 extension VKFullPostCommentsCell: UICollectionViewDataSource {

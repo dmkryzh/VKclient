@@ -11,14 +11,13 @@ import SnapKit
 
 class VKFullPostCommentView: UICollectionViewCell {
     
-    let commentLayout: UICollectionViewFlowLayout = {
+    let collectionLayout: UICollectionViewFlowLayout = {
         let view = UICollectionViewFlowLayout()
-        view.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 60)
         return view
     }()
     
-    lazy var commentView: UICollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: commentLayout)
+    lazy var collectionView: UICollectionView = {
+        let view = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
         view.dataSource = self
         view.delegate = self
         
@@ -34,14 +33,14 @@ class VKFullPostCommentView: UICollectionViewCell {
     }()
     
     func setupConstraints() {
-        commentView.snp.makeConstraints { make in
+        collectionView.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
     }
  
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubviews(commentView)
+        self.addSubviews(collectionView)
         setupConstraints()
     }
     
@@ -53,23 +52,7 @@ class VKFullPostCommentView: UICollectionViewCell {
 //MARK: - Extensions
 
 extension VKFullPostCommentView: UICollectionViewDelegateFlowLayout {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
-        return 1
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        .zero
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: self.frame.width, height: 60)
-        
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
                 
         let emptyHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "empty", for: indexPath)
@@ -77,6 +60,21 @@ extension VKFullPostCommentView: UICollectionViewDelegateFlowLayout {
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView", for: indexPath) as? VKFullPostCommentHeader else { return emptyHeader }
         return headerView
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        let indexPath = IndexPath(row: 0, section: section)
+            let headerView = self.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader, at: indexPath)
+
+            // Use this view to calculate the optimal size based on the collection view's width
+            return headerView.systemLayoutSizeFitting(CGSize(width: collectionView.frame.width, height: UIView.layoutFittingExpandedSize.height),
+                                                      withHorizontalFittingPriority: .required, // Width is fixed
+                                                      verticalFittingPriority: .fittingSizeLevel) // Height can be as large as needed
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 
 }

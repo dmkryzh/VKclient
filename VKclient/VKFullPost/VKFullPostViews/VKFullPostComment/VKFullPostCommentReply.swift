@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 class VKFullPostCommentReply: UICollectionViewCell {
     
@@ -73,6 +74,7 @@ class VKFullPostCommentReply: UICollectionViewCell {
     }()
     
     lazy var setupConstraints = { [self] in
+        
         ava.snp.makeConstraints { make in
             make.height.width.equalTo(15)
             make.top.equalTo(self)
@@ -80,41 +82,37 @@ class VKFullPostCommentReply: UICollectionViewCell {
         }
         
         userName.snp.makeConstraints { make in
-            make.height.equalTo(15)
             make.width.equalTo(120)
             make.centerY.equalTo(ava)
             make.leading.equalTo(ava.snp.trailing).offset(5)
         }
         
         comment.snp.makeConstraints { make in
-            make.height.equalTo(15)
             make.width.equalTo(120)
             make.top.equalTo(ava.snp.bottom).offset(3)
             make.leading.equalTo(ava.snp.trailing).offset(5)
         }
         
         dateView.snp.makeConstraints { make in
-            make.height.equalTo(15)
             make.width.equalTo(100)
             make.top.equalTo(comment.snp.bottom).offset(3)
             make.leading.equalTo(ava.snp.trailing).offset(5)
+            make.bottom.equalTo(self)
         }
         
         likesQuantity.snp.makeConstraints { make in
-            make.height.equalTo(18)
-            make.width.equalTo(18)
+            make.width.equalTo(15)
             make.centerY.equalTo(ava)
             make.trailing.equalTo(self).inset(10)
         }
         
         like.snp.makeConstraints { make in
-            make.height.width.equalTo(20)
+            make.height.width.equalTo(15)
             make.centerY.equalTo(ava)
             make.trailing.equalTo(self).inset(30)
         }
      
         reply.snp.makeConstraints { make in
-            make.height.equalTo(15)
             make.width.equalTo(70)
             make.top.equalTo(like.snp.bottom).offset(15)
             make.trailing.equalTo(self).inset(10)
