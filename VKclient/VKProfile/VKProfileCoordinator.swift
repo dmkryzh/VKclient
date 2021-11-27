@@ -37,6 +37,15 @@ class VKProfileCoordinator: Coordinator {
 }
 
 extension VKProfileCoordinator: VKProfileFlowDelegate {
+    func photoFlowIsChosen() {
+        let photoVC = VKPhotoLibVC()
+        let coordinator = VKPhotoLibCoordinator(navController, photoVC)
+        let photoPresenter = VKPhotoLibPresenter(photoVC, coordinator)
+        photoVC.presenter = photoPresenter
+        coordinator.start()
+    }
+    
+    
     func postFullViewIsChosen() {
         let postVK = VKFullPostVC()
         let coordinator = VKFullPostCoordinator(navController, postVK)

@@ -15,6 +15,8 @@ protocol VKPhotoLibVCDelegate {
 
 final class VKPhotoLibVC: UIViewController {
     
+    let model = VKPhotoLibModel()
+    
     
     let sliderTransitionDelegate = SliderPresentationManager()
     
@@ -37,10 +39,8 @@ final class VKPhotoLibVC: UIViewController {
     let collectionLayout: UICollectionViewFlowLayout = {
         let view = UICollectionViewFlowLayout()
         view.scrollDirection = .vertical
-        view.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 650)
-        view.minimumInteritemSpacing = 0
-        view.minimumLineSpacing = 0
-//        view.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        view.minimumInteritemSpacing = 5
+        view.minimumLineSpacing = 5
         return view
     }()
     
@@ -50,6 +50,10 @@ final class VKPhotoLibVC: UIViewController {
         view.delegate = self
         view.backgroundColor = .clear
         view.showsVerticalScrollIndicator = false
+        view.register(VKOnePhotoCell.self, forCellWithReuseIdentifier: "photo")
+        view.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "empty")
+        view.register(VKPhotoFolderHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "folderHeader")
+        view.register(VKPhotoHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "photoHeader")
         return view
     }()
     
@@ -60,7 +64,9 @@ final class VKPhotoLibVC: UIViewController {
         let safe = view.safeAreaLayoutGuide
         
         collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(safe)
+            make.top.bottom.equalTo(safe).offset(10)
+            make.leading.equalTo(safe).offset(16)
+            make.trailing.equalTo(safe).inset(16)
         }
     }
     
@@ -84,32 +90,71 @@ final class VKPhotoLibVC: UIViewController {
 
 extension VKPhotoLibVC: UICollectionViewDelegateFlowLayout {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
+
         let emptyHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "empty", for: indexPath)
+
+        if indexPath.section == 0 {
         
-        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView", for: indexPath) as? VKFullPostHeader else { return emptyHeader }
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "folderHeader", for: indexPath) as? VKPhotoFolderHeader else { return emptyHeader }
         return headerView
-        
+            
+        } else {
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "photoHeader", for: indexPath) as? VKPhotoHeader else { return emptyHeader }
+            return headerView
+        }
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 30)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        CGSize(width: collectionView.frame.width, height: 650)
-        
+        let cellWidth = collectionView.frame.width / 3 - 5
+        let cellHeight: CGFloat = 110
+        return CGSize(width: cellWidth, height: cellHeight)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+       return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+    }
+
+
 }
 
 extension VKPhotoLibVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        
+        if section > 0 {
+        
+        return model.photosForTesting.count
+        } else {
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      return UICollectionViewCell(frame: .zero)
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photo", for: indexPath) as? VKOnePhotoCell else { return  UICollectionViewCell(frame: .zero) }
+        
+        
+        if indexPath.section == 0 {
+            let image = UIImage(named: model.folderImage)
+            cell.photoImage.image = image
+            return cell
+        } else {
 
+        let image = UIImage(named: model.photosForTesting[indexPath.item])
+        cell.photoImage.image = image
+        return cell
+        }
     }
 
 }

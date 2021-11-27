@@ -14,12 +14,14 @@ protocol VKProfilePresenterDelegate {
     func menuPressed()
     func postSettingsPressed(_ sender: Any)
     func postIsPressed()
+    func photoArrowIsPressed()
 }
 
 protocol VKProfileFlowDelegate {
     func settingsFlowIsChosen()
     func postSettingsIsChosen(_ sender: Any)
     func postFullViewIsChosen()
+    func photoFlowIsChosen()
 }
 
 protocol VKProfileDataDelegate {
@@ -227,6 +229,7 @@ final class VKProfileVC: UIViewController {
         let view = UIButton(type: .system)
         view.setImage(image, for: .normal)
         view.tintColor = .label
+        view.addTarget(self, action: #selector(photoHandler), for: .touchUpInside)
         return view
     }()
     
@@ -574,5 +577,9 @@ extension VKProfileVC {
     
     @objc func menuBttnHandler() {
         presenter?.menuPressed()
+    }
+    
+    @objc func photoHandler() {
+        presenter?.photoArrowIsPressed()
     }
 }

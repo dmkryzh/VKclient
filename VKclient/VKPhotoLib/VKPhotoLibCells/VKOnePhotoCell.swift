@@ -16,6 +16,7 @@ class VKOnePhotoCell: UICollectionViewCell {
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.tintColor = .black
+        view.layer.cornerRadius = 8
         return view
     }()
     

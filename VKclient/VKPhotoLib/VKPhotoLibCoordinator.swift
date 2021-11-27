@@ -32,3 +32,10 @@ class VKPhotoLibCoordinator: Coordinator {
         customiseNavBar()
     }
 }
+
+extension VKPhotoLibCoordinator: VKPhotoLibFlowDelegate {
+    func navigateToSomewhere() {
+    
+    }
+
+}

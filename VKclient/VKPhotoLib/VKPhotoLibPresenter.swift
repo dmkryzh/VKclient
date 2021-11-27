@@ -13,11 +13,11 @@ protocol VKPhotoLibFlowDelegate {
 
 class VKPhotoLibPresenter {
     
-    weak var view: VKFullPostVC?
-    var delegate: VKFullPostFlowDelegate?
+    weak var view: VKPhotoLibVC?
+    var delegate: VKPhotoLibFlowDelegate?
   
     
-    init(_ view: VKFullPostVC, _ coordinator: VKFullPostFlowDelegate) {
+    init(_ view: VKPhotoLibVC, _ coordinator: VKPhotoLibFlowDelegate) {
         self.view = view
         delegate = coordinator
     }
