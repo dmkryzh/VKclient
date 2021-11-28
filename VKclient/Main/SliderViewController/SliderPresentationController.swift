@@ -78,7 +78,7 @@ class SliderPresentationController: UIPresentationController {
           case .left, .right:
             return CGSize(width: parentSize.width * (3.0 / 4.0), height: parentSize.height)
           case .bottom, .top:
-            return CGSize(width: parentSize.width, height: parentSize.height * (3.0 / 4.0))
+            return CGSize(width: parentSize.width, height: parentSize.height * (1.0 / 4.0))
           }
         
     }
@@ -92,7 +92,7 @@ class SliderPresentationController: UIPresentationController {
           case .right:
             frame.origin.x = containerView!.frame.width*(1.0/4.0)
           case .bottom:
-            frame.origin.y = containerView!.frame.height*(1.0/4.0)
+              frame.origin.y = containerView!.frame.height*(3.0/4.0)
           default:
             frame.origin = .zero
           }

@@ -40,11 +40,12 @@ extension VKProfileCoordinator: VKProfileFlowDelegate {
     func photoFlowIsChosen() {
         let photoVC = VKPhotoLibVC()
         let coordinator = VKPhotoLibCoordinator(navController, photoVC)
-        let photoPresenter = VKPhotoLibPresenter(photoVC, coordinator)
+        let data = VKPhotoLibModel()
+        let photoPresenter = VKPhotoLibPresenter(photoVC, data, coordinator)
         photoVC.presenter = photoPresenter
+        photoVC.model = photoPresenter
         coordinator.start()
     }
-    
     
     func postFullViewIsChosen() {
         let postVK = VKFullPostVC()
@@ -70,6 +71,8 @@ extension VKProfileCoordinator: VKProfileFlowDelegate {
         rootVC.transitioningDelegate = mainVC.sliderTransitionDelegate
         rootVC.modalPresentationStyle = .custom
         let coordinator = VKProfileOptionsCoordinator(navController, rootVC: rootVC)
+        let presenter = VKProfileOptionsPresenter(rootVC, coordinator)
+        rootVC.presenter = presenter
         coordinator.start()
     }
 }

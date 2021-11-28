@@ -7,20 +7,24 @@
 
 import Foundation
 
-protocol VKProfileOptionsPresenterProtocol {
+protocol VKProfileOptionsFlowDelegate {
+    func generalInfoIsChosen()
 }
 
-protocol VKProfileOptionsDelegate {
-}
-
-class VKProfileOptionsPresenter: VKProfileOptionsPresenterProtocol {
+class VKProfileOptionsPresenter {
     
-    weak var view: VKProfileOptionsVC?
+    var view: VKProfileOptionsVC?
     
-    var delegate: VKProfileOptionsDelegate?
+    var delegate: VKProfileOptionsFlowDelegate?
     
-    init(_ view: VKProfileOptionsVC, _ coordinator: VKProfileOptionsDelegate) {
+    init(_ view: VKProfileOptionsVC, _ coordinator: VKProfileOptionsFlowDelegate) {
         self.view = view
         delegate = coordinator
+    }
+}
+
+extension VKProfileOptionsPresenter: VKProfileOptionsDelegate {
+    func generalInfoIsTapped() {
+        delegate?.generalInfoIsChosen()
     }
 }

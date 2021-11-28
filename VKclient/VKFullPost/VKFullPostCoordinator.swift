@@ -37,8 +37,17 @@ class VKFullPostCoordinator: Coordinator {
 }
 
 extension VKFullPostCoordinator: VKFullPostFlowDelegate {
-    func navigateToSomewhere() {
+    
+    func postSettingsIsChosen() {
         
+        guard let mainVC = self.rootVC as? VKFullPostVC else { return }
+        let rootVC = VKFullPostSettingsVC()
+        rootVC.transitioningDelegate = mainVC.sliderTransitionDelegate
+        rootVC.modalPresentationStyle = .custom
+        let coordinator = VKFullPostSettingsCoordinator(navController, rootVC: rootVC)
+        let presenter = VKFullPostSettingsPresenter(rootVC, coordinator)
+        rootVC.presenter = presenter
+        coordinator.start()
     }
 }
 

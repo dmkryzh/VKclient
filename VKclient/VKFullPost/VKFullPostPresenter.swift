@@ -8,7 +8,7 @@
 import Foundation
 
 protocol VKFullPostFlowDelegate {
-    func navigateToSomewhere()
+    func postSettingsIsChosen()
 }
 
 class VKFullPostPresenter {
@@ -24,8 +24,9 @@ class VKFullPostPresenter {
 }
 
 extension VKFullPostPresenter: VKFullPostPresenterDelegate {
-    func test() {
-    } 
+    func settingsIsTapped() {
+        delegate?.postSettingsIsChosen()
+    }
 }
 
 

@@ -12,5 +12,6 @@ target 'VKclient' do
  pod 'WeScan', '>= 0.9'
  pod 'MaterialComponents/Tabs+TabBarView'
  pod 'RealmSwift'
+ pod 'M13Checkbox'
 
 end

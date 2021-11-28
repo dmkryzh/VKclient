@@ -11,19 +11,19 @@ import SnapKit
 import Popover
 
 protocol VKFullPostPresenterDelegate {
-    func test()
+    func settingsIsTapped()
 }
 
 final class VKFullPostVC: UIViewController {
     
-    let sliderTransitionDelegate = SliderPresentationManager()
+    let sliderTransitionDelegate = SliderPresentationManager(.bottom)
     
     var presenter: VKFullPostPresenterDelegate?
     
     /// -- NavBarButtons start--
     lazy var rightButton: UIBarButtonItem = {
         let image = UIImage(systemName: "text.justify")
-        let view = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
+        let view = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(settingsHandler))
         return view
     }()
     
@@ -146,5 +146,11 @@ extension VKFullPostVC: UICollectionViewDataSource {
         
     }
     
+}
+
+extension VKFullPostVC {
+    @objc func settingsHandler() {
+        presenter?.settingsIsTapped()
+    }
 }
 

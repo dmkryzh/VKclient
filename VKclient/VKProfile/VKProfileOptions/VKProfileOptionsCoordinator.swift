@@ -26,3 +26,17 @@ class VKProfileOptionsCoordinator: Coordinator {
     
 }
 
+extension VKProfileOptionsCoordinator: VKProfileOptionsFlowDelegate {
+    
+    func generalInfoIsChosen() {
+        
+        navController.dismiss(animated: true, completion: nil)
+        let infoVC = VKGeneralInfoVC()
+        let coordinator = VKGeneralInfoCoordinator(navController, rootVC: infoVC)
+        let infoPresenter = VKGeneralInfoPresenter(infoVC, coordinator)
+        infoVC.presenter = infoPresenter
+        infoVC.modalPresentationStyle = .fullScreen
+        coordinator.start()
+    }
+}
+

@@ -32,7 +32,7 @@ protocol VKProfileDataDelegate {
 
 final class VKProfileVC: UIViewController {
     
-    let sliderTransitionDelegate = SliderPresentationManager()
+    let sliderTransitionDelegate = SliderPresentationManager(.right)
     
     var presenter: VKProfilePresenterDelegate?
     

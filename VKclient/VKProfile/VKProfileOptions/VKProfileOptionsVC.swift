@@ -9,7 +9,13 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol VKProfileOptionsDelegate {
+    func generalInfoIsTapped()
+}
+
 class VKProfileOptionsVC: UIViewController {
+    
+    var presenter: VKProfileOptionsDelegate?
     
     let scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -42,9 +48,10 @@ class VKProfileOptionsVC: UIViewController {
         return view
     }()
     
-    let mainInfo: UILabel = {
-        let view = UILabel()
-        view.text = "Основная информация"
+    let mainInfo: UIButton = {
+        let view = UIButton(type: .system)
+        view.setTitle("Основная информация", for: .normal)
+        view.addTarget(self, action: #selector(infoBttnHandler), for: .touchUpInside)
         return view
     }()
     
@@ -159,3 +166,10 @@ class VKProfileOptionsVC: UIViewController {
         setupConstraints()
     }
 }
+
+extension VKProfileOptionsVC {
+    @objc func infoBttnHandler() {
+        presenter?.generalInfoIsTapped()
+    }
+}
+

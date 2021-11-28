@@ -13,10 +13,14 @@ protocol VKPhotoLibVCDelegate {
     func test()
 }
 
+protocol VKPhotolibDataDelegate {
+    func returnCellsCount(_ dataType: PhotoDataType) -> Int
+    func returnDataForCell(_ item: Int, _ dataType: PhotoDataType) -> String
+}
+
 final class VKPhotoLibVC: UIViewController {
     
-    let model = VKPhotoLibModel()
-    
+    var model: VKPhotolibDataDelegate?
     
     let sliderTransitionDelegate = SliderPresentationManager()
     
@@ -132,26 +136,30 @@ extension VKPhotoLibVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        guard let model = model else { return 0 }
+        
         if section > 0 {
         
-        return model.photosForTesting.count
+            return model.returnCellsCount(.photo)
         } else {
-            return 1
+            return model.returnCellsCount(.folder)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        guard let model = model else { return UICollectionViewCell(frame: .zero) }
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photo", for: indexPath) as? VKOnePhotoCell else { return  UICollectionViewCell(frame: .zero) }
         
         
         if indexPath.section == 0 {
-            let image = UIImage(named: model.folderImage)
+            let image = UIImage(named: model.returnDataForCell(indexPath.item, .folder))
             cell.photoImage.image = image
             return cell
         } else {
 
-        let image = UIImage(named: model.photosForTesting[indexPath.item])
+            let image = UIImage(named: model.returnDataForCell(indexPath.item, .photo))
         cell.photoImage.image = image
         return cell
         }

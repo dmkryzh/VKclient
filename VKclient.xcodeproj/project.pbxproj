@@ -54,6 +54,13 @@
 		50909C8327417D10008C08E2 /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50909C8227417D10008C08E2 /* DataParser.swift */; };
 		509135B02744D61B004B4BF9 /* MaterialTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509135AF2744D61B004B4BF9 /* MaterialTabBarVC.swift */; };
 		509135B327456AB9004B4BF9 /* VKFeedStoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509135B227456AB9004B4BF9 /* VKFeedStoriesView.swift */; };
+		509620912753514E00DEEC90 /* VKGeneralInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509620902753514E00DEEC90 /* VKGeneralInfoVC.swift */; };
+		509620932753516A00DEEC90 /* VKGeneralInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509620922753516A00DEEC90 /* VKGeneralInfoPresenter.swift */; };
+		509620952753517900DEEC90 /* VKGeneralInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509620942753517900DEEC90 /* VKGeneralInfoCoordinator.swift */; };
+		509620972753518C00DEEC90 /* VKGeneralInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509620962753518C00DEEC90 /* VKGeneralInfoModel.swift */; };
+		5096209A27536FD200DEEC90 /* VKFullPostSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096209927536FD200DEEC90 /* VKFullPostSettingsVC.swift */; };
+		5096209C27536FDF00DEEC90 /* VKFullPostSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096209B27536FDF00DEEC90 /* VKFullPostSettingsPresenter.swift */; };
+		5096209E27536FEC00DEEC90 /* VKFullPostSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096209D27536FEC00DEEC90 /* VKFullPostSettingsCoordinator.swift */; };
 		50AF96FA2743810800C7DFA4 /* VKFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF96F92743810800C7DFA4 /* VKFeedPresenter.swift */; };
 		50AF96FC2743812200C7DFA4 /* VKFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF96FB2743812200C7DFA4 /* VKFeedModel.swift */; };
 		50AF96FE2743813400C7DFA4 /* VKFeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF96FD2743813400C7DFA4 /* VKFeedCoordinator.swift */; };
@@ -128,6 +135,13 @@
 		50909C8227417D10008C08E2 /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
 		509135AF2744D61B004B4BF9 /* MaterialTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTabBarVC.swift; sourceTree = "<group>"; };
 		509135B227456AB9004B4BF9 /* VKFeedStoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFeedStoriesView.swift; sourceTree = "<group>"; };
+		509620902753514E00DEEC90 /* VKGeneralInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGeneralInfoVC.swift; sourceTree = "<group>"; };
+		509620922753516A00DEEC90 /* VKGeneralInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGeneralInfoPresenter.swift; sourceTree = "<group>"; };
+		509620942753517900DEEC90 /* VKGeneralInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGeneralInfoCoordinator.swift; sourceTree = "<group>"; };
+		509620962753518C00DEEC90 /* VKGeneralInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGeneralInfoModel.swift; sourceTree = "<group>"; };
+		5096209927536FD200DEEC90 /* VKFullPostSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFullPostSettingsVC.swift; sourceTree = "<group>"; };
+		5096209B27536FDF00DEEC90 /* VKFullPostSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFullPostSettingsPresenter.swift; sourceTree = "<group>"; };
+		5096209D27536FEC00DEEC90 /* VKFullPostSettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFullPostSettingsCoordinator.swift; sourceTree = "<group>"; };
 		50AF96F92743810800C7DFA4 /* VKFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFeedPresenter.swift; sourceTree = "<group>"; };
 		50AF96FB2743812200C7DFA4 /* VKFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFeedModel.swift; sourceTree = "<group>"; };
 		50AF96FD2743813400C7DFA4 /* VKFeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFeedCoordinator.swift; sourceTree = "<group>"; };
@@ -180,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				5053845C274692B100BE7179 /* VKFullPostVC.swift */,
+				5096209827536FAB00DEEC90 /* VKFullPostSettings */,
 				50CB2445274E56C50050C5BC /* VKFullPostViews */,
 				5053845E274692C100BE7179 /* VKFullPostPresenter.swift */,
 				50538460274692D300BE7179 /* VKFullPostCoordinator.swift */,
@@ -359,8 +374,9 @@
 			isa = PBXGroup;
 			children = (
 				508FA9AD27271C3300039CC7 /* VKProfileOptionsVC.swift */,
-				508FA9AF27271D1E00039CC7 /* VKProfileOptionsCoordinator.swift */,
 				508FA9B127271D3200039CC7 /* VKProfileOptionsPresenter.swift */,
+				508FA9AF27271D1E00039CC7 /* VKProfileOptionsCoordinator.swift */,
+				5096208F2753512600DEEC90 /* VKGeneralInfo */,
 			);
 			path = VKProfileOptions;
 			sourceTree = "<group>";
@@ -389,6 +405,27 @@
 				509135B227456AB9004B4BF9 /* VKFeedStoriesView.swift */,
 			);
 			path = VKFeedViews;
+			sourceTree = "<group>";
+		};
+		5096208F2753512600DEEC90 /* VKGeneralInfo */ = {
+			isa = PBXGroup;
+			children = (
+				509620902753514E00DEEC90 /* VKGeneralInfoVC.swift */,
+				509620922753516A00DEEC90 /* VKGeneralInfoPresenter.swift */,
+				509620942753517900DEEC90 /* VKGeneralInfoCoordinator.swift */,
+				509620962753518C00DEEC90 /* VKGeneralInfoModel.swift */,
+			);
+			path = VKGeneralInfo;
+			sourceTree = "<group>";
+		};
+		5096209827536FAB00DEEC90 /* VKFullPostSettings */ = {
+			isa = PBXGroup;
+			children = (
+				5096209927536FD200DEEC90 /* VKFullPostSettingsVC.swift */,
+				5096209B27536FDF00DEEC90 /* VKFullPostSettingsPresenter.swift */,
+				5096209D27536FEC00DEEC90 /* VKFullPostSettingsCoordinator.swift */,
+			);
+			path = VKFullPostSettings;
 			sourceTree = "<group>";
 		};
 		50AF96F82743806000C7DFA4 /* CandidatesToRemove */ = {
@@ -610,15 +647,18 @@
 			files = (
 				508FA9B4272725DE00039CC7 /* SliderPresentationAnimation.swift in Sources */,
 				508FA9A027219FD500039CC7 /* VKHorisontalPicCell.swift in Sources */,
+				509620952753517900DEEC90 /* VKGeneralInfoCoordinator.swift in Sources */,
 				50F7EEB12752A1A8000C6E49 /* VKPhotoHeader.swift in Sources */,
 				50909C8327417D10008C08E2 /* DataParser.swift in Sources */,
 				50538468274A09B700BE7179 /* VKToolsPresenter.swift in Sources */,
 				508FA999272198A800039CC7 /* VKPhotoLibPresenter.swift in Sources */,
 				508FA95E27143C4200039CC7 /* LoginPresenter.swift in Sources */,
 				508FA9C1273959D600039CC7 /* TabBarPresenter.swift in Sources */,
+				509620972753518C00DEEC90 /* VKGeneralInfoModel.swift in Sources */,
 				508FA97A271AEC7500039CC7 /* LoginVkVC.swift in Sources */,
 				508FA96C271957A900039CC7 /* APIClient.swift in Sources */,
 				50EE6E62271355110073E5A1 /* ConfirmationVC.swift in Sources */,
+				5096209C27536FDF00DEEC90 /* VKFullPostSettingsPresenter.swift in Sources */,
 				508FA95A27143C2300039CC7 /* StartPresenter.swift in Sources */,
 				50AF96FE2743813400C7DFA4 /* VKFeedCoordinator.swift in Sources */,
 				50EE6E56271325B20073E5A1 /* GenericExtentions.swift in Sources */,
@@ -637,6 +677,7 @@
 				508FA96227143C6800039CC7 /* ConfirmationPresenter.swift in Sources */,
 				50CB2449274E571A0050C5BC /* VKFullPostHeader.swift in Sources */,
 				508FA9B227271D3200039CC7 /* VKProfileOptionsPresenter.swift in Sources */,
+				5096209A27536FD200DEEC90 /* VKFullPostSettingsVC.swift in Sources */,
 				508FA986271C122100039CC7 /* VKFeedVC.swift in Sources */,
 				508FA95C27143C3500039CC7 /* LoginCoordinator.swift in Sources */,
 				5053846A274A09C200BE7179 /* VKToolsCoordinator.swift in Sources */,
@@ -651,8 +692,10 @@
 				509135B02744D61B004B4BF9 /* MaterialTabBarVC.swift in Sources */,
 				50EE6E5427131F2E0073E5A1 /* StartScreenVC.swift in Sources */,
 				50F7EEAB274F6C07000C6E49 /* VKOnePhotoCell.swift in Sources */,
+				509620912753514E00DEEC90 /* VKGeneralInfoVC.swift in Sources */,
 				508FA988271EB73C00039CC7 /* TabBarMain.swift in Sources */,
 				508FA9A92726ABC300039CC7 /* SliderPresentationManager.swift in Sources */,
+				5096209E27536FEC00DEEC90 /* VKFullPostSettingsCoordinator.swift in Sources */,
 				508FA98E271EBB5B00039CC7 /* VKLikedPostsVC.swift in Sources */,
 				508FA9AB2726AD7800039CC7 /* SliderPresentationController.swift in Sources */,
 				5053845F274692C100BE7179 /* VKFullPostPresenter.swift in Sources */,
@@ -669,6 +712,7 @@
 				509135B327456AB9004B4BF9 /* VKFeedStoriesView.swift in Sources */,
 				508FA99D2721990D00039CC7 /* VKPhotoLibCoordinator.swift in Sources */,
 				50F7EEA2274E703F000C6E49 /* VKFullPostCommentReply.swift in Sources */,
+				509620932753516A00DEEC90 /* VKGeneralInfoPresenter.swift in Sources */,
 				5053846C274A09CE00BE7179 /* VKToolsModel.swift in Sources */,
 				50EE6E422713072C0073E5A1 /* SceneDelegate.swift in Sources */,
 				50EE6E5E271347020073E5A1 /* Coordinator.swift in Sources */,

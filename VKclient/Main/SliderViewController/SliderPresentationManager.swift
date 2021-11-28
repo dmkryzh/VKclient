@@ -18,6 +18,11 @@ enum PresentationDirection {
 class SliderPresentationManager: NSObject {
     var direction: PresentationDirection = .right
     var disableCompactHeight = false
+    
+    convenience init(_ direction: PresentationDirection ) {
+        self.init()
+        self.direction = direction
+    }
 }
 
 extension SliderPresentationManager: UIViewControllerTransitioningDelegate {

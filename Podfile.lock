@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.4.3)
+  - M13Checkbox (3.4.0)
   - MaterialComponents/AnimationTiming (124.2.0)
   - MaterialComponents/Availability (124.2.0)
   - MaterialComponents/private/Color (124.2.0):
@@ -27,6 +28,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.4)
+  - M13Checkbox
   - "MaterialComponents/Tabs+TabBarView"
   - Popover
   - RealmSwift
@@ -36,6 +38,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - M13Checkbox
     - MaterialComponents
     - MDFInternationalization
     - Popover
@@ -46,6 +49,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
   Popover: 10e1d9528f81d9504df984b7b3f491292bc1822d
@@ -54,6 +58,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   WeScan: fed582f6c38014d529afb5aa9ffd1bad38fc72b7
 
-PODFILE CHECKSUM: c4b7b7b76a6c5280c9829417a0182a4e5136b41c
+PODFILE CHECKSUM: 8cfcbb66c5e46cb370353b47d2c876e800080d42
 
 COCOAPODS: 1.10.1
