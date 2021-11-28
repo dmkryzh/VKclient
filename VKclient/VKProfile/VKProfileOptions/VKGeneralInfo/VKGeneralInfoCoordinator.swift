@@ -33,6 +33,10 @@ class VKGeneralInfoCoordinator: Coordinator {
 }
 
 extension VKGeneralInfoCoordinator: VKGeneralInfoFlowDelegate {
+    func dismissVC() {
+        navController.dismiss(animated: true)
+    }
+    
     func test() {
         
     }

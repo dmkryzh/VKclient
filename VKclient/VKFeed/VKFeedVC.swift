@@ -10,17 +10,16 @@ import UIKit
 import SnapKit
 import Popover
 
-
-
-protocol VKFeedFlowDelegate {
-    func settingsFlowIsChosen()
-    func postSettingsIsChosen(_ sender: Any)
-    func testScanIsChosen()
-}
-
 protocol VKFeedDataDelegate {
     func returnCellsCount(_ dataType: DataType) -> Int
     func returnDataForCell(_ item: Int, _ dataType: DataType) -> String
+}
+
+protocol VKFeedPresenterDelegate {
+    func menuPressed()
+    func postSettingsPressed(_ sender: Any)
+    func testSomeSettingIsChosen()
+    func friendProfileFlowIsChosen()
 }
 
 
@@ -197,6 +196,9 @@ extension VKFeedVC: UICollectionViewDataSource {
             cell.postTextAndImage.postText.text = dataDelegate.returnDataForCell(indexPath.item, .profileText)
             cell.postTextAndImage.postPhoto.image = UIImage(named: dataDelegate.returnDataForCell(indexPath.item, .profilePhoto))
             cell.additionalInfo.addTarget(self, action: #selector(postSettingsHandler(_:)), for: .touchUpInside)
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(avaIsTapped))
+            cell.ava.addGestureRecognizer(gesture)
+            cell.ava.isUserInteractionEnabled = true
             return cell
         }
         
@@ -240,6 +242,11 @@ extension VKFeedVC {
     
     @objc func menuBttnHandler() {
         presenter?.menuPressed()
+    }
+    
+    @objc func avaIsTapped() {
+        presenter?.friendProfileFlowIsChosen()
+        print("!!!!!!!!!!!!!!!")
     }
 }
 

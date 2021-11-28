@@ -11,7 +11,7 @@ import SnapKit
 
 class VKPostFeedCell: UICollectionViewCell {
     
-    var coordinator: VKProfilePresenterDelegate?
+    var presenter: VKFeedPresenterDelegate?
     
     let ava: UIImageView = {
         let image = UIImage(named: "pepe")
@@ -94,5 +94,9 @@ class VKPostFeedCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+extension VKPostFeedCell {
+  
 }
 

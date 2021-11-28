@@ -15,6 +15,7 @@ protocol VKProfilePresenterDelegate {
     func postSettingsPressed(_ sender: Any)
     func postIsPressed()
     func photoArrowIsPressed()
+    func editBttnIsPressed()
 }
 
 protocol VKProfileFlowDelegate {
@@ -22,6 +23,7 @@ protocol VKProfileFlowDelegate {
     func postSettingsIsChosen(_ sender: Any)
     func postFullViewIsChosen()
     func photoFlowIsChosen()
+    func editFlowIsChosen()
 }
 
 protocol VKProfileDataDelegate {
@@ -115,7 +117,36 @@ final class VKProfileVC: UIViewController {
         view.setTitle("Редактировать", for: .normal)
         view.backgroundColor = UIColor(named: "bloodyRedColor")
         view.setTitleColor(.white, for: .normal)
+        view.addTarget(self, action: #selector(editHandler), for: .touchUpInside)
         view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    let message: UIButton = {
+        let view = UIButton(type: .system)
+        view.setTitle("Cообщение", for: .normal)
+        view.backgroundColor = UIColor(named: "bloodyRedColor")
+        view.setTitleColor(.white, for: .normal)
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    let call: UIButton = {
+        let view = UIButton(type: .system)
+        view.setTitle("Позвонить", for: .normal)
+        view.backgroundColor = .lightGray
+        view.setTitleColor(.white, for: .normal)
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    lazy var altStackBtts: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [message, call])
+        view.alignment = .fill
+        view.distribution = .fillEqually
+        view.axis = .horizontal
+        view.spacing = 30
+        view.isHidden = true
         return view
     }()
     
@@ -290,6 +321,13 @@ final class VKProfileVC: UIViewController {
         return tableView
     }()
     
+    func friendProfile() {
+        altStackBtts.isHidden = false
+        editBtt.isHidden = true
+        stackBttsSec.isHidden = true
+        myPostsLabel.text = "Default user посты"
+    }
+    
     //MARK: - CONSTRAINTS
     
     lazy var setupConstraints = { [self] in
@@ -343,7 +381,14 @@ final class VKProfileVC: UIViewController {
             make.height.equalTo(50)
             make.width.equalTo(350)
             make.top.equalTo(detailSubtitle.snp.bottom).offset(25)
-            make.centerX.equalToSuperview()
+            make.centerX.equalTo(containerView)
+        }
+        
+        altStackBtts.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.width.equalTo(350)
+            make.top.equalTo(detailSubtitle.snp.bottom).offset(25)
+            make.centerX.equalTo(containerView)
         }
         
         stackBtts.snp.makeConstraints { make in
@@ -366,13 +411,20 @@ final class VKProfileVC: UIViewController {
             make.top.equalTo(line.snp.bottom).offset(15)
             make.centerX.equalTo(containerView)
         }
-        
-        photoLibLabel.snp.makeConstraints { make in
-            make.height.equalTo(20)
-            make.width.equalTo(150)
-            make.top.equalTo(stackBttsSec.snp.bottom).offset(15)
-            make.leading.equalTo(containerView).offset(16)
-        }
+   
+            photoLibLabel.snp.makeConstraints { make in
+                make.height.equalTo(20)
+                make.width.equalTo(150)
+                
+                if stackBttsSec.isHidden {
+                    
+                make.top.equalTo(line.snp.bottom).offset(15)
+                } else {
+                    make.top.equalTo(stackBttsSec.snp.bottom).offset(15)
+                }
+                
+                make.leading.equalTo(containerView).offset(16)
+            }
         
         photoLibArrow.snp.makeConstraints { make in
             make.height.equalTo(25)
@@ -430,7 +482,7 @@ final class VKProfileVC: UIViewController {
         navigationItem.leftBarButtonItem?.customView = leftBarBtt
         /// - NavBarButtons end --
         view.addSubview(scrollView)
-        scrollView.addSubviews(containerView, ava, userName, userNameSubtitle, exclamationMark, detailSubtitle, editBtt, stackBtts, line, stackBttsSec, photoLibLabel, photoLibArrow, photosCollectionView, myPostsLabel, searchPosts, postsCollectionView)
+        scrollView.addSubviews(containerView, ava, userName, userNameSubtitle, exclamationMark, detailSubtitle, editBtt, altStackBtts, stackBtts, line, stackBttsSec, photoLibLabel, photoLibArrow, photosCollectionView, myPostsLabel, searchPosts, postsCollectionView)
         setupConstraints()
     }
     
@@ -581,5 +633,9 @@ extension VKProfileVC {
     
     @objc func photoHandler() {
         presenter?.photoArrowIsPressed()
+    }
+    
+    @objc func editHandler() {
+        presenter?.editBttnIsPressed()
     }
 }

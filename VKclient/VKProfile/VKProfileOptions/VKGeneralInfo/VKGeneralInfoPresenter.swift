@@ -9,6 +9,7 @@ import Foundation
 
 protocol VKGeneralInfoFlowDelegate {
     func test()
+    func dismissVC()
 }
 
 class VKGeneralInfoPresenter {
@@ -24,7 +25,12 @@ class VKGeneralInfoPresenter {
 }
 
 extension VKGeneralInfoPresenter: VKGeneralInfoVCDelegate {
+    func closeVC() {
+        delegate?.dismissVC()
+    }
+    
     func test() {
         delegate?.test()
     }
+
 }

@@ -33,6 +33,11 @@ class VKProfilePresenter {
 }
 
 extension VKProfilePresenter: VKProfilePresenterDelegate {
+    
+    func editBttnIsPressed() {
+        delegate?.editFlowIsChosen()
+    }
+    
     func photoArrowIsPressed() {
         delegate?.photoFlowIsChosen()
     }

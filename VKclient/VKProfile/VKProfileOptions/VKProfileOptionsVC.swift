@@ -123,7 +123,6 @@ class VKProfileOptionsVC: UIViewController {
         
         mainInfo.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.width.equalTo(250)
             make.top.equalTo(line.snp.bottom).offset(15)
             make.leading.equalTo(containerView).offset(25)
         }

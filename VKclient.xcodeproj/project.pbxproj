@@ -61,6 +61,10 @@
 		5096209A27536FD200DEEC90 /* VKFullPostSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096209927536FD200DEEC90 /* VKFullPostSettingsVC.swift */; };
 		5096209C27536FDF00DEEC90 /* VKFullPostSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096209B27536FDF00DEEC90 /* VKFullPostSettingsPresenter.swift */; };
 		5096209E27536FEC00DEEC90 /* VKFullPostSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096209D27536FEC00DEEC90 /* VKFullPostSettingsCoordinator.swift */; };
+		509620A127539CF500DEEC90 /* VKProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509620A027539CF500DEEC90 /* VKProfileEditVC.swift */; };
+		509620A327539D0800DEEC90 /* VKProfileEditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509620A227539D0800DEEC90 /* VKProfileEditModel.swift */; };
+		509620A527539D1A00DEEC90 /* VKProfileEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509620A427539D1A00DEEC90 /* VKProfileEditCoordinator.swift */; };
+		509620A727539D6500DEEC90 /* VKProfileEditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509620A627539D6500DEEC90 /* VKProfileEditPresenter.swift */; };
 		50AF96FA2743810800C7DFA4 /* VKFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF96F92743810800C7DFA4 /* VKFeedPresenter.swift */; };
 		50AF96FC2743812200C7DFA4 /* VKFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF96FB2743812200C7DFA4 /* VKFeedModel.swift */; };
 		50AF96FE2743813400C7DFA4 /* VKFeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF96FD2743813400C7DFA4 /* VKFeedCoordinator.swift */; };
@@ -142,6 +146,10 @@
 		5096209927536FD200DEEC90 /* VKFullPostSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFullPostSettingsVC.swift; sourceTree = "<group>"; };
 		5096209B27536FDF00DEEC90 /* VKFullPostSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFullPostSettingsPresenter.swift; sourceTree = "<group>"; };
 		5096209D27536FEC00DEEC90 /* VKFullPostSettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFullPostSettingsCoordinator.swift; sourceTree = "<group>"; };
+		509620A027539CF500DEEC90 /* VKProfileEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfileEditVC.swift; sourceTree = "<group>"; };
+		509620A227539D0800DEEC90 /* VKProfileEditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfileEditModel.swift; sourceTree = "<group>"; };
+		509620A427539D1A00DEEC90 /* VKProfileEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfileEditCoordinator.swift; sourceTree = "<group>"; };
+		509620A627539D6500DEEC90 /* VKProfileEditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfileEditPresenter.swift; sourceTree = "<group>"; };
 		50AF96F92743810800C7DFA4 /* VKFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFeedPresenter.swift; sourceTree = "<group>"; };
 		50AF96FB2743812200C7DFA4 /* VKFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFeedModel.swift; sourceTree = "<group>"; };
 		50AF96FD2743813400C7DFA4 /* VKFeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFeedCoordinator.swift; sourceTree = "<group>"; };
@@ -305,8 +313,8 @@
 				508FA985271C122100039CC7 /* VKFeedVC.swift */,
 				509135B127456A97004B4BF9 /* VKFeedViews */,
 				50AF96F92743810800C7DFA4 /* VKFeedPresenter.swift */,
-				50AF96FB2743812200C7DFA4 /* VKFeedModel.swift */,
 				50AF96FD2743813400C7DFA4 /* VKFeedCoordinator.swift */,
+				50AF96FB2743812200C7DFA4 /* VKFeedModel.swift */,
 			);
 			path = VKFeed;
 			sourceTree = "<group>";
@@ -314,6 +322,7 @@
 		508FA989271EBAC400039CC7 /* VKProfile */ = {
 			isa = PBXGroup;
 			children = (
+				5096209F27539C8100DEEC90 /* VKProfileEdit */,
 				508FA9AC27271C0200039CC7 /* VKProfileOptions */,
 				508FA98A271EBAE600039CC7 /* VKProfileVC.swift */,
 				508FA98F271EBD3700039CC7 /* VKProfilePresenter.swift */,
@@ -426,6 +435,17 @@
 				5096209D27536FEC00DEEC90 /* VKFullPostSettingsCoordinator.swift */,
 			);
 			path = VKFullPostSettings;
+			sourceTree = "<group>";
+		};
+		5096209F27539C8100DEEC90 /* VKProfileEdit */ = {
+			isa = PBXGroup;
+			children = (
+				509620A027539CF500DEEC90 /* VKProfileEditVC.swift */,
+				509620A627539D6500DEEC90 /* VKProfileEditPresenter.swift */,
+				509620A427539D1A00DEEC90 /* VKProfileEditCoordinator.swift */,
+				509620A227539D0800DEEC90 /* VKProfileEditModel.swift */,
+			);
+			path = VKProfileEdit;
 			sourceTree = "<group>";
 		};
 		50AF96F82743806000C7DFA4 /* CandidatesToRemove */ = {
@@ -660,6 +680,7 @@
 				50EE6E62271355110073E5A1 /* ConfirmationVC.swift in Sources */,
 				5096209C27536FDF00DEEC90 /* VKFullPostSettingsPresenter.swift in Sources */,
 				508FA95A27143C2300039CC7 /* StartPresenter.swift in Sources */,
+				509620A727539D6500DEEC90 /* VKProfileEditPresenter.swift in Sources */,
 				50AF96FE2743813400C7DFA4 /* VKFeedCoordinator.swift in Sources */,
 				50EE6E56271325B20073E5A1 /* GenericExtentions.swift in Sources */,
 				5053845D274692B100BE7179 /* VKFullPostVC.swift in Sources */,
@@ -676,11 +697,14 @@
 				508FA980271AEF3B00039CC7 /* LoginVkCoordinator.swift in Sources */,
 				508FA96227143C6800039CC7 /* ConfirmationPresenter.swift in Sources */,
 				50CB2449274E571A0050C5BC /* VKFullPostHeader.swift in Sources */,
+				509620A127539CF500DEEC90 /* VKProfileEditVC.swift in Sources */,
 				508FA9B227271D3200039CC7 /* VKProfileOptionsPresenter.swift in Sources */,
 				5096209A27536FD200DEEC90 /* VKFullPostSettingsVC.swift in Sources */,
 				508FA986271C122100039CC7 /* VKFeedVC.swift in Sources */,
 				508FA95C27143C3500039CC7 /* LoginCoordinator.swift in Sources */,
 				5053846A274A09C200BE7179 /* VKToolsCoordinator.swift in Sources */,
+				509620A527539D1A00DEEC90 /* VKProfileEditCoordinator.swift in Sources */,
+				509620A327539D0800DEEC90 /* VKProfileEditModel.swift in Sources */,
 				50EE6E60271354980073E5A1 /* LoginVC.swift in Sources */,
 				50538466274A09AA00BE7179 /* VKToolsVC.swift in Sources */,
 				508FA96427143CE700039CC7 /* RegistrationCoordinator.swift in Sources */,

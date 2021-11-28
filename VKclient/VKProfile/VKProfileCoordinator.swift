@@ -37,6 +37,18 @@ class VKProfileCoordinator: Coordinator {
 }
 
 extension VKProfileCoordinator: VKProfileFlowDelegate {
+    
+    func editFlowIsChosen() {
+        guard let mainVC = self.rootVC as? VKProfileVC else { return }
+        let rootVC = VKProfileEditVC()
+        rootVC.transitioningDelegate = mainVC.sliderTransitionDelegate
+        rootVC.modalPresentationStyle = .custom
+        let coordinator = VKProfileEditCoordinator(navController, rootVC: rootVC)
+        let presenter = VKProfileEditPresenter(rootVC, coordinator)
+        rootVC.presenter = presenter
+        coordinator.start()
+    }
+    
     func photoFlowIsChosen() {
         let photoVC = VKPhotoLibVC()
         let coordinator = VKPhotoLibCoordinator(navController, photoVC)

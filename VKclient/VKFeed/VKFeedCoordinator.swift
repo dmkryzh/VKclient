@@ -37,6 +37,19 @@ class VKFeedCoordinator: Coordinator {
 
 extension VKFeedCoordinator: VKFeedFlowDelegate {
     
+    func friendProfileIsChosen() {
+        let profileVK = VKProfileVC()
+        let coordinator = VKProfileCoordinator(navController, rootVC: profileVK)
+        let modelPost = VKProfileModel()
+        let modelPhoto = VKPhotoLibModel()
+        let vkPresenter = VKProfilePresenter(modelPost, modelPhoto, profileVK, coordinator)
+        profileVK.dataDelegate = vkPresenter
+        profileVK.presenter = vkPresenter
+        profileVK.friendProfile()
+        coordinator.start()
+    }
+    
+    
     func testScanIsChosen() {
         let vc = VKToolsVC()
         let coordinator = VKToolsCoordinator(navController, vc)

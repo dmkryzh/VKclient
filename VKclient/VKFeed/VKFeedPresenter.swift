@@ -7,10 +7,11 @@
 
 import Foundation
 
-protocol VKFeedPresenterDelegate {
-    func menuPressed()
-    func postSettingsPressed(_ sender: Any)
-    func testSomeSettingIsChosen()
+protocol VKFeedFlowDelegate {
+    func settingsFlowIsChosen()
+    func postSettingsIsChosen(_ sender: Any)
+    func testScanIsChosen()
+    func friendProfileIsChosen()
 }
 
 class VKFeedPresenter {
@@ -32,6 +33,10 @@ class VKFeedPresenter {
 }
 
 extension VKFeedPresenter: VKFeedPresenterDelegate {
+    func friendProfileFlowIsChosen() {
+        delegate?.friendProfileIsChosen()
+    }
+    
     func testSomeSettingIsChosen() {
         delegate?.testScanIsChosen()
     }

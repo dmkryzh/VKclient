@@ -13,6 +13,7 @@ import M13Checkbox
 
 protocol VKGeneralInfoVCDelegate {
     func test()
+    func closeVC()
 }
 
 final class VKGeneralInfoVC: UIViewController {
@@ -44,9 +45,11 @@ final class VKGeneralInfoVC: UIViewController {
         return containerView
     }()
     
-    let deny: UIImageView = {
+    let deny: UIButton = {
         let image = UIImage(systemName: "xmark")
-        let view = UIImageView(image: image)
+        let view = UIButton(type: .system)
+        view.setImage(image, for: .normal)
+        view.addTarget(self, action: #selector(closeVC), for: .touchUpInside)
         return view
     }()
     
@@ -261,5 +264,11 @@ final class VKGeneralInfoVC: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubviews(containerView, deny, titleLabel, accept, name, nameField, surname, surnameField, sex, maleBox, male, femaleBox, female, dob, dobField, city, cityField)
         setupConstraints()
+    }
+}
+
+extension VKGeneralInfoVC {
+    @objc func closeVC() {
+        presenter?.closeVC()
     }
 }
