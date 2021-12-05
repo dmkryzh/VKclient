@@ -76,7 +76,7 @@
 		50EE6E492713072E0073E5A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50EE6E482713072E0073E5A1 /* Assets.xcassets */; };
 		50EE6E4C2713072E0073E5A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50EE6E4A2713072E0073E5A1 /* LaunchScreen.storyboard */; };
 		50EE6E5427131F2E0073E5A1 /* StartScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E5327131F2E0073E5A1 /* StartScreenVC.swift */; };
-		50EE6E56271325B20073E5A1 /* GenericExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E55271325B20073E5A1 /* GenericExtentions.swift */; };
+		50EE6E56271325B20073E5A1 /* GenericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E55271325B20073E5A1 /* GenericExtensions.swift */; };
 		50EE6E58271345860073E5A1 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E57271345860073E5A1 /* RegistrationVC.swift */; };
 		50EE6E5C271346EE0073E5A1 /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E5B271346EE0073E5A1 /* StartCoordinator.swift */; };
 		50EE6E5E271347020073E5A1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EE6E5D271347020073E5A1 /* Coordinator.swift */; };
@@ -163,7 +163,7 @@
 		50EE6E4B2713072E0073E5A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50EE6E4D2713072E0073E5A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50EE6E5327131F2E0073E5A1 /* StartScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVC.swift; sourceTree = "<group>"; };
-		50EE6E55271325B20073E5A1 /* GenericExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericExtentions.swift; sourceTree = "<group>"; };
+		50EE6E55271325B20073E5A1 /* GenericExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericExtensions.swift; sourceTree = "<group>"; };
 		50EE6E57271345860073E5A1 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
 		50EE6E5B271346EE0073E5A1 /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
 		50EE6E5D271347020073E5A1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -281,7 +281,7 @@
 				50EE6E3F2713072C0073E5A1 /* AppDelegate.swift */,
 				50EE6E412713072C0073E5A1 /* SceneDelegate.swift */,
 				50EE6E5D271347020073E5A1 /* Coordinator.swift */,
-				50EE6E55271325B20073E5A1 /* GenericExtentions.swift */,
+				50EE6E55271325B20073E5A1 /* GenericExtensions.swift */,
 				508FA9A72726AB8C00039CC7 /* SliderViewController */,
 				508FA9A62726AB7900039CC7 /* TabBars */,
 			);
@@ -682,7 +682,7 @@
 				508FA95A27143C2300039CC7 /* StartPresenter.swift in Sources */,
 				509620A727539D6500DEEC90 /* VKProfileEditPresenter.swift in Sources */,
 				50AF96FE2743813400C7DFA4 /* VKFeedCoordinator.swift in Sources */,
-				50EE6E56271325B20073E5A1 /* GenericExtentions.swift in Sources */,
+				50EE6E56271325B20073E5A1 /* GenericExtensions.swift in Sources */,
 				5053845D274692B100BE7179 /* VKFullPostVC.swift in Sources */,
 				508FA994271EBD6100039CC7 /* VKProfileModel.swift in Sources */,
 				50AF96FC2743812200C7DFA4 /* VKFeedModel.swift in Sources */,

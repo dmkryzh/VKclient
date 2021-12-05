@@ -44,6 +44,7 @@ class VKFullPostCommentReply: UICollectionViewCell {
         let view = UILabel()
         view.text = "Dislike, unfollowing"
         view.font = .systemFont(ofSize: 12)
+        view.numberOfLines = 0
         return view
     }()
     
@@ -78,7 +79,7 @@ class VKFullPostCommentReply: UICollectionViewCell {
         ava.snp.makeConstraints { make in
             make.height.width.equalTo(15)
             make.top.equalTo(self)
-            make.leading.equalTo(self).offset(10)
+            make.leading.equalTo(self).offset(40)
         }
         
         userName.snp.makeConstraints { make in
@@ -88,7 +89,7 @@ class VKFullPostCommentReply: UICollectionViewCell {
         }
         
         comment.snp.makeConstraints { make in
-            make.width.equalTo(120)
+            make.width.equalTo(220)
             make.top.equalTo(ava.snp.bottom).offset(3)
             make.leading.equalTo(ava.snp.trailing).offset(5)
         }
@@ -114,8 +115,8 @@ class VKFullPostCommentReply: UICollectionViewCell {
      
         reply.snp.makeConstraints { make in
             make.width.equalTo(70)
-            make.top.equalTo(like.snp.bottom).offset(15)
             make.trailing.equalTo(self).inset(10)
+            make.bottom.equalTo(dateView)
         }
     }
     
@@ -128,4 +129,5 @@ class VKFullPostCommentReply: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }

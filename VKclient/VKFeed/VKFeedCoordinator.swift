@@ -70,10 +70,10 @@ extension VKFeedCoordinator: VKFeedFlowDelegate {
     func postSettingsIsChosen(_ sender: Any) {
         guard let rootVC = rootVC as? VKFeedVC else { return }
         guard let viewButton = sender as? UIButton else { return }
-        let viewButtonCoverted = rootVC.view.convert(viewButton.bounds, from: viewButton)
+        let viewButtonConverted = rootVC.view.convert(viewButton.bounds, from: viewButton)
         let container = UIView(frame: CGRect(x: 0, y: 0, width: 350, height: 260))
         container.addSubview(rootVC.tableView)
-        rootVC.popOver.show(container, point: CGPoint(x: viewButtonCoverted.origin.x, y: viewButtonCoverted.origin.y))
+        rootVC.popOver.show(container, point: CGPoint(x: viewButtonConverted.origin.x, y: viewButtonConverted.origin.y))
     }
     
 }

@@ -34,11 +34,12 @@ final class VKFullPostVC: UIViewController {
     }()
     /// -- NavBarButtons end--
     
-    let collectionLayout: UICollectionViewFlowLayout = {
+    lazy var collectionLayout: UICollectionViewFlowLayout = {
         let view = UICollectionViewFlowLayout()
         view.scrollDirection = .vertical
         view.minimumInteritemSpacing = 10
         view.minimumLineSpacing = 10
+        view.estimatedItemSize = CGSize(width: self.view.safeAreaLayoutGuide.layoutFrame.width, height: 50)
         return view
     }()
     
@@ -122,13 +123,6 @@ extension VKFullPostVC: UICollectionViewDelegateFlowLayout {
                                                       verticalFittingPriority: .fittingSizeLevel) // Height can be as large as needed
         return headerSize
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        return CGSize(width: collectionView.frame.width, height: 60)
-//
-//
-//    }
         
 }
 
@@ -136,13 +130,21 @@ extension VKFullPostVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard section > 0 else { return 0 }
-        return 1
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reply", for: indexPath) as? VKFullPostCommentReply else { return UICollectionViewCell(frame: .zero) }
-        return cell
+        
+        if indexPath == IndexPath(item: 0, section: 2) {
+            cell.comment.text = "qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123"
+            return cell
+        } else {
+        
+            cell.comment.text = "Dislike, unfollowing"
+            return cell
+        }
         
     }
     

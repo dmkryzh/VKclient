@@ -1,5 +1,5 @@
 //
-//  GenericExtentions.swift
+//  GenericExtensions.swift
 //  VKclient
 //
 //  Created by Dmitrii KRY on 10.10.2021.
@@ -47,8 +47,8 @@ extension UIColor {
 extension String {
     var fetchToken: String {
         let splitStrInHalf = self.components(separatedBy: "%253D")
-        let separateStryngBy = splitStrInHalf[1].split(separator: "%").dropLast()
-        return separateStryngBy.first?.description ?? ""
+        let separateStringBy = splitStrInHalf[1].split(separator: "%").dropLast()
+        return separateStringBy.first?.description ?? ""
     }
 }
 
