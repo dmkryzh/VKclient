@@ -39,7 +39,6 @@ final class VKFullPostVC: UIViewController {
         view.scrollDirection = .vertical
         view.minimumInteritemSpacing = 10
         view.minimumLineSpacing = 10
-        view.estimatedItemSize = CGSize(width: self.view.safeAreaLayoutGuide.layoutFrame.width, height: 50)
         return view
     }()
     
@@ -78,6 +77,11 @@ final class VKFullPostVC: UIViewController {
         view.addSubview(collectionView)
         setupConstraints()
     }
+    
+    override func viewDidLayoutSubviews() {
+        collectionLayout.estimatedItemSize = CGSize(width: self.view.safeAreaLayoutGuide.layoutFrame.width, height: 500)
+    }
+
 }
 
 //MARK: - EXTENTIONS
