@@ -72,29 +72,6 @@ extension TabBarMainCoordinator: TabBarMainDelegate {
     }
     
     func configureTabBarVCs() {
-//
-//        let firstVC = UIViewController()
-//        firstVC.view.backgroundColor = .yellow
-//        firstVC.tabBarItem.title = "Favorite"
-//        firstVC.tabBarItem.image = UIImage(systemName: "heart.fill")
-//        let firstNavi = UINavigationController(rootViewController: firstVC)
-
-//        let secondVC = UIViewController()
-//        secondVC.view.backgroundColor = .green
-//        secondVC.tabBarItem.title = "Feed"
-//        secondVC.tabBarItem.image = UIImage(systemName: "mic.fill")
-//        let secondNavi = UINavigationController(rootViewController: secondVC)
-
-//        let middleVC = VKProfileVC()
-//        let middleNavi = UINavigationController()
-//        let middleCoordinator = VKProfileCoordinator(middleNavi, rootVC: middleVC)
-//        let modelPost = VKProfileModel()
-//        let modelPhoto = VKPhotoLibModel()
-//        let vkPresenter = VKProfilePresenter(modelPost, modelPhoto, middleVC, middleCoordinator)
-//        middleVC.dataDelegate = vkPresenter
-//        middleVC.presenter = vkPresenter
-//        middleCoordinator.start()
-        
         guard let tabBar = rootVC as? TabBarMain else { return }
         tabBar.viewControllers = [configureFeedTabBtnn(), configureProfileTabBtnn(), configureSavedPosts()]
         tabBar.selectedIndex = 1
