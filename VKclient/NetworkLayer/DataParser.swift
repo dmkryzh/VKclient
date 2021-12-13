@@ -22,4 +22,10 @@ class DataParser {
         }
     }
 }
+class Test {
+    
+}
 
+struct StructTest {
+    let x = Test()
+}

@@ -78,8 +78,8 @@ class VKPostFeedCell: UICollectionViewCell {
         
         postTextAndImage.snp.makeConstraints { make in
             make.top.equalTo(ava.snp.bottom).offset(15)
+            make.height.equalTo(200)
             make.trailing.leading.equalTo(self)
-            make.bottom.equalTo(self)
         }
         
     }

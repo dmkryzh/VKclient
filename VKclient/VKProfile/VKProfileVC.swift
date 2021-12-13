@@ -39,15 +39,7 @@ final class VKProfileVC: UIViewController {
     var presenter: VKProfilePresenterDelegate?
     
     var dataDelegate: VKProfileDataDelegate?
-    
-    ///postCollectionView height logic
-    private var height: CGFloat = 0  {
-        didSet {
-            postsCollectionView.snp.updateConstraints { make in
-                make.height.equalTo(height)
-            }
-        }
-    }
+ 
     /// -- NavBarButtons start--
     lazy var rightButton: UIBarButtonItem = {
         let image = UIImage(systemName: "text.justify")
@@ -64,236 +56,23 @@ final class VKProfileVC: UIViewController {
     }()
     /// -- NavBarButtons end--
     
-    let scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.showsVerticalScrollIndicator = false
-        return view
-    }()
-    
-    let containerView: UIView = {
-        let containerView = UIView()
-        return containerView
-    }()
-    
-    let ava: UIImageView = {
-        let image = UIImage(named: "pepe")
-        let view = UIImageView(image: image)
-        view.contentMode = .scaleAspectFill
-        view.layer.cornerRadius = 40
-        view.layer.borderWidth = 3
-        view.clipsToBounds = true
-        view.layer.borderColor = UIColor.white.cgColor
-        return view
-    }()
-    
-    let userName: UILabel = {
-        let view = UILabel()
-        view.text = "Default User"
-        return view
-    }()
-    
-    let userNameSubtitle: UILabel = {
-        let view = UILabel()
-        view.text = "developer"
-        return view
-    }()
-    
-    let detailSubtitle: UIButton = {
-        let view = UIButton(type: .system)
-        view.setTitle("Detailed information", for: .normal)
-        view.setTitleColor(.black, for: .normal)
-        return view
-    }()
-    
-    let exclamationMark: UIImageView = {
-        let image = UIImage(systemName: "exclamationmark.circle.fill")
-        let view = UIImageView(image: image)
-        view.tintColor = UIColor(named: "deepBlueColor")
-        return view
-    }()
-    
-    let editBtt: UIButton = {
-        let view = UIButton(type: .system)
-        view.setTitle("Редактировать", for: .normal)
-        view.backgroundColor = UIColor(named: "bloodyRedColor")
-        view.setTitleColor(.white, for: .normal)
-        view.addTarget(self, action: #selector(editHandler), for: .touchUpInside)
-        view.layer.cornerRadius = 10
-        return view
-    }()
-    
-    let message: UIButton = {
-        let view = UIButton(type: .system)
-        view.setTitle("Cообщение", for: .normal)
-        view.backgroundColor = UIColor(named: "bloodyRedColor")
-        view.setTitleColor(.white, for: .normal)
-        view.layer.cornerRadius = 10
-        return view
-    }()
-    
-    let call: UIButton = {
-        let view = UIButton(type: .system)
-        view.setTitle("Позвонить", for: .normal)
-        view.backgroundColor = .lightGray
-        view.setTitleColor(.white, for: .normal)
-        view.layer.cornerRadius = 10
-        return view
-    }()
-    
-    lazy var altStackBtts: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [message, call])
-        view.alignment = .fill
-        view.distribution = .fillEqually
-        view.axis = .horizontal
-        view.spacing = 30
-        view.isHidden = true
-        return view
-    }()
-    
-    lazy var postsBtt: UIButton = {
-        let view = UIButton(type: .system)
-        view.setTitle("XXX\nпубликаций", for: .normal)
-        view.titleLabel?.numberOfLines = 2
-        view.titleLabel?.textAlignment = .center
-        view.setTitleColor(.black, for: .normal)
-        return view
-    }()
-    
-    lazy var subscriptionsBtt: UIButton = {
-        let view = UIButton(type: .system)
-        view.setTitle("XXX\nподписок", for: .normal)
-        view.titleLabel?.numberOfLines = 2
-        view.titleLabel?.textAlignment = .center
-        view.setTitleColor(.black, for: .normal)
-        return view
-    }()
-    
-    lazy var followersBtt: UIButton = {
-        let view = UIButton(type: .system)
-        view.setTitle("XXX\nподписчиков", for: .normal)
-        view.titleLabel?.numberOfLines = 2
-        view.titleLabel?.textAlignment = .center
-        view.setTitleColor(.black, for: .normal)
-        return view
-    }()
-    
-    lazy var stackBtts: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [postsBtt, subscriptionsBtt, followersBtt])
-        view.alignment = .fill
-        view.distribution = .fillEqually
-        view.axis = .horizontal
-        view.spacing = 25
-        return view
-    }()
-    
-    let line: UILabel = {
-        let view = UILabel()
-        view.backgroundColor = .black
-        return view
-    }()
-    
-    let createPostBtt: UIButton = {
-        let image = UIImage(systemName: "pencil.circle")
-        let view = UIButton(type: .system)
-        view.setImage(image, for: .normal)
-        view.setTitle("Запись", for: .normal)
-        view.tintColor = .black
-        view.titleLabel?.textAlignment = .center
-        return view
-    }()
-    
-    let createStoryBtt: UIButton = {
-        let image = UIImage(systemName: "livephoto")
-        let view = UIButton(type: .system)
-        view.setTitle("История", for: .normal)
-        view.setImage(image, for: .normal)
-        view.tintColor = .black
-        view.titleLabel?.textAlignment = .center
-        return view
-    }()
-    
-    let createPhotoBtt: UIButton = {
-        let image = UIImage(systemName: "camera.circle")
-        let view = UIButton(type: .system)
-        view.setTitle("Фото", for: .normal)
-        view.setImage(image, for: .normal)
-        view.tintColor = .black
-        view.titleLabel?.textAlignment = .center
-        return view
-    }()
-    
-    lazy var stackBttsSec: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [createPostBtt, createStoryBtt, createPhotoBtt])
-        view.alignment = .fill
-        view.distribution = .fillEqually
-        view.axis = .horizontal
-        view.spacing = 60
-        return view
-    }()
-    
-    let storiesCollectionLayout: UICollectionViewFlowLayout = {
-        let view = UICollectionViewFlowLayout()
-        view.scrollDirection = .horizontal
-        return view
-    }()
-    
-    lazy var photosCollectionView: UICollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: storiesCollectionLayout)
-        view.dataSource = self
-        view.delegate = self
-        view.register(VKHorisontalPicCell.self, forCellWithReuseIdentifier: "VKProfilePhotoLib")
-        view.backgroundColor = .clear
-        view.showsHorizontalScrollIndicator = false
-        return view
-    }()
-    
-    let photoLibLabel: UILabel = {
-        let view = UILabel()
-        view.text = "Фотографии XX"
-        view.textColor = .label
-        return view
-    }()
-    
-    let photoLibArrow: UIButton = {
-        let arrowConfig = UIImage.SymbolConfiguration(textStyle: .title3)
-        let image = UIImage(systemName: "chevron.forward", withConfiguration: arrowConfig)
-        let view = UIButton(type: .system)
-        view.setImage(image, for: .normal)
-        view.tintColor = .label
-        view.addTarget(self, action: #selector(photoHandler), for: .touchUpInside)
-        return view
-    }()
-    
-    let myPostsLabel: UILabel = {
-        let view = UILabel()
-        view.text = "Мои посты"
-        view.textColor = .label
-        return view
-    }()
-    
-    let searchPosts: UIButton = {
-        let arrowConfig = UIImage.SymbolConfiguration(textStyle: .title3)
-        let image = UIImage(systemName: "magnifyingglass", withConfiguration: arrowConfig)
-        let view = UIButton(type: .system)
-        view.setImage(image, for: .normal)
-        view.tintColor = .label
-        return view
-    }()
-    
-    
-    let postsCollectionLayout: UICollectionViewFlowLayout = {
+    let vkProfileLayout: UICollectionViewFlowLayout = {
         let view = UICollectionViewFlowLayout()
         view.scrollDirection = .vertical
-        view.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 30)
+        view.minimumInteritemSpacing = 10
+        view.minimumLineSpacing = 10
         return view
     }()
     
-    lazy var postsCollectionView: UICollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: postsCollectionLayout)
+    lazy var vkProfileCollectionView: UICollectionView = {
+        let view = UICollectionView(frame: .zero, collectionViewLayout: vkProfileLayout)
         view.dataSource = self
         view.delegate = self
-        view.register(VKPostFeedCell.self, forCellWithReuseIdentifier: "VKProfilePostFeed")
-        view.register(VKPostSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView")
+        view.register(VKProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+        view.register(VKProfilePhotosHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "photoHeader")
+        view.register(VKProfilePostHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "feedHeader")
+        view.register(VKProfilePhotosView.self, forCellWithReuseIdentifier: "photoLib")
+        view.register(VKPostFeedCell.self, forCellWithReuseIdentifier: "postFeed")
         view.backgroundColor = .clear
         view.showsVerticalScrollIndicator = false
         return view
@@ -321,181 +100,40 @@ final class VKProfileVC: UIViewController {
         return tableView
     }()
     
+    var isCurrentUser = true
+    
     func friendProfile() {
-        altStackBtts.isHidden = false
-        editBtt.isHidden = true
-        stackBttsSec.isHidden = true
-        myPostsLabel.text = "Default user посты"
+        isCurrentUser.toggle()
+        vkProfileLayout.invalidateLayout()
     }
+    
+    
     
     //MARK: - CONSTRAINTS
     
     lazy var setupConstraints = { [self] in
-        
-        let safe = view.safeAreaLayoutGuide
-        
-        scrollView.snp.makeConstraints { make in
-            make.edges.equalTo(safe)
-        }
-        
-        containerView.snp.makeConstraints { make in
-            make.edges.equalTo(scrollView)
-            make.width.equalTo(safe)
-        }
-        
-        ava.snp.makeConstraints { make in
-            make.height.width.equalTo(80)
-            make.top.equalTo(containerView.snp.top).offset(15)
-            make.leading.equalTo(containerView.snp.leading).offset(30)
-        }
-        
-        userName.snp.makeConstraints { make in
-            make.height.equalTo(20)
-            make.width.equalTo(250)
-            make.top.equalTo(containerView).offset(20)
-            make.leading.equalTo(ava.snp.trailing).offset(10)
-        }
-        
-        userNameSubtitle.snp.makeConstraints { make in
-            make.height.equalTo(15)
-            make.width.equalTo(100)
-            make.top.equalTo(userName.snp.bottom).offset(3)
-            make.leading.equalTo(ava.snp.trailing).offset(10)
-        }
-        
-        exclamationMark.snp.makeConstraints { make in
-            make.height.equalTo(20)
-            make.width.equalTo(20)
-            make.top.equalTo(userNameSubtitle.snp.bottom).offset(5)
-            make.leading.equalTo(ava.snp.trailing).offset(10)
-        }
-        
-        detailSubtitle.snp.makeConstraints { make in
-            make.height.equalTo(20)
-            make.width.equalTo(140)
-            make.top.equalTo(userNameSubtitle.snp.bottom).offset(5)
-            make.leading.equalTo(exclamationMark.snp.trailing).offset(5)
-        }
-        
-        editBtt.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(350)
-            make.top.equalTo(detailSubtitle.snp.bottom).offset(25)
-            make.centerX.equalTo(containerView)
-        }
-        
-        altStackBtts.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(350)
-            make.top.equalTo(detailSubtitle.snp.bottom).offset(25)
-            make.centerX.equalTo(containerView)
-        }
-        
-        stackBtts.snp.makeConstraints { make in
-            make.height.equalTo(60)
-            make.width.equalTo(350)
-            make.top.equalTo(editBtt.snp.bottom).offset(15)
-            make.centerX.equalTo(containerView)
-        }
-        
-        line.snp.makeConstraints { make in
-            make.height.equalTo(1)
-            make.width.equalTo(400)
-            make.top.equalTo(stackBtts.snp.bottom).offset(15)
-            make.centerX.equalTo(containerView)
-        }
-        
-        stackBttsSec.snp.makeConstraints { make in
-            make.height.equalTo(60)
-            make.width.equalTo(350)
-            make.top.equalTo(line.snp.bottom).offset(15)
-            make.centerX.equalTo(containerView)
-        }
-   
-            photoLibLabel.snp.makeConstraints { make in
-                make.height.equalTo(20)
-                make.width.equalTo(150)
-                
-                if stackBttsSec.isHidden {
-                    
-                make.top.equalTo(line.snp.bottom).offset(15)
-                } else {
-                    make.top.equalTo(stackBttsSec.snp.bottom).offset(15)
-                }
-                
-                make.leading.equalTo(containerView).offset(16)
-            }
-        
-        photoLibArrow.snp.makeConstraints { make in
-            make.height.equalTo(25)
-            make.width.equalTo(15)
-            make.trailing.equalTo(containerView).inset(16)
-            make.centerY.equalTo(photoLibLabel.snp.centerY)
-        }
-        
-        photosCollectionView.snp.makeConstraints { make in
-            make.height.equalTo(68)
-            make.top.equalTo(photoLibLabel.snp.bottom).offset(15)
-            make.leading.equalTo(containerView).offset(16)
-            make.trailing.equalTo(containerView)
-        }
-        
-        myPostsLabel.snp.makeConstraints { make in
-            make.height.equalTo(20)
-            make.width.equalTo(150)
-            make.top.equalTo(photosCollectionView.snp.bottom).offset(25)
-            make.leading.equalTo(containerView).offset(16)
-        }
-        
-        searchPosts.snp.makeConstraints { make in
-            make.height.equalTo(25)
-            make.width.equalTo(25)
-            make.trailing.equalTo(containerView).inset(16)
-            make.centerY.equalTo(myPostsLabel.snp.centerY)
-        }
-        
-        postsCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(myPostsLabel.snp.bottom).offset(15)
-            make.leading.trailing.equalTo(containerView)
-            ///to make collection view contenet a part of superview content, need to define initial height to 0
-            make.height.equalTo(0)
-            make.bottom.equalTo(containerView.snp.bottom)
+        vkProfileCollectionView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
         
     }
     
     //MARK: - LIFECYCLE
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        ///to recalculate viewLayout for binding left and right sides of collectionView to superview edges
-        postsCollectionView.collectionViewLayout.invalidateLayout()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Profile"
         view.backgroundColor = .white
         /// - NavBarButtons start --
         navigationItem.setRightBarButton(rightButton, animated: true)
         navigationItem.setLeftBarButton(UIBarButtonItem(), animated: false)
         navigationItem.leftBarButtonItem?.customView = leftBarBtt
         /// - NavBarButtons end --
-        view.addSubview(scrollView)
-        scrollView.addSubviews(containerView, ava, userName, userNameSubtitle, exclamationMark, detailSubtitle, editBtt, altStackBtts, stackBtts, line, stackBttsSec, photoLibLabel, photoLibArrow, photosCollectionView, myPostsLabel, searchPosts, postsCollectionView)
+        view.addSubview(vkProfileCollectionView)
         setupConstraints()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        createPostBtt.alignImageAndTitleVertically()
-        createPhotoBtt.alignImageAndTitleVertically()
-        createStoryBtt.alignImageAndTitleVertically()
-        
-        ///save collectionView contentSize to variable, where view height will be recalculated
-        height = postsCollectionView.contentSize.height
-        print(height)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        vkProfileLayout.invalidateLayout()
     }
 }
 
@@ -508,41 +146,73 @@ extension VKProfileVC: UICollectionViewDelegateFlowLayout {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if collectionView == postsCollectionView {
-            return 2
-        } else {
-            return 1
-        }
+       3
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+ 
+        let indexPath = IndexPath(row: 0, section: section)
+            let headerView = self.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader, at: indexPath)
+
+            // Use this view to calculate the optimal size based on the collection view's width
+            let headerSize = headerView.systemLayoutSizeFitting(CGSize(width: collectionView.frame.width, height: UIView.layoutFittingExpandedSize.height),
+                                                      withHorizontalFittingPriority: .required, // Width is fixed
+                                                      verticalFittingPriority: .fittingSizeLevel) // Height can be as large as needed
+        return headerSize
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView", for: indexPath) as? VKPostSectionHeader else { return UICollectionReusableView(frame: .zero)}
-        
-        return headerView
+
+        switch indexPath.section {
+        case 0:
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as? VKProfileHeaderView else { return UICollectionReusableView(frame: .zero)}
+            if !isCurrentUser {
+            headerView.altStackBtts.isHidden = false
+            headerView.editBtt.isHidden = true
+            headerView.stackBttsSec.isHidden = true
+            headerView.updateView()
+            }
+            return headerView
+        case 1:
+            guard let photoHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "photoHeader", for: indexPath) as? VKProfilePhotosHeader else { return UICollectionReusableView(frame: .zero)}
+            photoHeader.photoLibArrow.addTarget(self, action: #selector(photoHandler), for: .touchUpInside)
+            return photoHeader
+        case 2:
+            guard let feedHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "feedHeader", for: indexPath) as? VKProfilePostHeader else { return UICollectionReusableView(frame: .zero)}
+            
+            if !isCurrentUser {
+            feedHeader.myPostsLabel.text = "Default user посты"
+            }
+            return feedHeader
+        default:
+            return UICollectionReusableView(frame: .zero)
+        }
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        if collectionView == photosCollectionView {
-            return CGSize(width: 72, height: 68)
-        }
-        else {
+        switch indexPath.section {
+        case 1:
+            return CGSize(width: collectionView.frame.width, height: 120)
+        case 2:
             return CGSize(width: collectionView.frame.width, height: 300)
+        default:
+            return .zero
         }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        if collectionView == photosCollectionView {
+        if section == 1 {
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
         }
         else {
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
-    
 }
 
 extension VKProfileVC: UICollectionViewDataSource {
@@ -550,13 +220,13 @@ extension VKProfileVC: UICollectionViewDataSource {
         
         guard let dataDelegate = self.dataDelegate else { return 0 }
         
-        if collectionView == photosCollectionView {
-            //            return VKPhotoLibModel.photosForTesting.count + 1
-            /// +1 is added to handle arrow image which allows to navigate to PhotoLibrary VC
-            return dataDelegate.returnCellsCount(.photoLib) + 1
-        }
-        else {
+        switch section {
+        case 1:
+            return 1
+        case 2:
             return dataDelegate.returnCellsCount(.profileText)
+        default:
+            return 0
         }
     }
     
@@ -564,31 +234,24 @@ extension VKProfileVC: UICollectionViewDataSource {
         
         guard let dataDelegate = self.dataDelegate else { return UICollectionViewCell(frame: .zero) }
         
-        if collectionView == photosCollectionView {
+        switch indexPath.section {
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePhotoLib", for: indexPath) as? VKHorisontalPicCell else { return UICollectionViewCell(frame: .zero)  }
-            
-            cell.photoImage.layer.cornerRadius = 5
-            
-            if indexPath.item == dataDelegate.returnCellsCount(.photoLib) {
-                let threeDots = UIImage(systemName: "arrow.right")
-                cell.photoImage.image = threeDots
-            } else {
-                let photo = UIImage(named: dataDelegate.returnDataForCell(indexPath.item, .photoLib))
-                cell.photoImage.image = photo
-            }
-            
+        case 1:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoLib", for: indexPath) as? VKProfilePhotosView else { return UICollectionViewCell(frame: .zero)  }
+            cell.dataDelegate = dataDelegate
             return cell
             
-        } else {
-            
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VKProfilePostFeed", for: indexPath) as? VKPostFeedCell else { return UICollectionViewCell(frame: .zero)  }
+        case 2:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postFeed", for: indexPath) as? VKPostFeedCell else { return UICollectionViewCell(frame: .zero)  }
             cell.contentView.isUserInteractionEnabled = false
             cell.postTextAndImage.postText.text = dataDelegate.returnDataForCell(indexPath.item, .profileText)
             cell.postTextAndImage.postPhoto.image = UIImage(named: dataDelegate.returnDataForCell(indexPath.item, .profilePhoto))
             cell.additionalInfo.addTarget(self, action: #selector(postSettingsHandler(_:)), for: .touchUpInside)
             return cell
             
+        default:
+            return UICollectionViewCell(frame: .zero)
+    
         }
     }
 }

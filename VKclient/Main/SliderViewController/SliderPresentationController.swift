@@ -76,9 +76,16 @@ class SliderPresentationController: UIPresentationController {
         
         switch direction {
           case .left, .right:
-            return CGSize(width: parentSize.width * (3.0 / 4.0), height: parentSize.height)
+            
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                return CGSize(width: parentSize.width * (1.0 / 3.0), height: parentSize.height)
+            } else {
+                return CGSize(width: parentSize.width * (3.0 / 4.0), height: parentSize.height)
+            }
+            
+            
           case .bottom, .top:
-            return CGSize(width: parentSize.width, height: parentSize.height * (1.0 / 4.0))
+            return CGSize(width: parentSize.width, height: parentSize.height * (2.0 / 7.0))
           }
         
     }
@@ -90,9 +97,16 @@ class SliderPresentationController: UIPresentationController {
 
           switch direction {
           case .right:
-            frame.origin.x = containerView!.frame.width*(1.0/4.0)
+              
+              if UIDevice.current.userInterfaceIdiom == .pad {
+                  frame.origin.x = containerView!.frame.width*(2.0/3.0)
+              } else {
+                  frame.origin.x = containerView!.frame.width*(1.0/4.0)
+              }
+              
+            
           case .bottom:
-              frame.origin.y = containerView!.frame.height*(3.0/4.0)
+              frame.origin.y = containerView!.frame.height*(5.0/7.0)
           default:
             frame.origin = .zero
           }

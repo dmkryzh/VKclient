@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500758F72766ED1800D4BD93 /* VKProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500758F62766ED1800D4BD93 /* VKProfileHeaderView.swift */; };
+		500758FA2766EF6E00D4BD93 /* VKProfilePhotosHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500758F92766EF6E00D4BD93 /* VKProfilePhotosHeader.swift */; };
+		500758FC2766F07400D4BD93 /* VKProfilePostHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500758FB2766F07400D4BD93 /* VKProfilePostHeader.swift */; };
+		500758FF2767127200D4BD93 /* VKProfilePhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500758FE2767127200D4BD93 /* VKProfilePhotosView.swift */; };
 		5053845D274692B100BE7179 /* VKFullPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5053845C274692B100BE7179 /* VKFullPostVC.swift */; };
 		5053845F274692C100BE7179 /* VKFullPostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5053845E274692C100BE7179 /* VKFullPostPresenter.swift */; };
 		50538461274692D300BE7179 /* VKFullPostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50538460274692D300BE7179 /* VKFullPostCoordinator.swift */; };
@@ -91,6 +95,10 @@
 
 /* Begin PBXFileReference section */
 		4D82BB22BAA2BEE6D3C3E63B /* Pods-VKclient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKclient.release.xcconfig"; path = "Target Support Files/Pods-VKclient/Pods-VKclient.release.xcconfig"; sourceTree = "<group>"; };
+		500758F62766ED1800D4BD93 /* VKProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfileHeaderView.swift; sourceTree = "<group>"; };
+		500758F92766EF6E00D4BD93 /* VKProfilePhotosHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfilePhotosHeader.swift; sourceTree = "<group>"; };
+		500758FB2766F07400D4BD93 /* VKProfilePostHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfilePostHeader.swift; sourceTree = "<group>"; };
+		500758FE2767127200D4BD93 /* VKProfilePhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKProfilePhotosView.swift; sourceTree = "<group>"; };
 		5053845C274692B100BE7179 /* VKFullPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFullPostVC.swift; sourceTree = "<group>"; };
 		5053845E274692C100BE7179 /* VKFullPostPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFullPostPresenter.swift; sourceTree = "<group>"; };
 		50538460274692D300BE7179 /* VKFullPostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFullPostCoordinator.swift; sourceTree = "<group>"; };
@@ -196,6 +204,17 @@
 				7EAEFD22F86E033E2E76F392 /* Pods_VKclient.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		500758FD27670C9000D4BD93 /* VKProfileViews */ = {
+			isa = PBXGroup;
+			children = (
+				500758F62766ED1800D4BD93 /* VKProfileHeaderView.swift */,
+				500758F92766EF6E00D4BD93 /* VKProfilePhotosHeader.swift */,
+				500758FB2766F07400D4BD93 /* VKProfilePostHeader.swift */,
+				500758FE2767127200D4BD93 /* VKProfilePhotosView.swift */,
+			);
+			path = VKProfileViews;
 			sourceTree = "<group>";
 		};
 		5053845B2746929B00BE7179 /* VKFullPost */ = {
@@ -322,6 +341,7 @@
 		508FA989271EBAC400039CC7 /* VKProfile */ = {
 			isa = PBXGroup;
 			children = (
+				500758FD27670C9000D4BD93 /* VKProfileViews */,
 				5096209F27539C8100DEEC90 /* VKProfileEdit */,
 				508FA9AC27271C0200039CC7 /* VKProfileOptions */,
 				508FA98A271EBAE600039CC7 /* VKProfileVC.swift */,
@@ -671,6 +691,7 @@
 				50F7EEB12752A1A8000C6E49 /* VKPhotoHeader.swift in Sources */,
 				50909C8327417D10008C08E2 /* DataParser.swift in Sources */,
 				50538468274A09B700BE7179 /* VKToolsPresenter.swift in Sources */,
+				500758FF2767127200D4BD93 /* VKProfilePhotosView.swift in Sources */,
 				508FA999272198A800039CC7 /* VKPhotoLibPresenter.swift in Sources */,
 				508FA95E27143C4200039CC7 /* LoginPresenter.swift in Sources */,
 				508FA9C1273959D600039CC7 /* TabBarPresenter.swift in Sources */,
@@ -686,6 +707,7 @@
 				5053845D274692B100BE7179 /* VKFullPostVC.swift in Sources */,
 				508FA994271EBD6100039CC7 /* VKProfileModel.swift in Sources */,
 				50AF96FC2743812200C7DFA4 /* VKFeedModel.swift in Sources */,
+				500758FC2766F07400D4BD93 /* VKProfilePostHeader.swift in Sources */,
 				508FA992271EBD4600039CC7 /* VKProfileCoordinator.swift in Sources */,
 				508FA9AE27271C3300039CC7 /* VKProfileOptionsVC.swift in Sources */,
 				508FA9A22722BD3800039CC7 /* VKPostFeedCell.swift in Sources */,
@@ -739,6 +761,8 @@
 				509620932753516A00DEEC90 /* VKGeneralInfoPresenter.swift in Sources */,
 				5053846C274A09CE00BE7179 /* VKToolsModel.swift in Sources */,
 				50EE6E422713072C0073E5A1 /* SceneDelegate.swift in Sources */,
+				500758FA2766EF6E00D4BD93 /* VKProfilePhotosHeader.swift in Sources */,
+				500758F72766ED1800D4BD93 /* VKProfileHeaderView.swift in Sources */,
 				50EE6E5E271347020073E5A1 /* Coordinator.swift in Sources */,
 				508FA9BD27391B4000039CC7 /* TabBarMainCoordinator.swift in Sources */,
 				508FA98B271EBAE600039CC7 /* VKProfileVC.swift in Sources */,

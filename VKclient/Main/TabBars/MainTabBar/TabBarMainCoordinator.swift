@@ -36,6 +36,13 @@ extension TabBarMainCoordinator: TabBarMainDelegate {
     func configureProfileTabBtnn() -> UINavigationController {
         let middleVC = VKProfileVC()
         middleVC.tabBarItem.title = "Profile"
+        middleVC.tabBarItem.image = UIImage()
+        // temporary workaround
+        if UIDevice.current.userInterfaceIdiom == .pad {
+        middleVC.tabBarItem.titlePositionAdjustment.vertical = 15
+        middleVC.tabBarItem.titlePositionAdjustment.horizontal = 7
+        }
+        
         let middleNavi = UINavigationController()
         let middleCoordinator = VKProfileCoordinator(middleNavi, rootVC: middleVC)
         let modelPost = VKProfileModel()

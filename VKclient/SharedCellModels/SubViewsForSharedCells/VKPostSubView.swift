@@ -54,7 +54,6 @@ class VKPostSubView: UIView {
         
         expandPostBtt.snp.makeConstraints { make in
             make.top.equalTo(postText.snp.bottom).offset(5)
-            make.height.equalTo(20)
             make.width.equalTo(180)
             make.leading.equalTo(line.snp.trailing).offset(25)
         }

@@ -173,6 +173,7 @@ extension VKFeedVC: UICollectionViewDelegateFlowLayout {
 }
 
 extension VKFeedVC: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         guard let dataDelegate = self.dataDelegate else { return 0 }
