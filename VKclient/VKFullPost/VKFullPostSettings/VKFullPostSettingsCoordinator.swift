@@ -28,7 +28,7 @@ class VKFullPostSettingsCoordinator: Coordinator {
 extension VKFullPostSettingsCoordinator: VKFullPostSettingsFlowDelegate {
     
     func test() {
-        
+        print("test")
     }
 }
 
