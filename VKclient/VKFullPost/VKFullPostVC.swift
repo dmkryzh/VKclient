@@ -142,7 +142,7 @@ extension VKFullPostVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reply", for: indexPath) as? VKFullPostCommentReply else { return UICollectionViewCell(frame: .zero) }
         
         if indexPath == IndexPath(item: 0, section: 2) {
-            cell.comment.text = "qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123"
+            cell.comment.text = "qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123qwerty 123qwerty 123 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123qwerty 123qwerty 123123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123 qwerty 123qwerty 123qwerty 123"
             return cell
         } else {
         

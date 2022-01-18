@@ -70,11 +70,17 @@ extension TabBarMainCoordinator: TabBarMainDelegate {
     }
     
     func configureSavedPosts() -> UINavigationController {
-        let secondVC = UIViewController()
-        secondVC.view.backgroundColor = .green
+        let secondVC = VKCollectionVC()
+//        secondVC.view.backgroundColor = .green
         secondVC.tabBarItem.title = "Collection"
         secondVC.tabBarItem.image = UIImage(systemName: "mic.fill")
-        let secondNavi = UINavigationController(rootViewController: secondVC)
+        let secondNavi = UINavigationController()
+        let colCoordinator = VKCollectionCoordinator(secondNavi, rootVC: secondVC)
+        let colModel = VKProfileModel()
+        let colPresenter = VKCollectionPresenter(colModel, secondVC, colCoordinator)
+        secondVC.dataDelegate = colPresenter
+        secondVC.presenter = colPresenter
+        colCoordinator.start()
         return secondNavi
     }
     

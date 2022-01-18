@@ -133,6 +133,7 @@ class CustomTabBar: UITabBar {
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    
         let pointIsInside = super.point(inside: point, with: event)
         if pointIsInside == false {
             for subview in subviews {
@@ -145,6 +146,9 @@ class CustomTabBar: UITabBar {
         return pointIsInside
     }
     
+    override var next: UIResponder? {
+        return UIView()
+    }
 }
 
 //MARK: ACTIONS

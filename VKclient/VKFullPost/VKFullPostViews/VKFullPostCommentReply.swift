@@ -89,7 +89,7 @@ class VKFullPostCommentReply: UICollectionViewCell {
         }
         
         comment.snp.makeConstraints { make in
-            make.width.equalTo(220)
+            make.width.equalTo(UIScreen.main.bounds.width - 100)
             make.top.equalTo(ava.snp.bottom).offset(3)
             make.leading.equalTo(ava.snp.trailing).offset(5)
         }
