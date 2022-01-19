@@ -17,6 +17,7 @@ PODS:
     - MaterialComponents/Ripple
     - MDFInternationalization
   - MDFInternationalization (3.0.0)
+  - pop (1.0.12)
   - Popover (1.3.0)
   - Realm (10.7.6):
     - Realm/Headers (= 10.7.6)
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - Alamofire (~> 5.4)
   - M13Checkbox
   - "MaterialComponents/Tabs+TabBarView"
+  - pop (~> 1.0)
   - Popover
   - RealmSwift
   - SnapKit (~> 5.0.0)
@@ -41,6 +43,7 @@ SPEC REPOS:
     - M13Checkbox
     - MaterialComponents
     - MDFInternationalization
+    - pop
     - Popover
     - Realm
     - RealmSwift
@@ -52,12 +55,13 @@ SPEC CHECKSUMS:
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   Popover: 10e1d9528f81d9504df984b7b3f491292bc1822d
   Realm: ed860452717c8db8f4bf832b6807f7f2ce708839
   RealmSwift: e31c4ddbcc42ac879313d656b86f9ca539f6f4f4
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   WeScan: fed582f6c38014d529afb5aa9ffd1bad38fc72b7
 
-PODFILE CHECKSUM: 8cfcbb66c5e46cb370353b47d2c876e800080d42
+PODFILE CHECKSUM: d1e6764db9f5eb9df8282546ab2d7555e0c28920
 
 COCOAPODS: 1.10.1

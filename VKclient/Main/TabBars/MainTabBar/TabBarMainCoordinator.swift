@@ -37,12 +37,6 @@ extension TabBarMainCoordinator: TabBarMainDelegate {
         let middleVC = VKProfileVC()
         middleVC.tabBarItem.title = "Profile"
         middleVC.tabBarItem.image = UIImage()
-        // temporary workaround
-        if UIDevice.current.userInterfaceIdiom == .pad {
-        middleVC.tabBarItem.titlePositionAdjustment.vertical = 15
-        middleVC.tabBarItem.titlePositionAdjustment.horizontal = 7
-        }
-        
         let middleNavi = UINavigationController()
         let middleCoordinator = VKProfileCoordinator(middleNavi, rootVC: middleVC)
         let modelPost = VKProfileModel()
@@ -57,7 +51,7 @@ extension TabBarMainCoordinator: TabBarMainDelegate {
     func configureFeedTabBtnn() -> UINavigationController {
         let feedVC = VKFeedVC()
         feedVC.tabBarItem.title = "Feed"
-        feedVC.tabBarItem.image = UIImage(systemName: "house.fill")
+        feedVC.tabBarItem.image = UIImage(systemName: "scroll")
         let feedNavi = UINavigationController()
         let feedCoordinator = VKFeedCoordinator(feedNavi, feedVC)
         let modelPost = VKProfileModel()
@@ -71,9 +65,8 @@ extension TabBarMainCoordinator: TabBarMainDelegate {
     
     func configureSavedPosts() -> UINavigationController {
         let secondVC = VKCollectionVC()
-//        secondVC.view.backgroundColor = .green
         secondVC.tabBarItem.title = "Collection"
-        secondVC.tabBarItem.image = UIImage(systemName: "mic.fill")
+        secondVC.tabBarItem.image = UIImage(systemName: "eye")
         let secondNavi = UINavigationController()
         let colCoordinator = VKCollectionCoordinator(secondNavi, rootVC: secondVC)
         let colModel = VKProfileModel()
@@ -84,10 +77,28 @@ extension TabBarMainCoordinator: TabBarMainDelegate {
         return secondNavi
     }
     
+    func configureLeftTestTabBtnn() -> UINavigationController {
+        let view = UIViewController()
+        view.view.backgroundColor = .green
+        view.tabBarItem.title = "TestLeft"
+        view.tabBarItem.image = UIImage(systemName: "circle.grid.cross.left.filled")
+        let nav = UINavigationController(rootViewController: view)
+        return nav
+    }
+    
+    func configureRightTestTabBtnn() -> UINavigationController {
+        let view = UIViewController()
+        view.view.backgroundColor = .yellow
+        view.tabBarItem.title = "TestRight"
+        view.tabBarItem.image = UIImage(systemName: "circle.grid.cross.right.filled")
+        let nav = UINavigationController(rootViewController: view)
+        return nav
+    }
+    
     func configureTabBarVCs() {
         guard let tabBar = rootVC as? TabBarMain else { return }
-        tabBar.viewControllers = [configureFeedTabBtnn(), configureProfileTabBtnn(), configureSavedPosts()]
-        tabBar.selectedIndex = 1
+        tabBar.viewControllers = [configureFeedTabBtnn(), configureLeftTestTabBtnn(), configureProfileTabBtnn(), configureRightTestTabBtnn(), configureSavedPosts()]
+        tabBar.selectedIndex = 2
     }
 }
 

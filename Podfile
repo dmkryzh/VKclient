@@ -13,5 +13,6 @@ target 'VKclient' do
  pod 'MaterialComponents/Tabs+TabBarView'
  pod 'RealmSwift'
  pod 'M13Checkbox'
+ pod 'pop', '~> 1.0'
 
 end
